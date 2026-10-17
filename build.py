@@ -1,4 +1,5 @@
 """index.html(아티팩트 원본)을 GitHub Pages용 완성 문서 docs/index.html로 만든다."""
+import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).parent
@@ -25,4 +26,6 @@ out.mkdir(exist_ok=True)
 (out / "index.html").write_text(doc, encoding="utf-8")
 (out / "CNAME").write_text("chungsim.lain.kr\n", encoding="utf-8")
 (out / ".nojekyll").write_text("", encoding="utf-8")
+shutil.rmtree(out / "fonts", ignore_errors=True)
+shutil.copytree(ROOT / "fonts", out / "fonts")
 print(f"docs/index.html {len(doc):,} bytes")
