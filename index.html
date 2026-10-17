@@ -1,0 +1,1070 @@
+<title>청심국제중 2027 입시 노트</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Noto+Serif+KR:wght@700;900&display=swap">
+<style>
+/* Layout: 한 장짜리 입시 바인더. 상단 D-day 띠 → 고정 탭 → 섹션별 카드. 날짜·점수는 모노 숫자, 제목은 명조. */
+:root{
+  --bg:#f2f4f1; --paper:#ffffff; --ink:#132029; --muted:#586970; --line:#d8dfdb;
+  --lake:#0b6a6e; --lake-soft:#e0efed; --signal:#b0440c; --signal-soft:#fbede3;
+  --ok:#2c7a47; --ok-soft:#e3f2e8; --warn:#9a6a00; --warn-soft:#fbf3dc;
+  --display:"Noto Serif KR","Nanum Myeongjo",Georgia,serif;
+  --body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1618; --paper:#142024; --ink:#e6eeec; --muted:#93a4a7; --line:#27373b;
+    --lake:#5ec4bf; --lake-soft:#163134; --signal:#f28c4e; --signal-soft:#36231a;
+    --ok:#6cc68d; --ok-soft:#173023; --warn:#e5b54a; --warn-soft:#332a14; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1618; --paper:#142024; --ink:#e6eeec; --muted:#93a4a7; --line:#27373b;
+  --lake:#5ec4bf; --lake-soft:#163134; --signal:#f28c4e; --signal-soft:#36231a;
+  --ok:#6cc68d; --ok-soft:#173023; --warn:#e5b54a; --warn-soft:#332a14; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15.5px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--lake);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.3;margin:0}
+h2{font-size:1.65rem;font-weight:900}
+h3{font-size:1.12rem;font-weight:700}
+p{margin:0}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.muted{color:var(--muted)}
+.small{font-size:.84rem}
+
+header.hero{padding-block:40px 28px}
+.hero h1{font-size:clamp(1.9rem,5vw,2.9rem);font-weight:900;letter-spacing:-.01em}
+.hero h1 span{color:var(--lake)}
+.hero .lede{margin-top:12px;max-width:64ch;color:var(--muted)}
+.ddays{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:24px}
+@media (max-width:860px){.ddays{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:440px){.ddays{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dd{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.dd .lbl{font-size:.8rem;color:var(--muted)}
+.dd .val{font-family:var(--mono);font-size:1.5rem;font-weight:600;line-height:1.2}
+.dd .date{font-size:.8rem;color:var(--muted)}
+.dd.next .val{color:var(--signal)}
+.dd.done .val{color:var(--muted);font-size:1.05rem;padding-block:4px}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:8px}
+nav.tabs .wrap::-webkit-scrollbar{display:none}
+nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:.9rem;padding:7px 12px;border-radius:999px;white-space:nowrap}
+nav.tabs a:hover{color:var(--ink);background:var(--paper)}
+nav.tabs a.on{color:var(--paper);background:var(--lake)}
+
+main section{padding-block:44px 8px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 16px;margin-bottom:18px}
+.sec-head p{color:var(--muted);max-width:64ch}
+.stack{display:flex;flex-direction:column;gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.grid2>*{min-width:0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card h3{margin-bottom:10px}
+.callout{border-radius:12px;padding:16px 18px;background:var(--lake-soft);border:1px solid color-mix(in srgb,var(--lake) 30%,transparent)}
+.callout.sig{background:var(--signal-soft);border-color:color-mix(in srgb,var(--signal) 35%,transparent)}
+.callout.warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 35%,transparent)}
+ul.clean{margin:0;padding-left:1.1em}
+ul.clean li+li{margin-top:4px}
+.pill{display:inline-block;font-size:.74rem;font-weight:600;padding:1px 8px;border-radius:999px;background:var(--lake-soft);color:var(--lake);white-space:nowrap;vertical-align:1px}
+.pill.sig{background:var(--signal-soft);color:var(--signal)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.grey{background:color-mix(in srgb,var(--muted) 14%,transparent);color:var(--muted)}
+
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;color:var(--muted);font-weight:600;letter-spacing:.04em}
+td.r,th.r{text-align:right}
+tr.total td{font-weight:700;border-bottom:none}
+.bar{height:8px;border-radius:4px;background:var(--lake-soft);position:relative;min-width:80px}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:4px;background:var(--lake)}
+.funnel{display:flex;flex-direction:column;gap:10px}
+.funnel .row{display:grid;grid-template-columns:110px 1fr 64px;gap:10px;align-items:center}
+.funnel .lab{font-size:.84rem;color:var(--muted)}
+.funnel .n{font-family:var(--mono);font-weight:600;text-align:right}
+
+ol.tl{list-style:none;margin:0;padding:0;position:relative}
+ol.tl::before{content:"";position:absolute;left:104px;top:6px;bottom:6px;width:2px;background:var(--line)}
+ol.tl li{display:grid;grid-template-columns:96px 1fr;gap:24px;padding-block:10px;position:relative}
+ol.tl li::before{content:"";position:absolute;left:99px;top:17px;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--line)}
+ol.tl li.key::before{border-color:var(--lake)}
+ol.tl li.now::before{border-color:var(--lake);background:var(--lake)}
+ol.tl li.next::before{border-color:var(--signal);background:var(--signal)}
+ol.tl li.done::before{background:var(--line);border-color:var(--line)}
+ol.tl .when{font-family:var(--mono);font-size:.86rem;text-align:right;color:var(--muted);line-height:1.5;padding-top:2px}
+ol.tl li.next .when{color:var(--signal);font-weight:600}
+ol.tl li.now .when{color:var(--lake);font-weight:600}
+ol.tl .what{min-width:0}
+ol.tl .what b{display:block}
+ol.tl li.done .what,ol.tl li.na .what{opacity:.55}
+@media (max-width:560px){
+  ol.tl::before{left:7px}
+  ol.tl li{grid-template-columns:1fr;gap:2px;padding-left:28px}
+  ol.tl li::before{left:2px}
+  ol.tl .when{text-align:left}
+}
+
+/* calendar */
+.cals{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px 28px}
+.cal{min-width:0}
+.cal h3{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.cal h3 .num{font-size:.9rem;color:var(--muted);font-weight:500}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line)}
+.cal-wd{font-size:.74rem;font-weight:600;color:var(--muted);text-align:center;padding-block:6px;border-bottom:1px solid var(--line)}
+.cal-wd.sun{color:var(--signal)}.cal-wd.sat{color:var(--lake)}
+.day{min-height:68px;padding:4px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:3px;min-width:0;background:none;border-radius:0;border-left:0;border-right:0;border-top:0;color:var(--ink);font:inherit;font-weight:400;text-align:left;cursor:default}
+button.day{cursor:pointer}
+button.day:hover{background:var(--lake-soft)}
+.day.blank{background:none}
+.day .dn{font-family:var(--mono);font-size:.8rem;line-height:1;display:flex;align-items:center;justify-content:space-between;padding:2px 2px 0}
+.day.sun .dn,.day.hol .dn{color:var(--signal)}
+.day.sat .dn{color:var(--lake)}
+.day.past>*{opacity:.45}
+.day.today .dn b{background:var(--ink);color:var(--paper);border-radius:999px;padding:2px 5px;margin:-2px -3px}
+.day.sel{background:var(--lake-soft);box-shadow:inset 0 0 0 2px var(--lake)}
+.day .dot{width:6px;height:6px;border-radius:50%;background:var(--warn);flex:none}
+.chip{height:18px;font-size:.68rem;font-weight:600;line-height:18px;color:var(--paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-inline:5px;margin-inline:-4px;border-radius:0}
+.chip.s{margin-left:0;border-top-left-radius:4px;border-bottom-left-radius:4px}
+.chip.e{margin-right:0;border-top-right-radius:4px;border-bottom-right-radius:4px}
+.chip.apply,.sw.apply{background:var(--lake)}
+.chip.submit,.sw.submit{background:var(--warn)}
+.chip.result,.sw.result{background:var(--ok)}
+.chip.interview,.sw.interview{background:var(--signal)}
+.chip.ghost{color:transparent}
+.cal-legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.8rem;color:var(--muted);margin-top:14px}
+.cal-legend span{display:inline-flex;align-items:center;gap:6px}
+.cal-legend .sw{display:inline-block;width:14px;height:8px;border-radius:2px}
+.cal-legend .sw.today{width:10px;height:10px;border-radius:50%;background:var(--ink)}
+.cal-legend .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.cal-detail{margin-top:14px;padding:14px 16px;border-radius:10px;background:var(--bg);border:1px solid var(--line)}
+.cal-detail h4{margin:0 0 6px;font-size:.95rem;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.cal-detail ul{margin:0;padding-left:1.1em;font-size:.9rem}
+@media (max-width:560px){.day{min-height:52px;padding:3px}.chip{font-size:0;height:7px;margin-top:2px}.chip.s,.chip.e{border-radius:3px}}
+
+.chk{display:flex;flex-direction:column}
+.chk label{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);cursor:pointer;align-items:start}
+.chk label:last-child{border-bottom:none}
+.chk input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--lake)}
+.chk input:checked+span{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 60%,transparent)}
+.chk .sub{display:block;font-size:.84rem;color:var(--muted)}
+.prog{display:flex;align-items:center;gap:10px;font-size:.84rem;color:var(--muted);margin-bottom:6px}
+.prog .bar{flex:1}
+.sync{font-size:.8rem;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.sync::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.sync.on::before{background:var(--ok)}
+
+input[type=text],input[type=url],select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0}
+textarea{resize:vertical;line-height:1.7}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field>span{font-size:.8rem;color:var(--muted);font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+.row>.field{flex:1 1 140px}
+button{font:inherit;font-weight:600;cursor:pointer;border-radius:8px;padding:8px 14px;border:1px solid var(--lake);background:var(--lake);color:var(--paper)}
+button.ghost{background:transparent;color:var(--lake)}
+button.danger{border-color:var(--signal);color:var(--signal);background:transparent}
+button:disabled{opacity:.5;cursor:default}
+
+.counter{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:.86rem}
+.counter .n{font-family:var(--mono);font-weight:600}
+.counter .n.over{color:var(--signal)}
+.meter{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;background:var(--lake);width:0}
+.meter i.over{background:var(--signal)}
+.hits{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.hit{display:flex;gap:8px;align-items:baseline;font-size:.88rem}
+.preview{margin-top:12px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);white-space:pre-wrap;font-size:.92rem;max-height:260px;overflow:auto}
+mark{border-radius:3px;padding:0 2px;color:inherit}
+mark.zero{background:color-mix(in srgb,var(--signal) 30%,transparent)}
+mark.minus{background:color-mix(in srgb,var(--warn) 32%,transparent)}
+ol.ban{margin:0;padding-left:1.4em;columns:2 300px;column-gap:28px}
+ol.ban li{break-inside:avoid;margin-bottom:6px;font-size:.92rem}
+
+.timer{display:flex;flex-direction:column;gap:14px}
+.clock{font-family:var(--mono);font-size:clamp(2.6rem,9vw,3.6rem);font-weight:600;line-height:1;letter-spacing:.02em}
+.clock.low{color:var(--signal)}
+.qcard{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--bg)}
+.qcard .k{font-size:.76rem;color:var(--muted);font-weight:600;letter-spacing:.06em}
+.qcard p{font-weight:600;margin-top:2px}
+.split{display:flex;height:28px;border-radius:6px;overflow:hidden;font-size:.74rem;font-weight:600}
+.split div{display:flex;align-items:center;justify-content:center;color:var(--paper);white-space:nowrap;overflow:hidden;min-width:0}
+.stat{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:baseline}
+.stat .v{font-family:var(--mono);font-weight:600;color:var(--lake);text-align:right}
+
+.qfilter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.qfilter button{background:transparent;color:var(--muted);border-color:var(--line);padding:5px 12px;font-size:.86rem}
+.qfilter button.on{background:var(--lake);color:var(--paper);border-color:var(--lake)}
+.qlist{display:flex;flex-direction:column}
+.q{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.q input{width:18px;height:18px;margin:4px 0 0;accent-color:var(--lake)}
+.q .t{font-weight:600}
+.q .tip{display:block;font-size:.86rem;color:var(--muted);margin-top:2px}
+.q .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+
+.rv{border-top:1px solid var(--line);padding-block:14px;display:flex;flex-direction:column;gap:6px}
+.rv:first-child{border-top:none;padding-top:0}
+.rv .head{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rv .body{white-space:pre-wrap;font-size:.94rem}
+.rv .foot{display:flex;gap:10px;align-items:center;font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+.rv .foot button{padding:2px 10px;font-size:.8rem}
+.empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:10px}
+
+footer{padding-block:40px 56px;color:var(--muted);font-size:.86rem}
+footer ul{margin:8px 0 0;padding-left:1.1em}
+details summary{cursor:pointer;font-weight:600}
+details[open] summary{margin-bottom:8px}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CSIA · 2027학년도 청심국제중학교 신입학 · 일반전형</div>
+    <h1>청심국제중 <span>2027</span> 입시 노트</h1>
+    <p class="lede">2027학년도 청심국제중학교 전형요항 최종 승인본, 신입생 선발 절차 안내, 1단계 원서접수 안내와 인터넷 원서접수 매뉴얼을 기준으로 정리했습니다. <span id="storeNote">체크 표시와 자기소개서 초안은 이 브라우저에 저장됩니다.</span></p>
+    <div class="ddays" id="ddays" aria-label="주요 일정 D-day"></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="섹션">
+  <div class="wrap" id="tabs">
+    <a href="#schedule">일정</a>
+    <a href="#overview">정원·전형</a>
+    <a href="#prep">준비물</a>
+    <a href="#essay">자기소개서</a>
+    <a href="#interview">면접</a>
+    <a href="#questions">예상 질문</a>
+    <a href="#reviews">면접 후기</a>
+  </div>
+</nav>
+
+<main>
+<!-- ============ 일정 ============ -->
+<section id="schedule">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>2027학년도 전형 일정</h2>
+      <p>학교 ‘2027 청심국제중학교 신입생 선발 절차 안내’와 전형요항 06. 전형일정 기준입니다. 각 단계 상세 공지가 올라오는 시각도 함께 적었습니다.</p>
+    </div>
+    <div class="card cal-card">
+      <div class="cals" id="cals"></div>
+      <div class="cal-legend" aria-hidden="true">
+        <span><i class="sw apply"></i>온라인 접수·입력</span>
+        <span><i class="sw submit"></i>방문 제출</span>
+        <span><i class="sw result"></i>추첨·발표</span>
+        <span><i class="sw interview"></i>면접</span>
+        <span><i class="dot"></i>학교 공지·유의</span>
+        <span><i class="sw today"></i>오늘</span>
+      </div>
+      <div class="cal-detail" id="calDetail" aria-live="polite"></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><ol class="tl" id="timeline"></ol></div>
+      <div class="stack">
+        <div class="callout sig">
+          <b>원서접수 전에 할 일</b>
+          <ul class="clean" style="margin-top:6px">
+            <li>재학(졸업) 사실 및 지원 자격 확인서: 초등학교장 직인 받은 본교 양식 2를 jpg·png 파일로 준비 (초등학교 재학증명서는 사용 불가)</li>
+            <li>증명사진 파일: 단정한 사복, 최근 3개월, 3×4cm 컬러. 교복, 명찰을 지운 편집본, 흑백, 집에서 찍은 사진은 안 됩니다.</li>
+            <li>진학어플라이에 <b>학생 이름</b>으로 회원가입 (학교 검색은 10.22. 10시부터)</li>
+            <li>학생 연락처를 따로 준비: 지원자와 보호자 연락처를 같게 쓰면 안 됩니다.</li>
+            <li>다른 국제중(영훈·대원·부산·선인)에 지원하지 않기. 이중 지원이 확인되면 양쪽 모두 불합격입니다.</li>
+            <li>면접일 신분증: 사진·이름이 있는 여권이나 청소년증이 없다면 지금 신청 (청소년증은 발급신청서도 인정)</li>
+          </ul>
+        </div>
+        <div class="callout">
+          <b>1단계 발표 뒤 일정이 촘촘합니다</b>
+          <p class="small" style="margin-top:4px">10.29. 추첨 결과가 나오고 다음 날부터 4일 안에 자기소개서를 입력해야 하며(11.2. 17시 마감), 바로 11.3~11.4에 서류를 직접 들고 가야 합니다. 자기소개서 초안은 지금 써 두고, 생활기록부 출력과 수험표 직인은 담임 선생님께 미리 말씀드려 두세요. 생활기록부는 <b>1단계 원서접수일(10.22.) 이후 발급분만</b> 인정됩니다.</p>
+        </div>
+        <div class="callout warn">
+          <b>공지 날짜 표기 확인</b>
+          <p class="small" style="margin-top:4px">선발 절차 안내에 2단계 입력 공지일이 ‘2026.10.27.(월)’로 적혀 있지만 10.27.은 화요일입니다. 10.26.(월)과 10.27.(화) 17시 이후 공지를 모두 확인하세요.</p>
+        </div>
+        <div class="card">
+          <h3>문의처</h3>
+          <ul class="clean small">
+            <li>입학홍보부 <span class="num">031-589-8888, 8881, 8882</span> · 대표 <span class="num">031-589-8900</span></li>
+            <li>전화 상담: 월~목 9~17시, 금 9~14시 (점심 11:20~13:00, 주말·공휴일·재량휴업일 불가)</li>
+            <li>진학어플라이 고객센터 <span class="num">1544-7715</span></li>
+            <li><a href="https://admission.csia.hs.kr/?act=board.list&code=1611" target="_blank" rel="noopener">입학센터 공지사항</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 정원·전형 ============ -->
+<section id="overview">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>정원과 전형 구조</h2>
+      <p>남녀 4학급, 정원내 100명, 전국 단위 모집. 1단계는 성적과 무관한 전산 추첨이고, 2단계 면접 40점만으로 최종 합격이 정해집니다.</p>
+    </div>
+
+    <div class="callout sig">
+      <b>핵심.</b> 1단계 추첨에서 일반전형 <b>160명</b>(정원 80명의 2배수)을 뽑습니다. 2026학년도에는 일반전형에 <b>1,491명</b>이 지원해 추첨 통과율이 약 <b>11%</b>였습니다. 추첨을 통과하면 160명 중 80명, 약 2:1의 면접 경쟁이고 점수는 <b>자기주도학습 25점 + 인성 15점</b>입니다. 내신이나 수상은 반영되지 않습니다.
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>모집 정원</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>구분</th><th>전형</th><th class="r">인원</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="2">정원내</td><td><b>일반전형</b></td><td class="r num">80</td><td class="small muted">한 성별이 60%(48명)를 넘을 수 없음</td></tr>
+            <tr><td>사회통합전형</td><td class="r num">20</td><td class="small muted">기회균등 12 · 사회다양성 A 4 · B 4</td></tr>
+            <tr><td rowspan="2">정원외</td><td>국가유공자 자녀</td><td class="r num">(3)</td><td class="small muted">정원의 3% 이내</td></tr>
+            <tr><td>특례입학 대상자</td><td class="r num">(2)</td><td class="small muted">정원의 2% 이내</td></tr>
+            <tr class="total"><td colspan="2">계</td><td class="r num">100(5)</td><td></td></tr>
+          </tbody>
+        </table></div>
+        <p class="small muted" style="margin-top:10px">일반전형 성비 제한 때문에 남학생은 최소 32명이 합격합니다. 2026학년도 면접 응시자 설문 응답자 192명 중 남학생은 74명(38.5%)이었습니다.</p>
+      </div>
+
+      <div class="card">
+        <h3>2026학년도 지원 현황 (1단계 마감)</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>전형</th><th class="r">모집</th><th class="r">지원</th><th class="r">경쟁률</th></tr></thead>
+          <tbody>
+            <tr><td><b>일반전형</b></td><td class="r num">80</td><td class="r num">1,491</td><td class="r num">18.64</td></tr>
+            <tr><td>기회균등</td><td class="r num">12</td><td class="r num">44</td><td class="r num">3.67</td></tr>
+            <tr><td>사회다양성 A</td><td class="r num">4</td><td class="r num">10</td><td class="r num">2.50</td></tr>
+            <tr><td>사회다양성 B</td><td class="r num">4</td><td class="r num">32</td><td class="r num">8.00</td></tr>
+            <tr><td>특례</td><td class="r num">2</td><td class="r num">29</td><td class="r num">14.50</td></tr>
+            <tr class="total"><td>계</td><td class="r num">102</td><td class="r num">1,606</td><td class="r num">15.75</td></tr>
+          </tbody>
+        </table></div>
+        <h3 style="margin-top:18px">일반전형이 줄어드는 과정 (2026 기준)</h3>
+        <div class="funnel">
+          <div class="row"><span class="lab">지원</span><div class="bar"><i style="width:100%"></i></div><span class="n">1,491</span></div>
+          <div class="row"><span class="lab">1단계 추첨 통과</span><div class="bar"><i style="width:10.7%"></i></div><span class="n">160</span></div>
+          <div class="row"><span class="lab">최종 합격</span><div class="bar"><i style="width:5.4%"></i></div><span class="n">80</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>전형 방법</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>단계</th><th>방법</th><th class="r">배점</th><th>선발</th></tr></thead>
+          <tbody>
+            <tr><td>1단계</td><td>전산 추첨 (지원자 전원)</td><td class="r">–</td><td>전형별 2배수</td></tr>
+            <tr><td>2단계</td><td>면접 (생활기록부 II, 자기소개서 바탕)</td><td class="r num">40</td><td>총점순</td></tr>
+          </tbody>
+        </table></div>
+        <ul class="clean small" style="margin-top:12px">
+          <li>면접 40점 = 자기주도학습 영역 25 + 인성 영역 15</li>
+          <li>동점이면 자기주도학습 점수 → 인성 점수 순으로 가립니다.</li>
+          <li>전형료: 1단계 10,000원, 2단계 20,000원 (각각 인터넷 대행 수수료 별도)</li>
+          <li>미등록·입학 포기로 생긴 빈자리는 2월 말까지 차순위자로 채웁니다.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>지원 자격과 유의사항</h3>
+        <ul class="clean small">
+          <li>초등학교 졸업자 또는 졸업예정자 (검정고시 합격자 포함), 전국 어디서나 지원 가능</li>
+          <li>일반전형·사회통합·특례 중 <b>한 전형만</b> 지원. 사전검토를 받지 않았다면 일반전형만 가능합니다.</li>
+          <li>국내 중학교에 재학 중이면 지원할 수 없습니다.</li>
+          <li><b>영훈·대원·부산·선인국제중과 복수 지원 불가</b>: 접수 시기나 합격 여부와 관계없이 양쪽 모두 불합격 처리</li>
+          <li>화산중·삼육중 같은 각종학교와는 이 학교 기준으로 복수 지원이 가능하지만, 상대 학교가 막을 수 있으니 해당 학교에 확인하세요.</li>
+          <li>토론·발표와 영어 위주 수업, 전원 기숙사 생활, 입학 전 신체검사</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 준비물 ============ -->
+<section id="prep">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>서류·준비물 체크리스트</h2>
+      <span class="sync" id="syncChip">이 브라우저에만 저장 중</span>
+    </div>
+    <div class="prog"><span id="progTxt">0 / 0</span><div class="bar"><i id="progBar" style="width:0"></i></div></div>
+    <div class="grid2" id="checklists"></div>
+    <details class="card">
+      <summary>생활기록부 II 출력과 개인정보 삭제(도말) 방법 (2026학년도 안내 기준)</summary>
+      <div class="grid2" style="margin-top:8px">
+        <div>
+          <b class="small">담임 선생님 출력</b>
+          <ul class="clean small">
+            <li>나이스 학생부 메뉴에서 학생부 II를 단면으로 2부 출력. 학부모용 나이스 대국민서비스 출력본은 불가</li>
+            <li>교과학습발달상황은 반드시 제외. 전형요항은 수상경력, 자격증 및 인증 취득상황도 제외하도록 적고 있습니다.</li>
+            <li>2부 모두 원본대조필 도장과 학교장 직인 간인(장마다 겹쳐 날인). 행정실 발급본에 진본 바코드가 있으면 예외</li>
+            <li>클립만 사용, 스테이플러·양면·모아찍기 금지</li>
+          </ul>
+        </div>
+        <div>
+          <b class="small">학부모가 1부만 도말</b>
+          <ul class="clean small">
+            <li>학년·반·번호, 담임 성명, 사진, 인적·학적사항</li>
+            <li>창체 특기사항·봉사활동·행동특성 중 이름, 지역명, 학교명</li>
+            <li>쪽 하단의 학교명·발급일시·발급자 (쪽번호는 남김)</li>
+            <li>수상기록, 자격증·인증, 영재기록 (있는 경우)</li>
+            <li>수정테이프나 라벨지로 지우고, <b>지운 뒤 복사하지 않기</b>. 페이지를 빼지 않기</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:8px">2027학년도 세부 방법은 10.26.(월) 17시 이후 공지에서 다시 안내됩니다.</p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 자기소개서 ============ -->
+<section id="essay">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>자기소개서</h2>
+      <p>1단계 합격자만 10.30.(금)~11.2.(월) 17시에 진학어플라이에서 입력합니다. 출력해서 학생이 자필 서명하고 11.3~11.4에 직접 제출합니다. 면접은 이 자기소개서와 생활기록부로 진행됩니다.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>작성 항목: 1,500자 이내, 띄어쓰기 포함</h3>
+        <div class="stack">
+          <div class="qcard"><div class="k">자기주도학습 영역 · 면접 25점</div>
+            <p>목표 설정, 계획, 학습, 결과 평가까지 스스로 공부해 온 과정. 학교 특성과 연결된 지원 동기, 꿈과 끼를 살릴 활동 계획, 중학교 졸업 후 진로 계획</p></div>
+          <div class="qcard"><div class="k">인성 영역 · 면접 15점</div>
+            <p>봉사체험을 포함해 배려·나눔·협력·타인존중·규칙준수를 보여 준 초등학교 활동과 배우고 느낀 점</p></div>
+        </div>
+        <h3 style="margin-top:18px">분량 배분 예시</h3>
+        <div class="split" aria-label="1,500자 배분 예시">
+          <div style="flex:550;background:var(--lake)">학습 과정 550</div>
+          <div style="flex:400;background:color-mix(in srgb,var(--lake) 65%,var(--ink))">동기·계획 400</div>
+          <div style="flex:550;background:var(--signal)">인성 550</div>
+        </div>
+        <ul class="clean small" style="margin-top:12px">
+          <li>학교 답변(2026 영향평가): 초등학생의 자기주도학습은 <b>자신의 관심 분야와 평소 학습 습관을 구체적인 사례로</b> 쓰면 되고, 면접관은 그 사례로 질문합니다.</li>
+          <li>한 사례 안에 “무엇을 목표로 → 어떻게 계획 → 실제로 해 보니 → 무엇을 바꿨나”가 다 보이게 씁니다.</li>
+          <li>지원 동기는 학교 특성과 연결합니다: 토론·발표 중심 수업, 영어 위주 수업, 전원 기숙사, 이타적 품성과 창의적 지식을 갖춘 글로벌 인재라는 교육목표</li>
+          <li>문장마다 “왜? 어떻게? 그래서?”를 붙여 보고, 아들이 직접 설명하지 못하는 문장은 뺍니다.</li>
+          <li>학교는 대필을 가려내려고 유사도 검증 시스템을 씁니다. 대리 작성·표절이 밝혀지면 입학 후에도 취소될 수 있습니다.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>글자 수 · 금지 표현 점검기</h3>
+        <p class="small muted" style="margin-bottom:10px">초안을 붙여 넣으면 띄어쓰기를 포함한 글자 수와 배제사항에 걸릴 만한 표현을 표시합니다. 초안은 이 브라우저에만 저장됩니다. 보조 도구이므로 최종 판단은 전형요항을 기준으로 하세요.</p>
+        <label class="field"><span>자기소개서 초안</span>
+          <textarea id="essayText" rows="10" placeholder="여기에 초안을 붙여 넣으세요."></textarea></label>
+        <div style="margin-top:8px">
+          <div class="counter"><span>띄어쓰기 포함 <span class="n" id="cnt">0</span> / 1,500자</span><span class="muted">띄어쓰기 제외 <span class="num" id="cntNoSp">0</span>자</span></div>
+          <div class="meter"><i id="meter"></i></div>
+        </div>
+        <div class="hits" id="hits"></div>
+        <div class="preview" id="preview" hidden></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>자기소개서·면접 공통 배제사항 (16개 항목)</h3>
+      <p class="small muted" style="margin-bottom:12px">자기소개서에 쓰거나, 증빙으로 내거나, <b>면접에서 말해도</b> 똑같이 적용됩니다. <span class="pill sig">0점</span> 자격증, 교과 점수·석차, 영재교육원, 공인어학시험 성적·수상, 교내·외 인증시험·대회 성적·수상. <span class="pill warn">10% 감점</span> 대회·인증시험 ‘참여 사실’만 쓴 경우와 그 밖의 항목. 증빙을 내거나 우회해서 표현하면 전체 영점 처리될 수 있습니다.</p>
+      <ol class="ban">
+        <li>공인어학시험(TOEIC·TOEFL·TEPS·HSK·JLPT·DELF 등, 한자 시험 포함) 참여·성적·수상</li>
+        <li>교과·비교과 교외대회 참여 사실과 성적·수상</li>
+        <li>교외상(표창장·감사장·공로상 포함)</li>
+        <li>교내·외 인증시험 참여 사실이나 성적</li>
+        <li>논문 투고·등재·학회 발표</li>
+        <li>도서 출간</li>
+        <li>특허·실용신안·상표·디자인 출원 또는 등록</li>
+        <li>어학연수·해외 봉사 등 해외 활동 (특례 대상자 예외)</li>
+        <li>부모·친인척의 사회·경제적 지위 암시: 직업명·직장명·직위, 소득, 골프·승마 같은 고비용 취미, 학원 등 사설 기관의 교과 활동, <b>청심국제중고가 주관한 활동(영어캠프 포함)</b></li>
+        <li>장학생·장학금</li>
+        <li>특정 대학명·기관명·상호명·강사명 (교육부·교육청 등 교육 관련 기관명은 가능)</li>
+        <li><b>교내대회 참여 사실과 성적·수상</b> (고등학교 전형과 다른 점)</li>
+        <li>자격증 명칭과 취득 사실</li>
+        <li>교과목 점수나 석차 (“100점”, “전교 1등”도 해당)</li>
+        <li>영재교육원 교육·수료</li>
+        <li>이름, 출신 학교 등 본인을 알 수 있는 인적사항. “○○방송반”처럼 학교를 짐작하게 하는 표현도 해당</li>
+      </ol>
+      <p class="small muted" style="margin-top:10px">9번의 ‘청심국제중고 주관 활동(영어캠프 포함)’은 2026학년도 면접전형 안내문에 명시된 항목입니다. 2026년 면접에서 한 지원자가 “학원에서 연습했다”고 말한 일이 영향평가 보고서에 남아 있습니다. 면접 답변에서도 학원 이야기는 빼세요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 면접 ============ -->
+<section id="interview">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>면접 준비</h2>
+      <p>2026.11.14.(토) 본교에서 개별면접. 아래 방식은 2026학년도 청심국제중 면접전형 안내 기준이며, 2027학년도 그룹·시간 공지는 11.2.(월) 17시 이후 올라옵니다.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>면접 방식 (2026학년도 공지)</h3>
+        <div class="stat">
+          <span class="v">3명</span><span>면접관. 면접실 1곳에서 지원자 1명</span>
+          <span class="v">5:00</span><span>이내</span>
+          <span class="v">3개</span><span>내외 문항 + 추가 질문 가능</span>
+          <span class="v">40점</span><span>자기주도학습 25 · 인성 15</span>
+          <span class="v">사복</span><span>단정한 사복. 교복, 학교 이름이 보이는 옷 금지 (교복을 입고 오면 학교가 주는 조끼를 입고 응시)</span>
+        </div>
+        <h3 style="margin-top:18px">5분 쓰는 법</h3>
+        <div class="split" aria-label="5분 시간 배분">
+          <div style="flex:85;background:var(--lake)">1번 85초</div>
+          <div style="flex:85;background:color-mix(in srgb,var(--lake) 65%,var(--ink))">2번 85초</div>
+          <div style="flex:85;background:var(--signal)">3번 85초</div>
+          <div style="flex:45;background:var(--line);color:var(--ink)">추가 질문</div>
+        </div>
+        <ul class="clean small" style="margin-top:12px">
+          <li>답은 결론부터: 한 문장 답 → 내 경험 하나 → 배운 점. 한 답변 1분~1분 30초.</li>
+          <li>추가 질문이 붙는다고 생각하고 사례를 두 개씩 준비합니다.</li>
+          <li>모르는 질문이면 아는 개념에서 출발해 생각하는 과정을 말합니다. 2026년 응시자가 언급한 ‘개발도상국과 경제 강국의 입장’ 질문처럼 초등 사회 교과 개념으로 의견을 묻는 문항이 나올 수 있습니다.</li>
+          <li>2026 응시자 설문: 교육과정을 넘는 지식이나 인증시험·대회·부모 직업을 물었다는 응답은 0%였습니다.</li>
+        </ul>
+      </div>
+
+      <div class="card timer">
+        <h3>모의 면접</h3>
+        <p class="small muted">자기주도학습·지원 동기와 진로·인성에서 한 문항씩 뽑고 5분을 잽니다. 부모님이 면접관이 되어 질문을 읽어 주고, 답이 끝나면 “구체적으로 어떻게?”를 한 번 더 물어보세요.</p>
+        <div class="clock" id="clock">5:00</div>
+        <div class="row">
+          <button id="btnDraw">문항 뽑기</button>
+          <button class="ghost" id="btnStart">시작</button>
+          <button class="ghost" id="btnReset">초기화</button>
+        </div>
+        <div class="stack" id="mockQs">
+          <div class="empty small">‘문항 뽑기’를 누르면 질문 3개가 나옵니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>면접 당일 흐름 (2026학년도 기준)</h3>
+        <ul class="clean small">
+          <li>오전·오후 그룹으로 나뉘며, 그룹은 공지 첨부파일의 접수번호로 확인 (전화 확인 불가)</li>
+          <li>2025.11.15. 예시: 오전 그룹 07:40부터 초소 앞 대기, 08:00~08:30 접수 / 오후 그룹 11:40부터 대기, 12:00~12:30 접수</li>
+          <li>대기 시간 전에 온 차량은 회차해야 하고, 면접 시작 후에는 본관에 들어갈 수 없습니다.</li>
+          <li><b>드라이브스루</b>: 학생만 하차, 보호자 하차 금지, 교내 화장실 사용 불가. 차 안에서 준비물을 미리 챙겨 두세요.</li>
+          <li>면접 후 학생이 직접 보호자에게 전화해 학교 초소 앞에서 만납니다. 초소 반경 3km 도로변 주정차 금지</li>
+          <li>약 200명을 하루에 면접해서 대기 시간이 깁니다. 읽을 책을 챙기세요.</li>
+          <li>면접 후 입학전형 영향평가 온라인 설문이 있습니다.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>보호자 대기 장소 (학교 안내)</h3>
+        <ul class="clean small">
+          <li>스타벅스 가평설악IC DT점 · 07:30~21:00 · 설악면 신천리 554-5</li>
+          <li>마리나 카페 · 09:00~19:00 · 설악면 미사리로 267-19</li>
+          <li>도자기카페 이클림 · 09:00~18:00 · 설악면 자잠로 101</li>
+          <li>카페 16구 · 09:30~18:00 · 설악면 한서로23번길 6</li>
+        </ul>
+        <p class="small muted" style="margin-top:8px">학교 주소: 경기도 가평군 설악면 미사리로 324-213. 감염병 증상이 있으면 면접 전날까지 입학홍보부에 사전 신고해야 응시할 수 있습니다(2026년 기준 전날 13시까지).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 예상 질문 ============ -->
+<section id="questions">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>예상 질문 리스트</h2>
+      <p>학교는 면접 문항을 공개하지 않습니다. 질문은 자기소개서와 생활기록부에서 나오므로, 학부모 후기에 실제로 나왔다고 적힌 질문과 평가 영역에서 뽑은 예상 질문을 함께 담았습니다. <span class="pill">2019 면접</span>처럼 연도가 붙은 질문은 그해 후기에 나온 질문이고, <span class="pill warn">학원 전언</span>은 학원이 합격생에게 들었다고 옮긴 것이라 신뢰도가 낮습니다. 아이들의 기억에 기댄 정보라 문장은 조금씩 다를 수 있습니다. 연습한 질문에 체크하세요.</p>
+    </div>
+    <div class="card">
+      <div class="qfilter" id="qfilter"></div>
+      <div class="prog"><span id="qProgTxt"></span><div class="bar"><i id="qProgBar" style="width:0"></i></div></div>
+      <div class="qlist" id="qlist"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 후기 ============ -->
+<section id="reviews">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>면접·자기소개서 후기 분석</h2>
+      <p>2026.10.17. 네이버 블로그 168건과 카페 글 117건(본문 확인)을 읽고, 학부모·학생이 직접 쓴 후기만 골라 정리했습니다. 학교는 면접 문항과 커트라인을 공개하지 않으므로 아래 내용은 모두 지원자들의 기억에 기댄 정보입니다.</p>
+    </div>
+
+    <div class="callout">
+      <b>한눈에 보기.</b> 블로그 글은 대부분 학원 홍보였고, 믿을 만한 직접 후기는 카페에 더 많았습니다(약 20건, 2018~2025년 면접). 2027학년도 후기는 면접(11.14.) 전이라 아직 없습니다. 여러 해, 여러 출처가 공통으로 말하는 것은 세 가지입니다. <b>① 질문은 자기소개서·생활기록부에서 나오고 “정말 네가 했니?”를 확인한다 ② 친구 관계 상황 질문이 한두 개 섞인다 ③ 분위기는 압박이 아니라 편안하다.</b>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>후기에서 반복된 면접 패턴</h3>
+        <ul class="clean small">
+          <li><b>질문 수:</b> 꼬리질문까지 3~7개. 2019년 3~4개, 2021년 5개(자기주도 3·인성 1+꼬리), 2023년 7개, 2025년 4개</li>
+          <li><b>자소서 사실 확인:</b> “자소서 내용이 사실인지 확인하는 질문이 많았다”(2018), “본인 생각으로 쓴 건지 묻는 질문이 대부분”(2022), “자소서 경험담 확인 질문”(2025)</li>
+          <li><b>상황형 인성 질문:</b> 꾀병으로 보건실에 간 친구를 선생님이 물으면 어떻게 할지(2019, 서로 다른 후기 2건), 소외된 친구, 모둠활동에 협조하지 않는 친구, 기숙사 생활 대처</li>
+          <li><b>단골 주제:</b> 공부 방법(국어·영어, 장단점), 독서(최근 읽은 책을 정말 읽었는지까지 확인), 꿈에 필요한 자질, 친구 갈등 해결, 입학 후 하고 싶은 것</li>
+          <li><b>준비한 걸 안 묻기도:</b> 독특한 장래희망을 많이 준비했는데 하나도 묻지 않았다는 후기(2022). 자소서 전체를 고르게 대비해야 합니다.</li>
+          <li><b>언어:</b> 모든 후기에서 한국어 면접. 영어 면접이나 시사 상식 시험이 있다는 말은 학원 글에서만 나왔습니다.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2025년 11월 면접 당일 (2026학년도 후기)</h3>
+        <ul class="clean small">
+          <li>이름 가나다순으로 4개 파트, 5명씩 한 조. 면접실 4곳(면접관 3명씩)에 번호 순서대로 입실</li>
+          <li>5분이 지나면 종 같은 소리가 납니다. 면접관 3명은 온화한 분, 보통인 분, 무표정한 분이었다고 합니다.</li>
+          <li>질문 4개, 자소서 기반, 압박 없이 편안한 분위기</li>
+          <li>오전조는 8시에 들어가 마지막 순번이 11시 20분에 나왔습니다. 오전조 인원이 더 많아 대기가 깁니다.</li>
+          <li>학부모는 아이를 내려준 뒤 근처 카페나 가평 일대에서 기다렸고, 오후조인데도 근처에서 1박한 집이 있었습니다.</li>
+          <li>이전 해 후기: 주말 서울양양고속도로가 막혀 평소의 2배 시간을 잡으라는 조언, 면접장에서 외투를 벗으니 핫팩, 대기 중 읽을 책이나 자기 자소서 챙기기</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>합격 가정들이 자기소개서를 쓴 방법</h3>
+        <ul class="clean small">
+          <li><b>아이가 쓰고 부모는 질문만:</b> “그때 뭘 느꼈어?”처럼 물어서 끌어내고, 부모는 오탈자와 배제사항만 확인했다는 후기가 가장 많습니다.</li>
+          <li><b>마인드맵 → 구조 → 소리 내 읽기:</b> 학교 이름을 가운데 두고 키워드를 정리한 뒤, 주장·이유·사례·주장(OREO) 순서로 쓰고 소리 내 읽으며 어색한 문장을 고친 사례(2024 합격)</li>
+          <li><b>질문 20개로 초안 만들기:</b> 꿈, 준비한 것, 왜 청심인지, 공부 방법과 장단점, 입학 후 동아리, 졸업 후 계획 같은 질문에 먼저 답하게 한 뒤 문단으로 묶은 사례(2019 합격)</li>
+          <li><b>글자 수는 입력창 기준으로:</b> 띄어쓰기 포함 1,500자라 워드에서 세면 어긋났고, 결국 진학어플라이 입력창에서 맞췄다는 후기. 페이지의 점검기도 띄어쓰기 포함으로 셉니다.</li>
+          <li><b>면접 준비는 핵심 단어로:</b> 예상 질문 100개 이상을 만들고, 답을 통째로 외우지 않고 핵심 단어만 적어 말하는 연습을 했다는 아버지 후기(2023 합격). 가족이 면접관을 하거나 영상으로 찍어 고친 집도 많았습니다.</li>
+          <li><b>이과 성향 남학생 주의:</b> 영재원·대회 활동을 못 쓰니 소재 찾기가 어려웠다는 후기. 학교 수업·독서·집에서 한 탐구로 소재를 찾아야 합니다.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>걸러 들어야 할 정보</h3>
+        <ul class="clean small">
+          <li><b>“예상문제 100% 적중”, “합격률 90%”:</b> 학원 자체 집계입니다. 추첨 통과 후 면접 경쟁률이 약 2:1이라 기본 합격률이 50%입니다.</li>
+          <li><b>“2차 글쓰기·논술 시험”:</b> 현재 2단계는 면접뿐입니다. 학원들이 자기소개서를 ‘글쓰기’라고 부르는 경우입니다.</li>
+          <li><b>배점 30/10, 12월 일정, 1단계 내신 평가:</b> 청심국제고나 전·편입학 기준을 섞은 글입니다. 신입학은 25/15, 10~11월, 1단계 추첨입니다.</li>
+          <li><b>예시 답안 속 ‘과학탐구대회’, ‘학원 디베이트’:</b> 교내대회와 학원 활동은 배제사항입니다. 따라 하면 감점됩니다.</li>
+          <li><b>“면접관을 안다”, “활동을 새로 설계해 준다”:</b> 근거가 없고, 학교 밖에서 만든 활동은 자소서에 쓸 수도 없습니다.</li>
+          <li><b>2015년 이전 후기:</b> 면접실 2곳·면접관 6명, 추천서, 영어 토론이 있던 시절이라 지금과 다릅니다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>카페에서 자주 묻는 걱정과 후기 속 답</h3>
+        <ul class="clean small">
+          <li><b>학원이 필요한가?</b> 다닌 집도, 안 다닌 집도 합격했습니다. “예상 질문 뽑기와 녹화 연습이면 충분하다”는 의견이 다수였고, 2026 영향평가 응답자 71%도 면접 사교육이 필요 없다고 답했습니다.</li>
+          <li><b>아이가 “망했다”고 하면?</b> “폭망했다”, “한 시간을 울었다”는 아이가 합격하고, “너무 쉬운 질문 3개”를 받은 아이가 떨어진 사례가 있습니다. 아이 체감과 결과는 관계가 없었습니다.</li>
+          <li><b>임원 경험이 없으면?</b> 재학생 학부모가 “임원 안 한 아이도 많다”고 답했습니다.</li>
+          <li><b>생활기록부가 중요한가?</b> “행동특성에 ‘소극적’이 자주 나와 떨어졌다”는 불합격 학부모의 해석이 있지만, 학원 원장의 추측을 전한 것입니다. 지금 와서 바꿀 수 있는 부분도 아니니, 생기부 문장을 아이가 설명할 수 있게 준비하는 데 집중하세요.</li>
+          <li><b>답이 막히면?</b> “생각할 시간을 줘도 잘 기다려 주신다”는 후기가 있습니다. 끝까지 답하는 것이 중요합니다.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2026 입학전형 영향평가 (면접 응시자 192명 설문)</h3>
+        <div class="stat small">
+          <span class="v">90%</span><span>“면접에 생활기록부·자기소개서가 활용됐다”</span>
+          <span class="v">0%</span><span>교육과정을 넘는 지식, 인증시험·대회·자격증, 부모 지위 관련 질문을 받았다는 응답</span>
+          <span class="v">1명</span><span>‘개발도상국과 경제 강국의 입장’ 질문이 어려웠다는 의견 → 학교: 초등 사회 교과서에 있는 개념</span>
+          <span class="v">71%</span><span>“면접 준비에 사교육이 필요하지 않다”</span>
+          <span class="v">79%</span><span>“자기소개서 작성에 사교육이 필요하지 않다”</span>
+        </div>
+        <p class="small muted" style="margin-top:10px">학교 답변: 초등학생의 자기주도학습은 관심 분야와 평소 학습 습관을 구체적으로 쓰면 되고, 하루 약 200명을 면접하므로 5분 내외가 적정하다.</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>후기 추가하기</h3>
+        <form id="rvForm" class="stack" autocomplete="off">
+          <div class="row">
+            <label class="field"><span>출처</span>
+              <select id="rvSource">
+                <option>블로그</option><option>맘카페·커뮤니티</option><option>지인 직접</option><option>입학설명회</option><option>학원·컨설팅 자료</option><option>기타</option>
+              </select></label>
+            <label class="field"><span>학년도</span>
+              <select id="rvYear"><option>2027</option><option selected>2026</option><option>2025</option><option>2024</option><option>그 이전</option></select></label>
+          </div>
+          <label class="field"><span>제목</span><input type="text" id="rvTitle" maxlength="80" placeholder="예: 자소서 인성 문단에서 꼬리 질문이 두 번 나왔다는 후기"></label>
+          <label class="field"><span>링크 (선택)</span><input type="url" id="rvLink" placeholder="https://"></label>
+          <label class="field"><span>내용: 받은 질문, 분위기, 팁</span><textarea id="rvBody" rows="5" maxlength="3000"></textarea></label>
+          <div class="row" style="align-items:center"><button type="submit" id="rvSubmit">후기 저장</button><span class="small muted" id="rvMsg" role="status"></span></div>
+        </form>
+        <div style="margin-top:16px">
+          <div class="small muted" style="font-weight:600;margin-bottom:4px">후기 찾아보기</div>
+          <ul class="clean small">
+            <li><a href="https://search.naver.com/search.naver?where=blog&query=%EC%B2%AD%EC%8B%AC%EA%B5%AD%EC%A0%9C%EC%A4%91+%EB%A9%B4%EC%A0%91+%ED%9B%84%EA%B8%B0" target="_blank" rel="noopener">네이버 블로그: 청심국제중 면접 후기</a></li>
+            <li><a href="https://search.naver.com/search.naver?where=article&query=%EC%B2%AD%EC%8B%AC%EA%B5%AD%EC%A0%9C%EC%A4%91+%EB%A9%B4%EC%A0%91" target="_blank" rel="noopener">네이버 카페글: 청심국제중 면접</a></li>
+            <li><a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=398" target="_blank" rel="noopener">2026학년도 청심국제중 입학전형 영향평가 결과보고서</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <div class="sec-head" style="margin-bottom:8px"><h3 style="margin:0">모은 후기</h3><span class="small muted" id="rvCount"></span></div>
+        <div id="rvList"><div class="empty small">아직 모은 후기가 없습니다. 왼쪽에서 첫 후기를 추가하세요.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>출처</b> (2026.10.17. 확인)
+    <ul>
+      <li><a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=403" target="_blank" rel="noopener">2027학년도 청심국제중학교 신입학 전형요항 · 신입생 선발 절차 안내</a></li>
+      <li><a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=414" target="_blank" rel="noopener">2027 중학교 신입학 1단계 원서접수 안내 · 인터넷 원서접수 매뉴얼</a></li>
+      <li><a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=411" target="_blank" rel="noopener">재학(졸업) 사실 및 지원 자격 확인서 양식 안내</a></li>
+      <li>2026학년도 참고: <a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=379" target="_blank" rel="noopener">경쟁률</a> · <a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=377" target="_blank" rel="noopener">1단계 추첨 안내</a> · <a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=378" target="_blank" rel="noopener">2단계 원서접수 안내</a> · <a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=381" target="_blank" rel="noopener">면접전형 안내</a> · <a href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=398" target="_blank" rel="noopener">영향평가 결과보고서</a></li>
+    </ul>
+    <p style="margin-top:10px">2026학년도 기준으로 적은 면접 방식과 당일 운영은 2027학년도 공지에서 바뀔 수 있습니다. 각 단계 공지를 꼭 다시 확인하세요.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const lsGet=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+
+/* ---------- 날짜 ---------- */
+const today=new Date();today.setHours(0,0,0,0);
+const D=s=>{const[y,m,d]=s.split("-").map(Number);return new Date(y,m-1,d)};
+const diff=s=>Math.round((D(s)-today)/864e5);
+const WD="일월화수목금토";
+const fmt=s=>{const d=D(s);return `${d.getMonth()+1}.${d.getDate()}.(${WD[d.getDay()]})`};
+
+const dd=[
+  {l:"원서접수 시작",d:"2026-10-22"},
+  {l:"원서접수 마감",d:"2026-10-26"},
+  {l:"추첨·1단계 발표",d:"2026-10-29"},
+  {l:"2단계 서류 제출",d:"2026-11-03"},
+  {l:"면접",d:"2026-11-14"},
+  {l:"최종 발표",d:"2026-11-17"},
+];
+let nextSet=false;
+$("#ddays").innerHTML=dd.map(x=>{
+  const n=diff(x.d);let cls="",val;
+  if(n<0){cls="done";val="지남"}else{val=n===0?"D-DAY":"D-"+n;if(!nextSet){cls="next";nextSet=true}}
+  return `<div class="dd ${cls}"><span class="lbl">${x.l}</span><span class="val">${val}</span><span class="date">${fmt(x.d)}</span></div>`;
+}).join("");
+
+const tl=[
+  {d:"2026-07-20",t:"전형요항 승인본·지원양식 공고",s:"입학센터 공지사항"},
+  {d:"2026-09-28",e:"2026-10-26",t:"재학(졸업) 사실 및 지원 자격 확인서 발급",s:"본교 양식 2를 학부모가 초등학교에 전달 → 학교장 직인 날인 → 원서접수 때 파일로 업로드"},
+  {d:"2026-10-06",e:"2026-10-12",t:"지원자격 사전검토",s:"사회통합·특례 대상자만 방문. 일반전형은 해당 없음",na:1},
+  {d:"2026-10-22",e:"2026-10-26",t:"1단계 온라인 원서접수",s:"10.22.(목) 10시 ~ 10.26.(월) 17시. 진학어플라이, 전형료 10,000원+수수료. 서류 우편·방문 제출 없음. 결제까지 마쳐야 접수 완료, 접수번호(M00000) 메모",k:1},
+  {d:"2026-10-26",t:"추첨 안내 · 2단계 서류 제출 안내 공지",s:"17시 이후. 생활기록부 발급·개인정보 삭제 방법 상세 안내"},
+  {d:"2026-10-27",t:"2단계 서류 입력 안내 공지",s:"17시 이후 (안내문에는 ‘(월)’로 표기)"},
+  {d:"2026-10-29",t:"1단계 전산 추첨 · 합격자 발표",s:"10시 본교 1층 대강당, 참관은 선택(추첨 시작 후 입장 불가). 결과는 17시 이후 홈페이지에서 접수번호와 이름으로 개별 조회",k:1},
+  {d:"2026-10-30",e:"2026-11-02",t:"2단계 자기소개서 온라인 입력",s:"10.30.(금) ~ 11.2.(월) 17시. 1,500자(띄어쓰기 포함), 전형료 20,000원+수수료. 마감 전까지는 결제 후에도 수정 가능",k:1},
+  {d:"2026-11-02",t:"면접 상세 공지",s:"17시 이후. 면접 시간·그룹·방법·주의사항"},
+  {d:"2026-11-03",e:"2026-11-04",t:"2단계 서류 방문 제출",s:"11.3.(화) ~ 11.4.(수) 9~17시, 점심 11:20~13:00 제외. 본관 1층 입학홍보부, 우편 불가, 대리인 제출 가능",k:1},
+  {d:"2026-11-14",t:"2단계 면접",s:"토요일, 본교. 수험표(초등학교장 직인)·신분증·학생 휴대폰 필수",k:1},
+  {d:"2026-11-17",t:"최종 합격자 발표",s:"17시 이후, 공지사항의 합격자 조회 링크",k:1},
+];
+let nx=false;
+$("#timeline").innerHTML=tl.map(x=>{
+  const end=x.e||x.d;let cls=x.k?"key":"";
+  const started=diff(x.d)<=0,ended=diff(end)<0;
+  if(x.na&&ended)cls="na done";
+  else if(ended)cls="done";
+  else if(started)cls+=" now";
+  else if(!nx){cls+=" next";nx=true}
+  const when=x.e?`${fmt(x.d)}<br>~ ${fmt(end)}`:fmt(x.d);
+  let badge="";
+  if(cls.includes("now"))badge=` <span class="pill">진행 중</span>`;
+  else if(!ended){const n=diff(x.d);badge=` <span class="pill ${cls.includes("next")?"sig":"grey"}">${n===0?"오늘":"D-"+n}</span>`}
+  if(x.na)badge=` <span class="pill grey">해당 없음</span>`;
+  return `<li class="${cls}"><div class="when">${when}</div><div class="what"><b>${esc(x.t)}${badge}</b><span class="small muted">${esc(x.s)}</span></div></li>`;
+}).join("");
+
+/* ---------- 달력 ---------- */
+const CAL=[
+  {s:"2026-10-22",e:"2026-10-26",t:"원서접수",c:"apply",d:"1단계 온라인 원서접수 (10.22. 10시 ~ 10.26. 17시 마감), 전형료 10,000원"},
+  {s:"2026-10-22",c:"note",d:"이날 이후 발급한 생활기록부만 2단계에서 인정"},
+  {s:"2026-10-26",c:"note",d:"17시 이후 추첨 안내 · 2단계 서류 제출 안내 공지"},
+  {s:"2026-10-27",c:"note",d:"17시 이후 2단계 서류 입력 안내 공지"},
+  {s:"2026-10-29",t:"추첨·발표",c:"result",d:"10시 1단계 전산 추첨(본교 대강당, 참관 선택) · 17시 이후 1단계 합격 개별 조회"},
+  {s:"2026-10-30",e:"2026-11-02",t:"자소서 입력",c:"apply",d:"2단계 자기소개서 온라인 입력 (11.2. 17시 마감), 전형료 20,000원"},
+  {s:"2026-11-02",c:"note",d:"17시 이후 면접 시간·그룹 공지"},
+  {s:"2026-11-03",e:"2026-11-04",t:"서류 제출",c:"submit",d:"2단계 서류 방문 제출 (9~17시, 점심 11:20~13:00 제외, 우편 불가)"},
+  {s:"2026-11-13",c:"note",d:"감염병 증상이 있으면 이날까지 사전 신고 (2026년 기준 13시)"},
+  {s:"2026-11-14",t:"면접",c:"interview",d:"2단계 면접 (본교). 수험표·신분증·학생 휴대폰 필수"},
+  {s:"2026-11-17",t:"최종 발표",c:"result",d:"17시 이후 최종 합격자 조회"},
+];
+const HOL={"2026-10-03":"개천절","2026-10-09":"한글날"};
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+const eventsOn=s=>CAL.filter(x=>s>=x.s&&s<=(x.e||x.s));
+const todayIso=iso(today);
+let selDay=(()=>{if(eventsOn(todayIso).length)return todayIso;const up=CAL.filter(x=>x.c!=="note"&&x.s>=todayIso).sort((a,b)=>a.s<b.s?-1:1)[0];return up?up.s:todayIso})();
+function renderCal(){
+  const months=[[2026,9],[2026,10]];
+  $("#cals").innerHTML=months.map(([y,m])=>{
+    const first=new Date(y,m,1),days=new Date(y,m+1,0).getDate();
+    let cells="";
+    for(let i=0;i<first.getDay();i++)cells+=`<div class="day blank" aria-hidden="true"></div>`;
+    for(let d=1;d<=days;d++){
+      const dt=new Date(y,m,d),s=iso(dt),wd=dt.getDay(),ev=eventsOn(s);
+      const bars=ev.filter(x=>x.c!=="note"),notes=ev.filter(x=>x.c==="note");
+      const cls=["day",wd===0?"sun":"",wd===6?"sat":"",HOL[s]?"hol":"",dt<today?"past":"",s===todayIso?"today":"",s===selDay?"sel":""].join(" ");
+      const chips=bars.map(x=>{const st=s===x.s,en=s===(x.e||x.s);const lab=st||wd===0;
+        return `<div class="chip ${x.c}${st||wd===0?" s":""}${en||wd===6?" e":""}${lab?"":" ghost"}">${esc(x.t)}</div>`}).join("");
+      const label=`${m+1}월 ${d}일${HOL[s]?" "+HOL[s]:""}${ev.length?": "+ev.map(x=>x.t||"공지").join(", "):""}`;
+      const inner=`<span class="dn"><b>${d}</b>${notes.length?'<i class="dot"></i>':""}</span>${chips}`;
+      cells+=ev.length||s===todayIso
+        ?`<button type="button" class="${cls}" data-day="${s}" aria-label="${esc(label)}" aria-pressed="${s===selDay}">${inner}</button>`
+        :`<div class="${cls}" title="${esc(HOL[s]||"")}">${inner}</div>`;
+    }
+    return `<div class="cal"><h3>${m+1}월 <span class="num">${y}</span></h3><div class="cal-grid">${"일월화수목금토".split("").map((w,i)=>`<div class="cal-wd ${i===0?"sun":i===6?"sat":""}">${w}</div>`).join("")}${cells}</div></div>`;
+  }).join("");
+  const ev=eventsOn(selDay),n=diff(selDay);
+  const dl=n===0?"오늘":n>0?"D-"+n:(-n)+"일 지남";
+  $("#calDetail").innerHTML=`<h4>${fmt(selDay)} <span class="pill ${n>=0?"sig":"grey"}">${dl}</span>${HOL[selDay]?`<span class="pill grey">${HOL[selDay]}</span>`:""}</h4>`+
+    (ev.length?`<ul>${ev.map(x=>`<li>${x.t?`<b>${esc(x.t)}</b> · `:""}${esc(x.d)}</li>`).join("")}</ul>`:`<p class="small muted">이날은 예정된 전형 일정이 없습니다. 표시된 날짜를 누르면 내용이 여기에 나옵니다.</p>`);
+}
+$("#cals").addEventListener("click",e=>{const b=e.target.closest("[data-day]");if(!b)return;selDay=b.dataset.day;renderCal();const nb=document.querySelector(`#cals [data-day="${selDay}"]`);if(nb)nb.focus()});
+renderCal();
+
+/* ---------- 체크리스트 ---------- */
+const CHECK=[
+  {g:"1단계 온라인 원서",note:"10.22~10.26 17시",items:[
+    ["m-cert","재학(졸업) 사실 및 지원 자격 확인서","본교 양식 2에 초등학교장 직인. 초등학교 재학증명서는 사용 불가"],
+    ["m-certfile","확인서 스캔본 또는 촬영본 파일","jpg · jpeg · png만 가능"],
+    ["m-photo","증명사진 파일","단정한 사복, 최근 3개월, 3×4cm 컬러. 교복·명찰 편집·흑백·집 촬영 불가"],
+    ["m-join","진학어플라이 학생 이름으로 회원가입","학교 홈페이지 가입은 필요 없음"],
+    ["m-phone","학생 연락처 준비","지원자와 보호자 연락처를 같게 쓰면 안 됨"],
+    ["m-consent","보호자 개인정보 동의","휴대폰 본인인증, 또는 동의서에 자필 서명해 업로드"],
+    ["m-type","일반전형 선택","일반전형은 지원자격 확인코드를 입력하지 않음"],
+    ["m-pay","원서 저장 → 최종 확인 → 전형료 10,000원 결제","결제 후에는 사진·첨부파일만 수정 가능"],
+    ["m-no","접수번호(M00000) 메모","합격 조회와 면접 때 필요"],
+    ["m-dual","다른 국제중 미지원 확인","영훈·대원·부산·선인국제중과 이중 지원 시 양쪽 불합격"],
+  ]},
+  {g:"1단계 결과",note:"10.29",items:[
+    ["m-draw","추첨 참관 여부 결정","선택 사항. 2026년에는 입학원서 출력본을 지참해야 입장 가능"],
+    ["m-pass1","17시 이후 합격 조회","접수번호와 이름으로 개별 조회"],
+  ]},
+  {g:"2단계 입력·제출",note:"10.30~11.4",items:[
+    ["m-essay","자기소개서 온라인 입력 + 전형료 20,000원","1,500자 이내(띄어쓰기 포함), 11.2.(월) 17시 이후 수정 불가"],
+    ["m-print","자기소개서 단면 출력 + 학생 자필 서명",""],
+    ["m-rec","학교생활기록부 II 2부","담임 선생님이 나이스에서 단면 출력, 교과학습발달상황 제외, 원본대조필·학교장 직인 간인. 10.22. 이후 발급분"],
+    ["m-redact","생활기록부 1부 개인정보 도말","학부모가 직접. 지운 뒤 복사하지 않고 페이지도 빼지 않기"],
+    ["m-res","주민등록등본 1부","최근 1개월 이내, 주민번호 뒷자리는 성별 숫자만 남기기"],
+    ["m-env","봉투표지 출력·부착 후 봉인","체크리스트 표시, 봉투 뒷면에 학생 이름 서명. 클립만 사용(스테이플러 금지)"],
+    ["m-visit","11.3~11.4 방문 제출","9~17시, 점심 11:20~13:00 불가, 우편 불가, 대리인 가능"],
+    ["m-ticket","수험표 컬러 출력 + 초등학교장 직인","제출 서류 아님. A4 그대로 보관했다가 면접 날 지참"],
+  ]},
+  {g:"면접 당일",note:"11.14 · 없으면 응시 불가",items:[
+    ["m-t2","수험표","흑백 출력이면 원서와 같은 컬러 사진을 직접 부착"],
+    ["m-id","사진·이름 있는 유효 신분증","여권, 학생증, 청소년증(발급신청서 포함), 도서관증 등"],
+    ["m-cell","학생 휴대폰","면접 후 보호자 픽업 연락용"],
+    ["m-cloth","단정한 사복과 겉옷","교복·학교명 드러나는 옷 금지. 가디건·무릎담요, 읽을 책, 텀블러 가능"],
+    ["m-ban","전자기기 두고 가기","스마트워치, 블루투스 이어폰, 태블릿, MP3, 카메라, 녹음기는 부정행위로 간주"],
+    ["m-car","보호자 동선 확인","학생만 하차, 초소 반경 3km 주정차 금지, 근처 카페에서 대기"],
+  ]},
+];
+let checks=lsGet("csim.checks",{});
+function renderChecks(){
+  $("#checklists").innerHTML=CHECK.map(g=>`<div class="card"><div class="sec-head" style="margin-bottom:6px"><h3 style="margin:0">${g.g}</h3><span class="pill grey">${g.note}</span></div><div class="chk">${
+    g.items.map(([id,t,s])=>`<label><input type="checkbox" data-id="${id}" ${checks[id]?"checked":""}><span>${esc(t)}${s?`<span class="sub">${esc(s)}</span>`:""}</span></label>`).join("")
+  }</div></div>`).join("");
+  const all=CHECK.flatMap(g=>g.items.map(i=>i[0]));const done=all.filter(id=>checks[id]).length;
+  $("#progTxt").textContent=`${done} / ${all.length} 완료`;$("#progBar").style.width=(done/all.length*100)+"%";
+  renderQProgress();
+}
+document.addEventListener("change",e=>{
+  const id=e.target.dataset&&e.target.dataset.id;if(!id)return;
+  if(e.target.checked)checks[id]=true;else delete checks[id];
+  lsSet("csim.checks",checks);saveChecks();
+  if(id.startsWith("q:"))renderQProgress();else renderChecks();
+});
+
+/* ---------- 자기소개서 점검 ---------- */
+const RULES=[
+  {re:/TOEIC|토익|TOEFL|토플|TEPS|텝스|TOSEL|토셀|HSK|JLPT|JPT|DELF|DALF|DELE|TORFL|TestDaF|IELTS|아이엘츠|캠브리지\s*(시험|YLE|KET|PET)/gi,lv:"zero",l:"공인어학·인증시험"},
+  {re:/한자\s*(능력|급수|자격|검정)|상무한검|실용한자/g,lv:"zero",l:"한자 시험"},
+  {re:/자격증|[0-9]+\s*급(?![식여])/g,lv:"zero",l:"자격증·급수"},
+  {re:/(최우수|우수|장려|금|은|동)상(?![황태])|수상|입상|시상/g,lv:"zero",l:"수상 실적 (교내 포함)"},
+  {re:/전교\s*[0-9]*\s*등|[0-9]+\s*등(?=[을를이으에,.\s]|$)|[0-9]+\s*위(?=[를을로에,.\s]|$)|석차|등수|만점|[0-9]+\s*점(?=[을를이으에과,.\s]|$)/g,lv:"zero",l:"점수·석차"},
+  {re:/영재\s*(교육원|원|학급)/g,lv:"zero",l:"영재교육원"},
+  {re:/인증\s*시험|경시\s*대회|올림피아드|레벨\s*테스트/g,lv:"zero",l:"인증시험·경시대회"},
+  {re:/대회|공모전|경진/g,lv:"minus",l:"대회 언급 (교내 포함, 참여만 써도 감점)"},
+  {re:/표창|감사장|공로상/g,lv:"minus",l:"교외상"},
+  {re:/학원|과외|인강|인터넷\s*강의|컨설팅|튜터|학습지/g,lv:"minus",l:"사설 기관·사교육"},
+  {re:/논문|학회|출간|출판|저서|특허|실용신안/g,lv:"minus",l:"논문·출간·지식재산권"},
+  {re:/어학\s*연수|해외\s*(봉사|캠프|연수|여행)|유학|국제\s*학교/g,lv:"minus",l:"해외 활동"},
+  {re:/영어\s*캠프|청심\s*캠프/g,lv:"minus",l:"청심 주관 활동"},
+  {re:/장학/g,lv:"minus",l:"장학금"},
+  {re:/[가-힣]{1,8}대학교|서울대|연세대|고려대|카이스트|KAIST|포스텍|하버드|예일|스탠퍼드|스탠포드|MIT|옥스퍼드|케임브리지|아이비리그/g,lv:"minus",l:"대학명"},
+  {re:/(아버지|어머니|아빠|엄마|부모님|삼촌|이모|고모|외삼촌|할아버지|할머니)[^.\n]{0,15}(의사|변호사|검사|판사|교수|사장|대표|임원|국장|장관|원장|회장|외교관|기자|공무원|CEO|회사)/g,lv:"minus",l:"부모·친인척 직업·지위 암시"},
+  {re:/골프|승마|요트/g,lv:"minus",l:"고비용 취미"},
+  {re:/[가-힣]{2,10}초등학교|[가-힣]{2,8}초\s*[0-9]학년/g,lv:"minus",l:"출신 학교명"},
+];
+const ta=$("#essayText");
+ta.value=lsGet("csim.essay","");
+function checkEssay(){
+  const t=ta.value;lsSet("csim.essay",t);
+  const n=t.replace(/\r/g,"").length;
+  $("#cnt").textContent=n.toLocaleString();$("#cnt").classList.toggle("over",n>1500);
+  $("#cntNoSp").textContent=t.replace(/\s/g,"").length.toLocaleString();
+  const m=$("#meter");m.style.width=Math.min(100,n/15)+"%";m.classList.toggle("over",n>1500);
+  if(!t.trim()){$("#hits").innerHTML="";$("#preview").hidden=true;return}
+  const ranges=[];const found={};
+  RULES.forEach((r,i)=>{r.re.lastIndex=0;let mt;while((mt=r.re.exec(t))){if(!mt[0].length){r.re.lastIndex++;continue}
+    ranges.push({s:mt.index,e:mt.index+mt[0].length,lv:r.lv});(found[i]=found[i]||[]).push(mt[0])}});
+  const keys=Object.keys(found);
+  $("#hits").innerHTML=keys.length?keys.map(i=>{const r=RULES[i];const uniq=[...new Set(found[i])].slice(0,6);
+    return `<div class="hit"><span class="pill ${r.lv==="zero"?"sig":"warn"}">${r.lv==="zero"?"0점 위험":"감점 위험"}</span><span><b>${r.l}</b> <span class="muted">${uniq.map(esc).join(", ")}</span></span></div>`}).join("")
+    :`<div class="hit"><span class="pill ok">통과</span><span>자동 점검에 걸린 표현이 없습니다. 우회 표현은 직접 한 번 더 읽어 보세요.</span></div>`;
+  ranges.sort((a,b)=>a.s-b.s);let out="",pos=0;
+  ranges.forEach(r=>{if(r.s<pos)return;out+=esc(t.slice(pos,r.s))+`<mark class="${r.lv}">${esc(t.slice(r.s,r.e))}</mark>`;pos=r.e});
+  out+=esc(t.slice(pos));
+  const pv=$("#preview");pv.hidden=!keys.length;if(keys.length)pv.innerHTML=out;
+}
+ta.addEventListener("input",checkEssay);checkEssay();
+
+/* ---------- 예상 질문 ---------- */
+const CATS={self:"자기주도학습",motive:"지원 동기",career:"꿈·진로",char:"인성",record:"생기부·꼬리질문"};
+const Q=[
+  ["a1","self","스스로 세운 공부 계획 하나를 처음부터 끝까지 설명해 보세요.","목표 → 계획 → 실천 → 점검·수정 순서로",""],
+  ["a2","self","계획대로 안 됐던 적이 있나요? 그다음에 무엇을 바꿨나요?","실패 원인과 바꾼 행동을 구체적으로",""],
+  ["a3","self","국어(또는 다른 과목)는 어떻게 공부하고 있나요?","과목별로 실제 하는 행동을 말하기","2018 면접"],
+  ["a4","self","내 공부 방법의 장점과 단점은 무엇인가요?","단점과 보완책까지","2019 면접"],
+  ["a5","self","영어는 어떻게 공부하나요?","시험 이름·점수·학원은 말하지 않기. 책 읽기, 영상 보고 요약하기 같은 습관으로","2023 면접"],
+  ["a6","self","최근에 읽은 책은 무엇인가요? 정말 최근에 읽은 책인가요?","실제로 읽은 책만. 줄거리보다 생각이 바뀐 점을 1분 안에","2018·2023 면접"],
+  ["a7","self","독서가 사람의 성품에 어떤 영향을 준다고 생각하나요?","내가 읽은 책 한 권을 예로","2019 면접"],
+  ["a8","self","자소서에 쓴 활동에서 가장 어려웠던 점과, 그걸 어떻게 해결했나요?","","최근 · 전언"],
+  ["a9","self","탐구 활동 하나를 예로 들어 설명해 보세요.","학교나 집에서 한 탐구로. 대회·영재원 언급 금지","2025 · 학원 전언"],
+  ["a10","self","궁금한 것이 생기면 어떻게 해결하나요?","관심 분야를 스스로 파고든 경험",""],
+  ["b1","motive","왜 청심국제중에 오고 싶나요? 오기 위해 실제로 한 노력은?","토론·발표 수업, 영어 수업, 기숙사 생활과 내 계획을 연결","2018 면접"],
+  ["b2","motive","입학하면 가장 먼저 해 보고 싶은 것은?","자기소개서의 활동 계획과 같게","2025 · 학원 전언"],
+  ["b3","motive","입학하면 어떤 주제로 토론해 보고 싶나요?","주제 하나와 그 이유","2019 면접"],
+  ["b4","motive","부모님과 떨어져 기숙사에서 지내게 되는데, 걱정되는 점과 준비하는 것은?","",""],
+  ["c1","career","꿈은 무엇이고, 그 꿈을 갖게 된 계기는?","",""],
+  ["c2","career","그 꿈에 가장 필요한 자질은 무엇이고, 지금 어떻게 기르고 있나요?","자질 2~3개와 각각의 노력","2018·2020 면접"],
+  ["c3","career","중학교 3년 동안, 그리고 졸업 후에는 무엇을 할 계획인가요?","전형요항의 ‘중학교 졸업 후 진로 계획’ 항목",""],
+  ["c4","career","개발도상국과 경제 강국의 입장이 다를 수 있는 문제에 대해 어떻게 생각하나요?","초등 사회 교과 개념. 양쪽 입장을 말한 뒤 내 생각과 이유","2025 면접"],
+  ["d1","char","친구가 수업을 빠지려고 꾀병으로 보건실에 갔어요. 선생님이 물어보시면 어떻게 하겠어요?","정직과 친구 배려 사이에서 내 선택과 이유. 친구를 도울 방법까지","2019 면접 · 후기 2건"],
+  ["d2","char","반에 적응하지 못하고 소외된 친구가 있다면 어떻게 하겠어요?","","2019 면접"],
+  ["d3","char","모둠활동에 협조하지 않는 친구가 있으면 어떻게 하겠어요?","","2018 면접"],
+  ["d4","char","친구와 갈등이 생겼을 때 해결한 경험을 말해 보세요.","내가 한 행동과 결과, 배운 점","2023 면접"],
+  ["d5","char","학교생활에서 힘들었던 점과, 그걸 극복하려고 한 일은?","","2019 면접"],
+  ["d6","char","다른 사람에게 도움을 준 경험이 있나요?","도움을 ‘받은’ 이야기로 답하지 않기. 질문 방향을 정확히 듣기","2025 · 학원 전언"],
+  ["d7","char","리더로서 친구들을 이끈 경험과, 리더에게 필요한 자질은?","임원 경험이 없어도 모둠·1인1역 경험으로","2025 면접"],
+  ["d8","char","봉사활동 중 어려웠던 점은 무엇이었나요?","","2018 면접"],
+  ["d9","char","기숙사에서 룸메이트와 다투거나 생활 습관이 다르면 어떻게 하겠어요?","전원 기숙사","2022 면접"],
+  ["d10","char","내 성격의 장점과 단점은?","단점을 고치려는 노력까지","2018 면접"],
+  ["e1","record","자소서에 쓴 그 경험, 그때 정확히 무엇을 했나요?","자소서 문장마다 ‘정말 내가 했다’는 걸 보여 줄 장면 하나씩","2018·2022·2025 면접"],
+  ["e2","record","생활기록부에 적힌 활동 하나를 골라 설명해 보세요.","행동특성·창체 문장마다 1분 답변 준비",""],
+  ["e3","record","방금 말한 내용의 예를 하나 더 들어 보세요.","꼬리 질문 대비: 사례를 두 개씩","2021 면접"],
+  ["e4","record","그 경험을 다시 한다면 무엇을 다르게 하겠어요?","",""],
+  ["e5","record","마지막으로 하고 싶은 말이 있나요?","30초 안에 지원 의지와 약속 하나",""],
+];
+let qf="all";
+$("#qfilter").innerHTML=[["all","전체"],["past","후기에 나온 질문"],...Object.entries(CATS)].map(([k,v])=>`<button type="button" data-qf="${k}" class="${k==="all"?"on":""}">${v}</button>`).join("");
+$("#qfilter").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;qf=b.dataset.qf;
+  document.querySelectorAll("#qfilter button").forEach(x=>x.classList.toggle("on",x===b));renderQ()});
+function renderQ(){
+  const list=Q.filter(q=>qf==="all"||(qf==="past"?q[4]:q[1]===qf));
+  $("#qlist").innerHTML=list.map(([id,c,t,tip,past])=>`<label class="q"><input type="checkbox" data-id="q:${id}" ${checks["q:"+id]?"checked":""}><span><span class="t">${esc(t)}</span>${tip?`<span class="tip">${esc(tip)}</span>`:""}<span class="meta"><span class="pill grey">${CATS[c]}</span>${past?`<span class="pill ${past.includes("학원")||past.includes("전언")?"warn":""}">${esc(past)}</span>`:""}</span></span></label>`).join("");
+}
+function renderQProgress(){
+  const done=Q.filter(q=>checks["q:"+q[0]]).length;
+  $("#qProgTxt").textContent=`연습 ${done} / ${Q.length}`;$("#qProgBar").style.width=(done/Q.length*100)+"%";
+}
+
+/* ---------- 모의 면접 ---------- */
+const LIMIT=300;let left=LIMIT,timerId=null;
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+function draw(){
+  const set=[pick(Q.filter(q=>q[1]==="self")),pick(Q.filter(q=>q[1]==="motive"||q[1]==="career")),pick(Q.filter(q=>q[1]==="char"))];
+  $("#mockQs").innerHTML=set.map((q,i)=>`<div class="qcard"><div class="k">문항 ${i+1} · ${CATS[q[1]]}</div><p>${esc(q[2])}</p></div>`).join("");
+  reset();
+}
+function show(){const v=Math.max(0,left),m=Math.floor(v/60),s=v%60;$("#clock").textContent=`${m}:${String(s).padStart(2,"0")}`;$("#clock").classList.toggle("low",left<=60)}
+function stop(){clearInterval(timerId);timerId=null}
+function reset(){stop();left=LIMIT;show();$("#btnStart").textContent="시작"}
+function tick(){left--;show();if(left<=0){stop();$("#btnStart").textContent="시간 종료"}}
+$("#btnDraw").addEventListener("click",draw);
+$("#btnReset").addEventListener("click",reset);
+$("#btnStart").addEventListener("click",()=>{
+  if(timerId){stop();$("#btnStart").textContent="계속";return}
+  if(left<=0)reset();
+  timerId=setInterval(tick,1000);$("#btnStart").textContent="일시정지";
+});
+
+/* ---------- 후기 ---------- */
+const SEED_REVIEWS=[{"source": "맘카페·커뮤니티", "year": "2026", "title": "2025.11 면접: 질문 4개, 자소서 기반, 압박 없음", "link": "https://cafe.naver.com/mathall/2959542", "body": "학부모 직접 후기(상위1%카페). 가나다순 4개 파트, 5명씩 한 조로 면접실 4곳에 입실. 5분이 지나면 종소리. 면접관 3명(온화·보통·무표정). 질문은 자기주도학습, 인성·리더십, 자소서에 쓴 경험이 사실인지 확인하는 것. 어렵지 않았다고 함. 오후조였지만 전날 근처에서 1박, 1차 합격 다음 날부터 면접 학원을 다님.", "createdAt": 1792220900000, "id": "r2025a", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "2026", "title": "2025.11 오전조: 8시 입실, 마지막 순번 11시 20분 퇴실", "link": "https://cafe.naver.com/goldschools/920590", "body": "면접 당일 대기 중인 학부모 글과 댓글(특목고갈사람모여라). 면접은 이름순, 오전조 인원이 더 많아 오래 걸림. 새벽에 출발해 가평 일대에서 기다린 집이 많았음.", "createdAt": 1792220890000, "id": "r2025b", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "2025", "title": "아이가 직접 쓴 자소서: 마인드맵 → OREO 구조 → 소리 내 읽기", "link": "https://cafe.naver.com/mathall/2849406", "body": "2024 합격 학부모(상위1%카페). 맞벌이라 일요일 오후만 시간이 있었고 자소서는 아이에게 맡김. 학교 이름을 가운데 두고 마인드맵으로 키워드를 정리한 뒤 4시간 동안 직접 작성. 주장-이유-사례-주장 구조로 쓰고 서서 소리 내 읽으며 어색한 부분을 고침. 띄어쓰기 포함 1,500자라 워드에서 맞추기 어려웠다고 함.", "createdAt": 1792220880000, "id": "r2024a", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "2024", "title": "2023.11 면접: 친구 갈등 해결, 영어 공부 방법, 독서", "link": "https://cafe.naver.com/mathall/2699870", "body": "학부모 직접 후기(상위1%카페). 아이가 기억한 질문은 친구 갈등 해결 사례, 영어 공부 방법, 독서 관련 질문 3개. 예상 질문에서 거의 다 나와 평이했고, 준비한 것의 1/100만 말한 것 같다고 함. 다른 카페에는 딜레마형 질문을 받은 아이도 있었다는 언급.", "createdAt": 1792220870000, "id": "r2023a", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "2024", "title": "2023.11 합격: 꼬리질문까지 7문항, 솔직한 답에 면접관이 웃음", "link": "https://cafe.naver.com/goldschools/798005", "body": "남학생 합격 학부모(특목고갈사람모여라). 평이할 줄 알았는데 디테일하고 까다로운 질문이 꼬리질문까지 7개. 초등학생다운 솔직한 대답에 면접관들이 소리 내 웃었다고 함. 엄마와 아이가 함께 자소서를 써 봄.", "createdAt": 1792220860000, "id": "r2023b", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "2024", "title": "화산중·청심중 동시 합격 아빠: 예상 질문 100개, 핵심 단어로 연습", "link": "https://cafe.naver.com/goldschools/798039", "body": "아버지 후기(특목고갈사람모여라). 자소서는 결국 아이가 써야 아이 것이 된다고 강조. 영재 관련 기관은 쓰지 않고 실험 내용만 씀. 예상 질문을 100개 넘게 만들고, 답을 외우지 않고 핵심 단어만 적어 이해한 뒤 말하는 연습을 함. 청심에서는 평범한 질문 4개를 받았다고 함.", "createdAt": 1792220850000, "id": "r2023c", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "그 이전", "title": "2022 면접 합격 가정의 팁: 본인이 썼는지 묻는 질문 위주", "link": "https://cafe.naver.com/mathall/2694001", "body": "재학생 학부모(상위1%카페). 주말 서울양양고속도로 정체로 평소의 2배 시간을 잡을 것. 면접장에서 외투를 벗으니 핫팩. 질문은 자소서 기반이고 본인 생각으로 쓴 건지 묻는 질문이 대부분. 많이 준비한 독특한 장래희망은 하나도 묻지 않음. 아이만 내려주고 차는 회차, 인사·목례 연습 권장.", "createdAt": 1792220840000, "id": "r2022a", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "그 이전", "title": "면접 시간·분위기 Q&A: 꼬리질문은 있지만 압박은 아님", "link": "https://cafe.naver.com/goldschools/747301", "body": "질문글의 댓글(특목고갈사람모여라). 기숙사 생활과 학교생활 대처 방법도 물어봄. 답이 늦어도 잘 기다려 주니 끝까지 답할 것. 녹화하면서 연습하라는 조언. 학원 없이 집에서 반복 연습한 친구도 많다는 의견.", "createdAt": 1792220830000, "id": "r2022b", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "그 이전", "title": "2021 합격(남학생): 5문항 모두 자소서 설명·다른 예 들기", "link": "https://cafe.naver.com/mathall/2305262", "body": "엄마 후기(상위1%카페). 학원 없이 집에서 자소서로 예상 질문을 뽑아 소리 내 연습. 질문은 꼬리질문 포함 5개(자기주도 3, 인성 1). 모두 자소서 내용을 설명하거나 다른 예를 들어 보라는 것. 면접관 3명이 있는 방 4곳에 차례로 입실.", "createdAt": 1792220820000, "id": "r2021a", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "그 이전", "title": "2021 불합격: 너무 쉬운 질문 3개였는데 탈락", "link": "https://cafe.naver.com/mathall/2329635", "body": "불합격 학부모 후기(상위1%카페). 학원 첨삭까지 받았지만 쉬운 질문 3개를 받고 떨어짐. 생기부에 '소극적'이라는 표현이 자주 나온 탓이라는 학원 원장의 해석을 전함(추측). 아이 체감과 결과가 다를 수 있다는 사례.", "createdAt": 1792220810000, "id": "r2021b", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "그 이전", "title": "2019 면접: 독서와 성품, 힘들었던 점 극복, 자소서 1문항", "link": "https://cafe.naver.com/goldschools/609520", "body": "학부모 직접 후기(특목고갈사람모여라). 7시 30분 도착, 대기실부터는 아이만 입장하고 전자기기 반입 금지, 부모는 강당 대기. 질문 3~4개: 독서가 성품에 미치는 영향, 학교생활에서 힘들었던 점과 극복, 자소서 개인 내용 1개. 면접관 반응이 좋아 떨지 않았다고 함.", "createdAt": 1792220800000, "id": "r2019a", "fixed": true}, {"source": "맘카페·커뮤니티", "year": "그 이전", "title": "2019 상황형 질문: 꾀병 친구, 소외된 친구", "link": "https://cafe.naver.com/dongtaneducomm/2173", "body": "과외 선생님이 합격생에게 들은 전언(동탄 교육 모여라). 질문: 꾀병으로 보건실에 간 친구를 선생님이 물으면 어떻게 할지, 적응 못하고 소외된 친구, 공부 방법의 장단점, 입학 후 하고 싶은 토론 주제, 어려움 극복 경험. 자소서는 꿈·준비·왜 청심인지 등 질문 20개에 먼저 답하게 한 뒤 문단으로 묶음. 같은 해 꾀병 친구 질문이 다른 블로그 후기에도 나옴.", "createdAt": 1792220790000, "id": "r2019b", "fixed": true}];
+let reviews=lsGet("csim.reviews",[]).concat(SEED_REVIEWS);let pendingDel=null;let db=null;
+const SRC_TONE={"입학설명회":"ok","지인 직접":"ok"};
+function renderReviews(){
+  $("#rvCount").textContent=reviews.length?`${reviews.length}건`:"";
+  if(!reviews.length){$("#rvList").innerHTML=`<div class="empty small">아직 모은 후기가 없습니다. 왼쪽에서 첫 후기를 추가하세요.</div>`;return}
+  $("#rvList").innerHTML=reviews.map(r=>{
+    const link=/^https?:\/\//i.test(r.link||"")?`<a href="${esc(r.link)}" target="_blank" rel="noopener">원문 보기</a>`:"";
+    const d=r.createdAt?new Date(r.createdAt):null;
+    return `<article class="rv"><div class="head"><span class="pill ${SRC_TONE[r.source]||"grey"}">${esc(r.source||"기타")}</span><span class="pill">${esc(r.year||"")}</span><b>${esc(r.title||"(제목 없음)")}</b></div>
+      ${r.body?`<div class="body">${esc(r.body)}</div>`:""}
+      <div class="foot">${d?`<span class="num">${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()}</span>`:""}${link}
+      ${r.fixed&&!db?"":`<button type="button" class="danger" data-del="${esc(r.id)}">${pendingDel===r.id?"정말 삭제":"삭제"}</button>`}</div></article>`}).join("");
+}
+$("#rvList").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-del]");if(!b)return;const id=b.dataset.del;
+  if(pendingDel!==id){pendingDel=id;renderReviews();setTimeout(()=>{if(pendingDel===id){pendingDel=null;renderReviews()}},4000);return}
+  pendingDel=null;
+  if(db){try{await db.doc("reviews/"+id).delete()}catch(err){$("#rvMsg").textContent="삭제하지 못했습니다. 이 페이지의 편집 권한이 있는지 확인하세요."}}
+  else{reviews=reviews.filter(r=>r.id!==id);lsSet("csim.reviews",reviews.filter(r=>!r.fixed));renderReviews()}
+});
+$("#rvForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const r={source:$("#rvSource").value,year:$("#rvYear").value,title:$("#rvTitle").value.trim(),link:$("#rvLink").value.trim(),body:$("#rvBody").value.trim(),createdAt:Date.now()};
+  if(!r.title&&!r.body){$("#rvMsg").textContent="제목이나 내용 중 하나는 입력해 주세요.";return}
+  if(r.link&&!/^https?:\/\//i.test(r.link)){$("#rvMsg").textContent="링크는 https:// 로 시작해야 합니다.";return}
+  $("#rvSubmit").disabled=true;
+  try{
+    if(db){await db.collection("reviews").add(r)}
+    else{r.id="l"+r.createdAt;reviews.unshift(r);lsSet("csim.reviews",reviews.filter(x=>!x.fixed));renderReviews()}
+    $("#rvTitle").value="";$("#rvLink").value="";$("#rvBody").value="";
+    $("#rvMsg").textContent="저장했습니다.";
+  }catch(err){$("#rvMsg").textContent="저장하지 못했습니다. 이 페이지의 편집 권한이 있는지 확인하세요."}
+  $("#rvSubmit").disabled=false;
+});
+
+/* ---------- 공유 저장소 ---------- */
+let saveT=null;
+function saveChecks(){
+  if(!db)return;clearTimeout(saveT);
+  saveT=setTimeout(()=>{db.doc("shared/progress").set({checks,updatedAt:Date.now()}).catch(()=>{})},400);
+}
+async function connect(){
+  for(let i=0;i<40&&!(window.claude&&window.claude.use);i++)await new Promise(r=>setTimeout(r,250));
+  if(!(window.claude&&window.claude.use))return;
+  let d=null;try{d=await window.claude.use("db")}catch(e){d=null}
+  if(!d)return;
+  db=d;
+  const chip=$("#syncChip");chip.textContent="가족과 공유 저장 중";chip.classList.add("on");
+  $("#storeNote").textContent="체크 표시와 후기는 가족이 함께 보는 공유 저장소에 남습니다.";
+  let first=true;
+  db.doc("shared/progress").onSnapshot(s=>{
+    if(s.exists){checks=Object.assign({},(s.data()||{}).checks||{});lsSet("csim.checks",checks);renderChecks();renderQ()}
+    else if(first&&Object.keys(checks).length){saveChecks()}
+    first=false;
+  },()=>{chip.textContent="공유 저장소 연결 끊김";chip.classList.remove("on")});
+  const localOnly=reviews.filter(r=>String(r.id).startsWith("l"));
+  db.collection("reviews").orderBy("createdAt","desc").onSnapshot(q=>{
+    reviews=q.docs.map(x=>Object.assign({id:x.id},x.data()));renderReviews();
+  },()=>{});
+  for(const r of localOnly){const {id,...rest}=r;try{await db.collection("reviews").add(rest)}catch(e){break}}
+  if(localOnly.length)lsSet("csim.reviews",[]);
+}
+
+/* ---------- 탭 하이라이트 ---------- */
+const secs=[...document.querySelectorAll("main section")];
+const tabs=[...document.querySelectorAll("#tabs a")];
+function onScroll(){
+  let cur=secs[0].id;for(const s of secs){if(s.getBoundingClientRect().top<120)cur=s.id}
+  tabs.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur));
+}
+addEventListener("scroll",onScroll,{passive:true});
+
+renderChecks();renderQ();renderReviews();onScroll();
+connect();
+})();
+</script>
