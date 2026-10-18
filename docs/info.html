@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>청심국제중 학교 탐구</title>
+<link rel="stylesheet" href="fonts/pretendard.css">
+<style>
+/* Layout: 입시 노트와 같은 라이트 바인더. 사실마다 출처 칩을 바로 옆에 붙이고, 시수·일과·연간행사·층별 배치는 직접 그린 도표로 보여 준다. */
+:root{
+  --bg:#f4f6f4; --paper:#ffffff; --ink:#132029; --muted:#586970; --line:#d8dfdb;
+  --lake:#0b6a6e; --lake-soft:#e0efed; --signal:#b0440c; --signal-soft:#fbede3;
+  --ok:#2c7a47; --ok-soft:#e3f2e8; --warn:#9a6a00; --warn-soft:#fbf3dc;
+  --plum:#6b4c8a; --plum-soft:#efe9f5;
+  --font:"Pretendard Variable","Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15.5px;line-height:1.72;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:break-word}
+img{max-width:100%}[hidden]{display:none!important}
+a{color:var(--lake);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.3;margin:0;letter-spacing:-.02em}
+h2{font-size:1.7rem;font-weight:800}
+h3{font-size:1.12rem;font-weight:700}
+h4{font-size:.98rem;font-weight:700}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}.small{font-size:.85rem}
+.eyebrow{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* top bar */
+.topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:10px;font-size:.88rem}
+.topbar a{font-weight:600;text-decoration:none}
+header.hero{padding-block:36px 26px}
+.hero h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 span{color:var(--lake)}
+.hero .lede{margin-top:12px;max-width:68ch;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:22px}
+@media (max-width:860px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:440px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .v{font-size:1.55rem;font-weight:800;line-height:1.15;font-variant-numeric:tabular-nums}
+.stat .l{font-size:.8rem;color:var(--muted)}
+.stat .d{font-size:.78rem;color:var(--muted)}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding-block:8px}
+nav.tabs .wrap::-webkit-scrollbar{display:none}
+nav.tabs a{flex:none;text-decoration:none;color:var(--muted);font-weight:600;font-size:.9rem;padding:7px 12px;border-radius:999px;white-space:nowrap}
+nav.tabs a:hover{color:var(--ink);background:var(--paper)}
+nav.tabs a.on{color:var(--paper);background:var(--lake)}
+
+main section{padding-block:46px 6px}
+.sec-head{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.sec-head p{color:var(--muted);max-width:70ch}
+.stack{display:flex;flex-direction:column;gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.grid2>*,.grid3>*{min-width:0}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card>h3{margin-bottom:10px}
+.callout{border-radius:12px;padding:16px 18px;background:var(--lake-soft);border:1px solid color-mix(in srgb,var(--lake) 28%,transparent)}
+.callout.warn{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 35%,transparent)}
+ul.clean{margin:0;padding-left:1.1em}
+ul.clean li+li{margin-top:6px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.78rem;color:var(--muted);font-weight:600}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+
+/* source chips */
+.s{display:inline-flex;align-items:center;gap:3px;font-size:.7rem;font-weight:600;line-height:1;padding:3px 6px;border-radius:5px;text-decoration:none;white-space:nowrap;vertical-align:1px;margin-left:2px;border:1px solid transparent}
+.s::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.8}
+.s.o{background:var(--lake-soft);color:var(--lake)}            /* 학교 공식 */
+.s.g{background:var(--ok-soft);color:var(--ok)}                /* 공시·교육청 */
+.s.n{background:#eceff1;color:#37474f}                         /* 언론 */
+.s.p{background:var(--signal-soft);color:var(--signal)}        /* 재학생·학부모·졸업생 1인칭 */
+.s.c{background:var(--plum-soft);color:var(--plum)}            /* 카페 */
+.s.x{background:var(--paper);color:var(--muted);border-color:var(--line)} /* 정보 모음·학원·전언 */
+.s:hover{filter:brightness(.95);text-decoration:underline}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:.82rem;color:var(--muted);align-items:center}
+.flag{display:inline-block;font-size:.72rem;font-weight:700;color:var(--warn);background:var(--warn-soft);border-radius:4px;padding:1px 6px;margin-right:4px}
+
+/* bars */
+.bars{display:flex;flex-direction:column;gap:7px}
+.bar-row{display:grid;grid-template-columns:86px 1fr 52px;gap:10px;align-items:center;font-size:.86rem}
+.bar-row .track{height:14px;background:var(--bg);border-radius:4px;position:relative;overflow:hidden}
+.bar-row .fill{position:absolute;inset:0 auto 0 0;background:var(--lake);border-radius:4px}
+.bar-row .fill.hi{background:var(--signal)}
+.bar-row .fill.mute{background:color-mix(in srgb,var(--lake) 45%,var(--paper))}
+.bar-row .base{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink);opacity:.55}
+.bar-row .n{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+
+/* day timeline */
+.day{display:grid;grid-template-columns:62px 1fr;gap:0 12px;font-size:.88rem}
+.day .t{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right;padding-block:6px;font-weight:600}
+.day .b{padding:6px 10px;border-left:4px solid var(--line);margin-bottom:3px;border-radius:0 6px 6px 0;background:var(--bg)}
+.day .b.dorm{border-color:var(--plum)}
+.day .b.cls{border-color:var(--lake);background:var(--lake-soft)}
+.day .b.meal{border-color:var(--ok)}
+.day .b.study{border-color:var(--signal);background:var(--signal-soft)}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;font-size:.8rem;text-align:center}
+.week div{border-radius:8px;padding:10px 4px;background:var(--lake-soft);color:var(--lake);font-weight:600;min-width:0}
+.week div small{display:block;font-weight:400;color:var(--muted);margin-top:2px}
+.week .home{background:var(--signal-soft);color:var(--signal)}
+
+/* year strip */
+.year{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.month{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0}
+.month h4{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.month h4 span{font-size:.72rem;color:var(--muted);font-weight:500}
+.month ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:.82rem}
+.month li{padding-left:10px;position:relative}
+.month li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--muted)}
+.month li.big{font-weight:700}
+.month li.big::before{background:var(--signal)}
+.month li.trip::before{background:var(--lake)}
+.month li.exam{color:var(--muted)}
+
+/* floors */
+.floors{display:flex;flex-direction:column;gap:4px}
+.floor{display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:stretch}
+.floor .lv{display:flex;align-items:center;justify-content:center;font-weight:800;background:var(--ink);color:var(--paper);border-radius:6px;font-size:.85rem}
+.floor .rooms{display:flex;flex-wrap:wrap;gap:4px;padding:6px;background:var(--bg);border-radius:6px;border:1px solid var(--line)}
+.room{font-size:.76rem;padding:3px 7px;border-radius:4px;background:var(--paper);border:1px solid var(--line);white-space:nowrap}
+.room.ms{background:var(--signal-soft);border-color:color-mix(in srgb,var(--signal) 35%,transparent);color:var(--signal);font-weight:600}
+.room.hs{background:#eef1f3}
+.room.key{background:var(--lake-soft);border-color:color-mix(in srgb,var(--lake) 35%,transparent);color:var(--lake);font-weight:600}
+
+/* stacked bars (진학) */
+.stk{display:flex;height:26px;border-radius:6px;overflow:hidden;font-size:.72rem;font-weight:600;color:#fff}
+.stk div{display:flex;align-items:center;justify-content:center;min-width:0;white-space:nowrap;overflow:hidden}
+.stk-row{display:grid;grid-template-columns:48px 1fr;gap:10px;align-items:center;font-size:.85rem}
+
+/* video */
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.vid{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;text-decoration:none;color:inherit;min-width:0}
+.vid .th{position:relative;aspect-ratio:16/9;max-width:100%;background:linear-gradient(135deg,var(--lake),#0e3f4a);overflow:hidden}
+.vid .th img{width:100%;height:100%;object-fit:cover;display:block}
+.vid .th iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid .play{position:absolute;inset:auto auto 10px 10px;background:rgba(0,0,0,.72);color:#fff;font-size:.75rem;font-weight:700;padding:4px 9px;border-radius:999px}
+.vid .meta{padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.vid .meta b{font-size:.92rem;line-height:1.4}
+.vid .meta span{font-size:.78rem;color:var(--muted)}
+.linkcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.lc{display:flex;flex-direction:column;gap:3px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--paper);text-decoration:none;color:inherit;min-width:0}
+.lc:hover{border-color:var(--lake)}
+.lc b{font-size:.9rem;color:var(--ink)}
+.lc span{font-size:.78rem;color:var(--muted)}
+.lc em{font-style:normal;font-size:.72rem;font-weight:700;color:var(--lake)}
+
+.voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.voice{border-left:4px solid var(--signal);background:var(--paper);border-radius:0 10px 10px 0;padding:12px 14px;font-size:.92rem;min-width:0;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.voice.c{border-left-color:var(--plum)}
+.voice .who{font-size:.76rem;color:var(--muted);margin-top:6px}
+
+.pc{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.pc .card h3{display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+footer{padding-block:40px 56px;color:var(--muted);font-size:.86rem}
+footer ul{margin:8px 0 0;padding-left:1.1em}
+footer li{margin-top:3px}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <a href="index.html">← 입시 노트 (일정·자소서·면접)</a>
+  <span class="muted small">2026.10.19. 조사</span>
+</div></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CheongShim International Academy · Middle School</div>
+    <h1>청심국제중 <span>학교 탐구</span></h1>
+    <p class="lede">교육과정, 하루 일과, 기숙사, 축제와 연간 행사, 비용, 진학까지 학교 공식 자료·학교알리미·언론과 네이버 블로그·카페의 재학생·학부모 이야기를 함께 모았습니다. 문장마다 붙은 색깔 칩을 누르면 원문으로 갑니다. 출처끼리 말이 다른 곳은 <span class="flag">엇갈림</span>으로 표시했습니다.</p>
+    <div class="stats">
+      <div class="stat"><span class="l">학생 수 (2026)</span><span class="v">320명</span><span class="d">남 132 · 여 188 <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a></span></div>
+      <div class="stat"><span class="l">학급</span><span class="v">12학급</span><span class="d">학년당 4반, 반당 약 27명</span></div>
+      <div class="stat"><span class="l">교원 1인당 학생</span><span class="v">12.3명</span><span class="d">교원 28명</span></div>
+      <div class="stat"><span class="l">기숙사</span><span class="v">전원</span><span class="d">2인 1실 · 금 귀가 일 귀교</span></div>
+      <div class="stat"><span class="l">수업</span><span class="v">45분</span><span class="d">하루 8교시, 연 190일</span></div>
+      <div class="stat"><span class="l">개교</span><span class="v">2006</span><span class="d">가평 설악면, 중·고 한 캠퍼스</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="섹션">
+  <div class="wrap" id="tabs">
+    <a href="#about">학교 개요</a>
+    <a href="#curriculum">교육과정</a>
+    <a href="#day">하루·일주일</a>
+    <a href="#dorm">기숙사</a>
+    <a href="#campus">캠퍼스</a>
+    <a href="#year">연간 행사·축제</a>
+    <a href="#clubs">동아리·국제교류</a>
+    <a href="#cost">비용</a>
+    <a href="#next">고교 진학</a>
+    <a href="#voices">재학생·학부모 이야기</a>
+    <a href="#media">영상·사진</a>
+  </div>
+</nav>
+
+<main>
+<div class="wrap" style="padding-top:22px">
+  <div class="legend">
+    <span>출처 칩:</span>
+    <span class="s o">학교 공식</span>
+    <span class="s g">공시 (학교알리미)</span>
+    <span class="s n">언론</span>
+    <span class="s p">재학생·학부모·졸업생 블로그</span>
+    <span class="s c">네이버 카페</span>
+    <span class="s x">정보 모음·학원·전언</span>
+  </div>
+</div>
+
+<!-- ============ 개요 ============ -->
+<section id="about">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>학교 개요와 교육철학</h2>
+      <p>청심국제중은 2006년 3월 청심국제고와 함께 문을 연 전국 단위 모집 특성화중학교입니다. 두 학교가 한 캠퍼스와 기숙사를 함께 씁니다.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>기본 정보</h3>
+        <ul class="clean">
+          <li>2005년 특성화중학교 설립 인가, 2006년 3월 개교. 첫 입학생은 중 99명, 고 100명 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131812" target="_blank" rel="noopener">연혁</a></li>
+          <li>경기도 가평군 설악면 미사리로 324-213. 뒤로 장락산, 앞으로 청평호가 있는 산속 캠퍼스 <a class="s n" href="https://www.joongang.co.kr/article/25457244" target="_blank" rel="noopener">중앙일보 2026</a></li>
+          <li>2020년 경기도교육청 특성화중 재지정 평가(5년 주기) 통과 <a class="s o" href="https://blog.naver.com/hellocsia/222002699583" target="_blank" rel="noopener">공식 블로그 2020</a></li>
+          <li>현 교장은 5대 전성은 교장(2023년 3월 취임) <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131812" target="_blank" rel="noopener">연혁</a></li>
+          <li>교복은 한복 디자이너 이영희 디자인, 방과 후에는 생활복 <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>교육목표 ACG와 건학이념</h3>
+        <ul class="clean">
+          <li><b>A</b> 이타적 품성(Altruistic), <b>C</b> 창의적 지식(Creative), <b>G</b> 글로벌 리더(Global). 전원 기숙 생활로 공동체성을 기른다는 것이 학교 설명입니다. <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a></li>
+          <li>건학이념(교훈)은 애천·애인·애국 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131810" target="_blank" rel="noopener">건학이념</a></li>
+          <li>전형요항은 수업이 토론·발표·영어 위주라 이를 따라갈 수 있어야 한다고 명시합니다. <a class="s o" href="https://admission.csia.hs.kr/?act=board.read&code=1611&id=403" target="_blank" rel="noopener">2027 전형요항</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <b>재단과 종교.</b> 학교법인 청심학원은 통일교 재단에서 설립했습니다. <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131810" target="_blank" rel="noopener">건학이념</a> <a class="s n" href="https://www.joongang.co.kr/article/25457244" target="_blank" rel="noopener">중앙일보 2026</a>
+      학교는 통일교 관련 수업이 없고 세계 종교·윤리·시민의식을 다루는 철학 수업이 주 1시간 있다고 밝힙니다. <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a>
+      2025·2026년 설명회에서도 종교와 무관하다고 했고(2026년 교장은 본인이 기독교 장로라고 소개) <a class="s c" href="https://cafe.naver.com/beautyparents/142331" target="_blank" rel="noopener">카페 2026.9</a> <a class="s c" href="https://cafe.naver.com/goldschools/915018" target="_blank" rel="noopener">카페 2025.9</a>,
+      학부모와 졸업생 다수도 종교 강요는 없다고 씁니다. <a class="s p" href="https://blog.naver.com/jlovesjjj/224085413902" target="_blank" rel="noopener">학부모 2025</a> <a class="s x" href="https://blog.naver.com/james5953/223961475876" target="_blank" rel="noopener">졸업생 답변(학원 전재) 2025</a>
+      다만 바로 옆 종교 시설의 행사 소리가 들린다는 기록과 <a class="s p" href="https://blog.naver.com/stand_up_alone/223936453381" target="_blank" rel="noopener">학부모 2025</a>, 기독교 가정의 거부감을 말한 글도 있습니다. <a class="s c" href="https://cafe.naver.com/dongtanmom/6226680" target="_blank" rel="noopener">카페 2024</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 교육과정 ============ -->
+<section id="curriculum">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>교육과정과 수업</h2>
+      <p>국가 교육과정을 따르되 영어 시수를 늘리고, 주요 과목을 영어 교재·영어 강의로 운영합니다. 아래 시수는 <b>2026학년도 입학생</b> 편제표 기준이며, 2027 입학생 편제표는 보통 6~7월에 게시됩니다.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>3년 동안 배우는 시간 (총 3,366시간)</h3>
+        <p class="small muted" style="margin-bottom:12px">막대는 3년 시수, 검은 눈금은 국가 기준 시수입니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">2026 합격생 안내 p.12</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=131728&id=7" target="_blank" rel="noopener">편제표</a></p>
+        <div class="bars" id="hoursBars"></div>
+        <p class="small muted" style="margin-top:12px">창의적 체험활동 340시간 별도: 자율·자치 60, 동아리 42, 진로 102, 학교스포츠클럽 136</p>
+      </div>
+      <div class="card">
+        <h3>특징</h3>
+        <ul class="clean">
+          <li><b>영어 408시간</b>으로 국가 기준(340)보다 20% 많고, 학교자율시간 과목 ‘영어 발표와 토론’(34시간)이 들어 있습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+          <li><b>제2외국어</b>: 생활 스페인어·중국어·일본어 중 선택. 2학년 102시간, 3학년 68시간. 경기도교육청 ‘제2외국어교육 으뜸학교’ <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">특색 교육과정</a></li>
+          <li><b>자유학기</b>는 1학년 1학기(주제선택 85·진로탐색 17시간)라 이 학기 시험은 성적에 들어가지 않습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/223827588303" target="_blank" rel="noopener">학부모 2025</a></li>
+          <li>교과서는 국가 검정 교과서(국어·수학·사회·과학 등)를 받고, 원서 교재를 함께 씁니다. 기하 원서 한 권이 학교 가격 35만 6,800원이었다는 기록이 있습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a> <a class="s p" href="https://blog.naver.com/today_bna/224113581405" target="_blank" rel="noopener">학부모 2025</a></li>
+          <li>토론·발표·과제 중심 수업, 교과융합 프로젝트, 진로독서, 학생 주도 프로젝트형 봉사 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>영어로 하는 수업은 얼마나?</h3>
+        <p class="small muted" style="margin-bottom:8px">학교는 “주요 과목 영어 수업”이라고만 밝히고 비율은 공개하지 않습니다. <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">특색 교육과정</a> 체감은 이렇습니다.</p>
+        <ul class="clean">
+          <li>국어·역사 외 대부분 과목을 영어로 수업, 원어민 교사는 약 10% <a class="s p" href="https://blog.naver.com/stand_up_alone/223816790299" target="_blank" rel="noopener">학부모 2025</a> <a class="s n" href="https://www.joongang.co.kr/article/25457244" target="_blank" rel="noopener">중앙일보 2026</a></li>
+          <li>수학은 Algebra·Geometry 원서로 배우고 영어로 시험 <a class="s c" href="https://cafe.naver.com/youniv/6193" target="_blank" rel="noopener">재학생 카페 2022</a>. 2학년 수학은 한국 교육과정 내용을 영어 문제로 풀어 “최종 보스”로 불린다고 합니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268463949" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>과학 시험은 객관식은 한국어, 서술형은 영어 <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li>2학년 영어 수업은 철학자 관련 책을 읽고 발표 <a class="s p" href="https://blog.naver.com/stand_up_alone/224268430197" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li><span class="flag">엇갈림</span> “실제 영어 수업은 50% 정도” <a class="s c" href="https://cafe.naver.com/mathall/2047899" target="_blank" rel="noopener">학부모 카페 2020</a>, “중3은 한국 교재” <a class="s c" href="https://cafe.naver.com/mathall/3027122" target="_blank" rel="noopener">카페 2026</a>. 학년과 과목, 해마다 다를 수 있습니다.</li>
+          <li>중학년부 교직원 명단에 외국인 교사 이름은 없어 원어민 전담 교사는 거의 없는 것으로 보입니다(추정). <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131814" target="_blank" rel="noopener">교직원소개</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>평가와 공부 부담</h3>
+        <ul class="clean">
+          <li>정기시험은 한 해 4번(4월, 6월 말~7월 초, 10월, 12월) <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></li>
+          <li>수행평가 비중이 큽니다. “수행이 맨날 있어 놀 시간이 없다”, 1학년 때 한 주에 PPT 3개 <a class="s p" href="https://blog.naver.com/student1108-/224108754193" target="_blank" rel="noopener">재학생 2025</a> <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a>, 과목에 따라 지필 비중 10~20% <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">재학생 카페 2025</a></li>
+          <li>의외의 복병은 국어: 지난해 평균 70점대, 처음 보는 지문과 에세이 문항 <a class="s p" href="https://blog.naver.com/stand_up_alone/224268422461" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>시험 기간에는 공부방을 24시간 열고, 새벽 2~4시에 잤다는 기록 <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li>선행 격차: 초등 때 최상위였지만 공통수학을 하는 친구들에 밀려 힘들었다는 재학생 고백 <a class="s p" href="https://blog.naver.com/student1108-/224108754193" target="_blank" rel="noopener">재학생 2025</a>. 입학 전 수학 선행은 “중2-1 정도면 충분” <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">재학생 카페</a>부터 “중3까지” <a class="s c" href="https://cafe.naver.com/mathall/2676403" target="_blank" rel="noopener">학부모 카페</a>까지 <span class="flag">엇갈림</span></li>
+          <li>사교육은 주말 학원·과외, 방학 특강, 인강 조합이 흔하고, 주말에만 다니다 보니 연속성이 끊긴다는 지적 <a class="s c" href="https://cafe.naver.com/mathall/2921248" target="_blank" rel="noopener">학부모 카페 2025</a> <a class="s c" href="https://cafe.naver.com/mathall/2813054" target="_blank" rel="noopener">학부모 카페 2024</a>. 사교육 없이 잘 지내는 아이도 많다는 반론도 있습니다. <a class="s c" href="https://cafe.naver.com/goldschools/856811" target="_blank" rel="noopener">학부모 카페 2024</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <h3>1인 1악기</h3>
+        <p class="small">중학생 필수. 주 1회 레슨, 학년말 발표회(2026년 중3 6월, 중1·2 11~12월). <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a> <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></p>
+        <p class="small" style="margin-top:6px">2026 신입생 선택지: 락밴드, 바이올린, 드럼, 첼로, 클라리넷, 클래식기타, 통기타, 플룻, 클래식피아노, 해금. 피아노 외 악기는 개인 구입, 락밴드는 지원자가 많으면 면접. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.17</a></p>
+        <p class="small" style="margin-top:6px">강사료 시간당 8만 원을 수강생이 나눠 냄(2026). <a class="s o" href="https://csia.hs.kr/?act=board.read&code=2618&id=45" target="_blank" rel="noopener">공지</a> 수준은 취미 정도라 부담 없다는 평. <a class="s c" href="https://cafe.naver.com/goldschools/836468" target="_blank" rel="noopener">카페 2024</a></p>
+      </div>
+      <div class="card">
+        <h3>체육: 태권도·양궁</h3>
+        <p class="small">태권도(1~3학년, 학기말 승단심사)와 양궁(2학년부터). 2015년 무렵 승마가 양궁으로 바뀌었습니다. <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a> <a class="s p" href="https://blog.naver.com/stand_up_alone/224316288527" target="_blank" rel="noopener">학부모 2026</a></p>
+        <p class="small" style="margin-top:6px">양궁대회(2026.7) 사진 <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=399" target="_blank" rel="noopener">학교앨범</a>. 점심 직후 천연잔디 운동장에서 남학생들이 축구 <a class="s p" href="https://blog.naver.com/stand_up_alone/223892392974" target="_blank" rel="noopener">학부모 2025</a></p>
+      </div>
+      <div class="card">
+        <h3>방과후학교</h3>
+        <p class="small">2026년 1학기 중학교: 교과 20강좌(241명), 특기적성 15강좌(205명), 참여 학생 224명 <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a></p>
+        <p class="small" style="margin-top:6px">펜싱·한국무용·뮤지컬 등 예체능 강좌 <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a>. 학년을 섞어 듣고 한 학기 40개 이상이라는 학부모 기록 <a class="s p" href="https://blog.naver.com/stand_up_alone/224364178328" target="_blank" rel="noopener">학부모 2026</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 하루·일주일 ============ -->
+<section id="day">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>하루와 일주일</h2>
+      <p>평일은 학교와 기숙사에서 지내고, 금요일 오후에 집에 갔다가 일요일 저녁에 돌아오는 리듬입니다.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>평일 하루 (학교 공식 일과표)</h3>
+        <p class="small muted" style="margin-bottom:10px"><a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">2026 합격생 안내 p.13</a> 중학교는 45분 수업입니다.</p>
+        <div class="day">
+          <span class="t">06:30</span><div class="b dorm">기상 (기상음악은 교가 <a class="s p" href="https://blog.naver.com/stand_up_alone/223792736919" target="_blank" rel="noopener">학부모</a>)</div>
+          <span class="t">06:40</span><div class="b dorm">Good Morning Cheongshim (생활관 점검)</div>
+          <span class="t">07:00</span><div class="b meal">아침 식사, 등교</div>
+          <span class="t">08:00</span><div class="b cls">1교시 아침 조례·창체 활동</div>
+          <span class="t">09:00</span><div class="b cls">2~4교시</div>
+          <span class="t">12:00</span><div class="b meal">점심 식사</div>
+          <span class="t">13:00</span><div class="b cls">5~8교시 (8교시가 공강인 날도 있음)</div>
+          <span class="t">16:45</span><div class="b cls">종례</div>
+          <span class="t">17:00</span><div class="b meal">저녁 식사 · 동아리 활동</div>
+          <span class="t">18:10</span><div class="b study">자율학습 · 방과후학교 (~21:00, 학생들은 “야자 3교시”라고 부름 <a class="s p" href="https://blog.naver.com/student1108-/224101841115" target="_blank" rel="noopener">재학생</a>)</div>
+          <span class="t">21:00</span><div class="b meal">야간 간식</div>
+          <span class="t">21:30</span><div class="b dorm">Good Night Cheongshim (점호)</div>
+          <span class="t">23:30</span><div class="b dorm">중학생 전자기기 수납 <a class="s p" href="https://blog.naver.com/stand_up_alone/223792736919" target="_blank" rel="noopener">학부모 2025</a> <a class="s c" href="https://cafe.naver.com/goldschools/824480" target="_blank" rel="noopener">카페 2024</a></div>
+          <span class="t">24:00</span><div class="b dorm">소등·취침 <span class="flag">엇갈림</span> 01시라는 기록도 있음 <a class="s p" href="https://blog.naver.com/stand_up_alone/223803424024" target="_blank" rel="noopener">학부모 2025</a></div>
+        </div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <h3>일주일</h3>
+          <div class="week">
+            <div class="home">일<small>저녁 귀교 (22시까지)</small></div>
+            <div>월<small>학교</small></div><div>화<small>학교</small></div><div>수<small>12시 귀가·잔류 신청 마감</small></div><div>목<small>학교</small></div>
+            <div class="home">금<small>14:30 귀가버스</small></div>
+            <div class="home">토<small>집</small></div>
+          </div>
+          <ul class="clean small" style="margin-top:12px">
+            <li>귀가버스는 금요일 14:30 출발, 귀교버스는 일요일 20:30경 각 거점 출발. 귀교 마감은 일요일 22:00 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=2002" target="_blank" rel="noopener">학생생활규정</a></li>
+            <li>매주 수요일 낮 12시까지 귀가·잔류·버스를 신청. 중·고 합쳐 잔류 신청이 40명 미만이면 전원 귀가. 한 학기 일괄 신청 가능 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+            <li>마감 후 변경은 10% 할증, 신청 없이 타면 30% 할증, 무단 승차는 4회분 요금과 4주 이용 금지 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+            <li>학사일정상 ‘전원귀가’가 한 달에 1~2번 있고 방학에는 전원 귀가 <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a>. 2학년부터는 시험 기간 주말 잔류 가능 <a class="s p" href="https://blog.naver.com/stand_up_alone/224217890903" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>귀가버스 노선 (2026, 이용 인원에 따라 변동)</h3>
+          <p class="small">용산역·서울역 / 구리·태릉입구역 / 일산 백석역 / 부평역 / 목동 파리공원 / 강남버스터미널 / 동탄SRT역·수원버스터미널 / 용인수지 이마트 / 분당 서현역·평촌·산본 / 종합운동장역 / 대치동 한티역 / 동서울터미널(강변역)·수서역 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.7</a></p>
+          <p class="small muted" style="margin-top:6px">지방 노선은 없어 고속터미널·동서울터미널에서 갈아탑니다. <a class="s c" href="https://cafe.naver.com/mathall/3004423" target="_blank" rel="noopener">학부모 카페 2026</a> 한티역 도착은 금요일 오후 3시 반 무렵 <a class="s p" href="https://blog.naver.com/today_bna/224229626308" target="_blank" rel="noopener">학부모 2026</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>휴대폰과 전자기기</h3>
+      <ul class="clean">
+        <li>학생생활규정 제20조: 학교는 등교 직후부터 하교 때까지 스마트폰·노트북·태블릿 등을 일괄 수거해 보관할 수 있습니다. 스마트워치·이어폰은 본인 책임으로 소지하되 수업 중 무단 사용 시 분리 보관. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=2002" target="_blank" rel="noopener">학생생활규정(25차, 2026.9)</a></li>
+        <li>실제로는 밤에 기기를 반납하고 아침에 받았다가 수업 전 휴대폰·워치를 다시 내며, 노트북·패드는 예외 <a class="s c" href="https://cafe.naver.com/goldschools/824480" target="_blank" rel="noopener">학부모 카페 2024</a> <a class="s c" href="https://cafe.naver.com/goldschools/953961" target="_blank" rel="noopener">카페 2026</a>. 중학생은 개인 와이파이와 마우스 금지 <a class="s p" href="https://blog.naver.com/stand_up_alone/223792736919" target="_blank" rel="noopener">학부모 2025</a></li>
+        <li>과제·공지가 반 단톡방으로 오가서 휴대폰은 사실상 필요하다는 의견이 많습니다. <a class="s c" href="https://cafe.naver.com/mathall/2047899" target="_blank" rel="noopener">카페 2020</a> <a class="s c" href="https://cafe.naver.com/goldschools/953961" target="_blank" rel="noopener">카페 2026</a> 노트북은 “필수” <a class="s c" href="https://cafe.naver.com/mathall/2067811" target="_blank" rel="noopener">카페 2020</a>와 “있으면 편한 정도” <a class="s c" href="https://cafe.naver.com/mathall/2857219" target="_blank" rel="noopener">예비소집 후기 2024</a>로 <span class="flag">엇갈림</span></li>
+        <li>남학생은 주중에 막힌 게임을 주말에 몰아 한다는 하소연이 있고, 반대로 바빠서 휴대폰 할 시간이 없다는 여학생 학부모 글도 있습니다. <a class="s c" href="https://cafe.naver.com/goldschools/824480" target="_blank" rel="noopener">카페 2024</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 기숙사 ============ -->
+<section id="dorm">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>기숙사 GLTC</h2>
+      <p>생활관 이름은 GLTC(Global Leadership Training Center). 남학생은 <b>애천관</b>, 여학생은 <b>애인관</b>입니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a> 2026년 중·고 합계 620명이 지냅니다. <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a></p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>방과 생활</h3>
+        <ul class="clean">
+          <li>2인 1실. 싱글침대·책상·옷장·개별 화장실(샤워)·에어컨 <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a>. 재학생이 직접 재 보니 약 6평 <a class="s p" href="https://blog.naver.com/student1108-/223953459865" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li>호실과 룸메이트는 학기마다 추첨(7월·12월) <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a>. 같은 반 친구와는 룸메이트가 될 수 없다는 기록 <a class="s p" href="https://blog.naver.com/stand_up_alone/223917121538" target="_blank" rel="noopener">학부모 2025</a></li>
+          <li>다른 방·층 출입은 금지, 친구는 층별 라운지에서 만남 <a class="s p" href="https://blog.naver.com/stand_up_alone/224227143872" target="_blank" rel="noopener">학부모 2026</a>. 책상 위엔 스탠드만, 벽에 포스터 금지 <a class="s p" href="https://blog.naver.com/today_bna/224229626308" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>세탁 서비스 주 2회(남학생 화·금, 여학생 월·목): 교복·생활복·체육복·속옷. 사복은 직접 세탁. 방 청소 주 2~3회 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+          <li>사감장 2명, 사감 7명, 주간 사감 2명 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131814" target="_blank" rel="noopener">교직원소개</a>. 예절교육, 멘토·멘티, 66일 습관 형성 프로그램 <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></li>
+          <li>2026년 겨울방학에 남자 기숙사 엘리베이터와 침대 교체 <a class="s c" href="https://cafe.naver.com/goldschools/949893" target="_blank" rel="noopener">카페 2026</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>준비물과 금지 물품</h3>
+        <ul class="clean">
+          <li><b>본인 준비:</b> 침대 패드·이불·베개, 세면도구, 화장지, 세탁망(60×50cm, 매점 판매) / <b>학교 제공:</b> 매트리스 커버, 책상 스탠드 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+          <li>책상 서랍이 없어 작은 서랍장을 가져간다는 팁 <a class="s c" href="https://cafe.naver.com/mathall/2116182" target="_blank" rel="noopener">카페 2021</a></li>
+          <li><b>반입 금지:</b> 선풍기·공기청정기·전기장판·포트·소형 냉장고 등 가전, 컵라면 등 즉석조리식품, 치킨·피자 같은 조리 식품, 칼 등 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a>. 배달 음식도 안 됩니다. <a class="s c" href="https://cafe.naver.com/mathall/2857219" target="_blank" rel="noopener">예비소집 후기</a></li>
+          <li>학부모는 생활관에 들어갈 수 없고 물건은 사무실에 맡깁니다. 택배는 학교 주소 + 애천관/애인관 + 호실 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+          <li>이성교제는 “가장 엄격히 지도”하며 반복되면 생활교육위원회 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=2002" target="_blank" rel="noopener">학생생활규정</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn small">
+      <b>체감 기록.</b> 산속이라 겨울이 춥고 독감이 돌기 쉬우며, 여학생 기숙사 화재경보 오작동이 잦다는 재학생 기록 <a class="s p" href="https://blog.naver.com/student1108-/224101841115" target="_blank" rel="noopener">재학생 2025</a>. 사감에 대한 불만 <a class="s p" href="https://blog.naver.com/student1108-/224177192419" target="_blank" rel="noopener">재학생 2026</a>과, 냉장고가 없어 음료를 창밖 찬 공기로 식힌다는 이야기 <a class="s p" href="https://blog.naver.com/stand_up_alone/224312228183" target="_blank" rel="noopener">학부모 2026</a>도 있습니다.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 캠퍼스 ============ -->
+<section id="campus">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>캠퍼스와 시설</h2>
+      <p>수업은 지하 1층~지상 5층 종합강의동에서 합니다. 중학교 교실은 3층에 모여 있습니다. 아래는 학교 배치도를 옮겨 그린 것입니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.16</a></p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>종합강의동 층별 배치</h3>
+        <div class="floors">
+          <div class="floor"><span class="lv">5F</span><div class="rooms"><span class="room hs">고1·고2·고3 교실 12개</span><span class="room hs">고등학교 교무실</span><span class="room">국내·국제 상담실</span><span class="room">강의실</span></div></div>
+          <div class="floor"><span class="lv">4F</span><div class="rooms"><span class="room key">국제회의실</span><span class="room">어학실</span><span class="room">영어교실</span><span class="room">수학교실</span><span class="room">과학실1</span><span class="room ms">학생회실(중)</span><span class="room">학생회실(고)</span><span class="room">교감실·교무실</span></div></div>
+          <div class="floor"><span class="lv">3F</span><div class="rooms"><span class="room ms">중1 교실 4개</span><span class="room ms">중2 교실 4개</span><span class="room ms">중3 교실 4개</span><span class="room ms">중학교 교무실</span><span class="room ms">중학교 열람실</span><span class="room">세미나실</span></div></div>
+          <div class="floor"><span class="lv">2F</span><div class="rooms"><span class="room key">도서실</span><span class="room">미술실</span><span class="room">과학실2</span><span class="room">세미나실 1~6</span><span class="room">고등학교 열람실</span><span class="room">방송실</span></div></div>
+          <div class="floor"><span class="lv">1F</span><div class="rooms"><span class="room key">대강당</span><span class="room key">체육관</span><span class="room">중강당</span><span class="room">음악실</span><span class="room">기술·가정실</span><span class="room">상담실</span><span class="room">보건실</span><span class="room">입학홍보부</span><span class="room">교장실·행정실</span></div></div>
+          <div class="floor"><span class="lv">B1</span><div class="rooms"><span class="room key">식당</span><span class="room">매점</span><span class="room">무용실</span><span class="room">동아리방 6</span><span class="room">스터디룸 3</span><span class="room">연구실 5</span><span class="room">ATM</span></div></div>
+        </div>
+        <p class="small muted" style="margin-top:10px"><span class="room ms" style="font-size:.7rem">주황</span> 중학교 전용 공간</p>
+      </div>
+      <div class="card">
+        <h3>시설 이야기</h3>
+        <ul class="clean">
+          <li><b>도서관:</b> 2층 중앙, 교실 4칸 반 크기. 단행본 2만 권, 전자책 1,100점, 북카페형·동굴 열람석. 평일 8~17시(금 14:30), 6권 14일 대출 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.8</a> <span class="flag">엇갈림</span> 학교 소개 페이지는 3만 6천 권(원서 9천 권) <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a>. 2025년 3월 리모델링 개관</li>
+          <li><b>상담실:</b> 1층 엘리베이터 앞. 개인상담, 심리검사, 친구관계·전편입생 적응 집단상담, 또래상담, 점심 보드게임 ‘힐링타임’ <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.8</a></li>
+          <li><b>급식:</b> 학교 직영, 하루 3식과 야간 간식. 2025년 점심 급식비는 교육청·지자체가 전액 부담 <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a>. 졸업생은 “다닌 학교 중 최고, 매달 나라별 특식” <a class="s p" href="https://blog.naver.com/moysys2/222936139353" target="_blank" rel="noopener">졸업생 2022</a>, 재학생은 시험 주간엔 입에 안 맞아 거르기도 했다고 씁니다. <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li><b>매점:</b> 비싸다는 평이 공통 <a class="s p" href="https://blog.naver.com/student1108-/224101841115" target="_blank" rel="noopener">재학생</a> <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">카페</a>. 저녁 17시와 간식 21시 사이에 배가 고파 자주 간다고 합니다. <a class="s p" href="https://blog.naver.com/today_bna/224229626308" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>그 밖에 천연잔디 운동장, 체육관 1·강당 2, 골프장(고교 수업용), 2026년 9월 문을 연 CS 갤러리 <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a> <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131815" target="_blank" rel="noopener">시설안내</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=412" target="_blank" rel="noopener">학교앨범</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 연간 행사 ============ -->
+<section id="year">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>연간 행사와 축제</h2>
+      <p>2026학년도 학사일정 기준입니다. <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a> 졸업식과 방학식이 1월이라 1~2월이 사실상 방학입니다. 빨간 점이 큰 행사, 청록 점이 학교 밖 체험입니다.</p>
+    </div>
+    <div class="year">
+      <div class="month"><h4>2월 <span>입학 전</span></h4><ul><li class="big">신입생 OT 2박 3일 (청심국제청소년수련원)</li><li>CSIAMUN 모의유엔 (1월 말, 주로 고교)</li></ul></div>
+      <div class="month"><h4>3월</h4><ul><li class="big">입학식 · 생활관 입소</li><li>동아리 박람회</li><li>타임캡슐 봉인식</li><li>중학교 학부모총회</li><li>1인1악기·방과후 개강</li></ul></div>
+      <div class="month"><h4>4월</h4><ul><li class="trip">챌린지데이 (2025 롯데월드)</li><li class="exam">1학기 1차 정기시험</li><li class="trip">With Azalea 진달래 나들이</li></ul></div>
+      <div class="month"><h4>5월</h4><ul><li class="big trip">해외 체험학습 GLT 4박 5일</li><li>학부모 상담·수업공개</li></ul></div>
+      <div class="month"><h4>6월</h4><ul><li>중3 1인1악기 발표회</li><li class="exam">1학기 2차 정기시험</li></ul></div>
+      <div class="month"><h4>7월</h4><ul><li>명사특강 · 오케스트라 게릴라 콘서트</li><li>학생회장 선거</li><li class="big">청심제 (여름 축제)</li><li>방학식 · 호실 추첨</li></ul></div>
+      <div class="month"><h4>8월</h4><ul><li>개학 (8월 중순)</li><li>방과후 2학기 개강</li></ul></div>
+      <div class="month"><h4>9월</h4><ul><li class="trip">가을 문화체험</li><li>개교기념일 9/30</li><li>학부모 상담주간</li></ul></div>
+      <div class="month"><h4>10월</h4><ul><li class="exam">2학기 1차 정기시험</li><li class="big">할로윈 파티</li></ul></div>
+      <div class="month"><h4>11월</h4><ul><li class="big">문화체육의 날 (중학교 체육대회)</li><li>중1·2 1인1악기 발표회</li></ul></div>
+      <div class="month"><h4>12월</h4><ul><li class="exam">2학기 2차 정기시험</li><li class="big">무비나잇·청심인의 밤·락 페스티벌</li><li>신년파티 · 청심음악제</li></ul></div>
+      <div class="month"><h4>1월</h4><ul><li>디베이트 청심 오픈 (중)</li><li class="big">졸업식</li><li>방학식</li></ul></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>청심제: 7월 여름 축제</h3>
+        <ul class="clean">
+          <li>1학기 기말고사 직후 2~4일. 2024년 7/17, 2025년 7/14~17, 2026년 7/14~15 <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=297" target="_blank" rel="noopener">앨범 2024</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=351" target="_blank" rel="noopener">앨범 2025</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=406" target="_blank" rel="noopener">앨범 2026</a></li>
+          <li>학생회 기획부가 열고 체육대회는 체육부가 맡습니다. 무대 공연, 학생 팝업 부스, 동아리 활동 <a class="s o" href="https://eng.csia.hs.kr/?act=doc&mcode=1212" target="_blank" rel="noopener">영문 학생자치</a> <a class="s c" href="https://cafe.naver.com/goldschools/816887" target="_blank" rel="noopener">카페 2024</a></li>
+          <li>2025년: 체육대회와 합쳐 열렸고, 학교 화폐 ‘청심페이’로 반별 부스 운영, 체육대회 날엔 화장·꾸밈 허용, 락페스티벌은 약 600명이 QR로 입장 <a class="s p" href="https://blog.naver.com/stand_up_alone/223942060155" target="_blank" rel="noopener">학부모 2025</a></li>
+          <li>운동장에 에어바운스 물놀이장·워터슬라이드 <a class="s p" href="https://blog.naver.com/stand_up_alone/223936453381" target="_blank" rel="noopener">학부모 2025</a> <a class="s c" href="https://cafe.naver.com/goldschools/549363" target="_blank" rel="noopener">카페 2018</a>. 2024년엔 중·고 연합 축제로 락밴드 14팀 선발 <a class="s p" href="https://blog.naver.com/jlovesjjj/223516667072" target="_blank" rel="noopener">학부모 2024</a></li>
+          <li>2014년 구성(오래된 자료): 첫날 반별 테마 부스·동아리 부스·학부모 장터·락/댄스 페스티벌, 둘째 날 체육대회(중학교는 농구 리그·축구·발야구)·반별 공연·청심인의 밤 <a class="s o" href="https://blog.naver.com/hellocsia/220100453470" target="_blank" rel="noopener">공식 블로그 2014</a> <a class="s o" href="https://blog.naver.com/hellocsia/220106165825" target="_blank" rel="noopener">2014 둘째날</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>해외 체험학습 GLT와 그 밖의 행사</h3>
+        <ul class="clean">
+          <li><b>Global Leadership Tour (2026.5.18~22, 4박 5일):</b> 중1 홍콩 108명 230만 4천 원, 중2 오사카 103명 203만 6천 원, 중3 싱가포르 74명 243만 9천 원 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261416&id=51" target="_blank" rel="noopener">공지</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=388" target="_blank" rel="noopener">홍콩</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=389" target="_blank" rel="noopener">오사카</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=390" target="_blank" rel="noopener">싱가포르</a></li>
+          <li><span class="flag">엇갈림</span> 2025년 1학년은 제주 5일 수학여행이었다는 기록 <a class="s p" href="https://blog.naver.com/stand_up_alone/223884432754" target="_blank" rel="noopener">학부모 2025</a>. 학생 선호 조사로 정한다고 하니 해마다 바뀝니다. <a class="s c" href="https://cafe.naver.com/mathall/3004423" target="_blank" rel="noopener">카페 2026</a></li>
+          <li><b>가을 문화체험 2025:</b> 중1 제이드가든과 영화, 중2 베고니아세상과 영화, 중3 남이섬 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261416&id=47" target="_blank" rel="noopener">공지</a></li>
+          <li><b>문화체육의 날:</b> 11월 중학교 체육대회 <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=310" target="_blank" rel="noopener">앨범 2024</a>. 2023년엔 줄다리기·농구·축구·피구 <a class="s o" href="https://www.youtube.com/watch?v=nPPq-51dQCY" target="_blank" rel="noopener">중학교 홍보부 영상</a></li>
+          <li><b>12월 말:</b> 무비나잇, 반별 공연을 하는 ‘청심인의 밤’, 락 페스티벌 <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=320" target="_blank" rel="noopener">앨범 2024</a> <a class="s p" href="https://blog.naver.com/student1108-/224127434117" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li><b>할로윈 파티:</b> 국제교류부 주최 <a class="s c" href="https://cafe.naver.com/2017twelfthcsia13/735" target="_blank" rel="noopener">재학생 카페 2017</a></li>
+          <li><b>학부모 부담 논란:</b> 축제 벼룩시장은 학부모가 물품을 사서 기부하는 구조이고, 학부모가 치킨을 나눠 주던 ‘치킨데이’는 반강제라는 지적으로 2026년 폐지 <a class="s p" href="https://blog.naver.com/stand_up_alone/223936462707" target="_blank" rel="noopener">학부모 2025</a> <a class="s p" href="https://blog.naver.com/stand_up_alone/224244842932" target="_blank" rel="noopener">학부모 2026</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 동아리·국제교류 ============ -->
+<section id="clubs">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>동아리·학생자치·국제교류</h2>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>동아리와 학생회</h3>
+        <ul class="clean">
+          <li>2026년 중학교 정규(창체) 동아리 12개, 학생 자율동아리 62개(연인원 973명) <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a>. 중·고 연계 동아리도 있음 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">특색 교육과정</a></li>
+          <li>3월에 정규동아리 박람회와 전체 동아리 박람회 <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a>. 홍보 분위기가 활기차고 대부분 자율동아리 <a class="s p" href="https://blog.naver.com/today_bna/224229626308" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>한 재학생은 동아리 8~9곳에 지원해 모두 붙고 홍보부에도 합격 <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a>. 라운드스퀘어 동아리는 자소서 약 7,000자와 면접으로 선발 <a class="s p" href="https://blog.naver.com/student1108-/224097606812" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li>언급된 동아리: 반크, 블루크로스, 골든타임, 멘토멘티. “학생회 + 동아리 2~3개가 적당” <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">재학생 카페 2025</a>. 소셜임팩트 동아리가 1년간 모금해 사육곰 구출을 도움 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=588110" target="_blank" rel="noopener">베리타스알파 2025</a></li>
+          <li>중·고 학생회가 따로 있고 7월에 선거. 2025년엔 10팀이 나와 “축제 같았다” <a class="s c" href="https://cafe.naver.com/mathall/2922510" target="_blank" rel="noopener">카페 2025</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=409" target="_blank" rel="noopener">학생회장단 수여식(중)</a></li>
+          <li>학생 자치 조직: 학생법원, 기획부(축제·할로윈·크리스마스·졸업식), 체육부, 환경부, 멘토링 CSMP, 홍보부(주로 고교) <a class="s o" href="https://eng.csia.hs.kr/?act=doc&mcode=1212" target="_blank" rel="noopener">영문 학생자치</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>국제교류</h3>
+        <ul class="clean">
+          <li><b>라운드스퀘어:</b> 국내 유일 회원교. 교류 학교 수는 약 180개교 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a>, 50개국 270여 개교 <a class="s o" href="https://blog.naver.com/hellocsia/224176004121" target="_blank" rel="noopener">공식 블로그 2026</a>로 <span class="flag">엇갈림</span></li>
+          <li><b>RSGC 2026:</b> 개교 20주년을 맞아 2026년 2월 8~12일 라운드스퀘어 글로벌 컨퍼런스를 국내 처음으로 개최. 9개국 13개교 참가, 경복궁·한지·탈춤·풍물 체험. 참가 연령이 만 15~18세라 주로 고교생 행사 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=598652" target="_blank" rel="noopener">베리타스알파 2026</a> <a class="s o" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=366" target="_blank" rel="noopener">앨범</a></li>
+          <li><b>CSIAMUN 모의유엔:</b> 2009년 시작, 고교생이 운영하며 1월 말~2월 초 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a>. 입학 전 참가하면 친구와 선배를 사귀기 좋다는 추천 <a class="s c" href="https://cafe.naver.com/goldschools/922068" target="_blank" rel="noopener">카페 2025</a></li>
+          <li><b>그 밖에:</b> Peace One Day, Round Square World Day, 청소년 포럼, 교환학생, 중학교 디베이트 청심 오픈(1월) <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a> <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 비용 ============ -->
+<section id="cost">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>비용</h2>
+      <p>학비·기숙사비만 연 2천만 원 안팎이고, 교재·악기·해외 체험·셔틀·주말 사교육이 따로 듭니다. 출처마다 기준 연도와 포함 항목이 달라 숫자가 조금씩 다릅니다.</p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>학교에 내는 돈</h3>
+        <div class="tbl"><table>
+          <thead><tr><th>항목</th><th class="r">금액</th><th>출처</th></tr></thead>
+          <tbody>
+            <tr><td>입학금 + 1분기 수업료 (첫 납부)</td><td class="r">약 360만 원</td><td><a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">2026 합격생 안내</a></td></tr>
+            <tr><td>입학금</td><td class="r">약 80만 원</td><td><a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></td></tr>
+            <tr><td>수업료 (분기)</td><td class="r">약 240만 원</td><td><a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a> (시점 불명)</td></tr>
+            <tr><td>생활관비 (식비 포함, 월)</td><td class="r">약 90만 원</td><td><a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></td></tr>
+            <tr><td>연간 합계 (학교 안내)</td><td class="r">약 1,900만 원</td><td><a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></td></tr>
+            <tr><td>해외 체험학습 GLT (2026)</td><td class="r">204~244만 원</td><td><a class="s o" href="https://csia.hs.kr/?act=board.read&code=261416&id=51" target="_blank" rel="noopener">공지</a></td></tr>
+            <tr><td>1인1악기 강사료</td><td class="r">시간당 8만 원 ÷ 인원</td><td><a class="s o" href="https://csia.hs.kr/?act=board.read&code=2618&id=45" target="_blank" rel="noopener">공지</a></td></tr>
+            <tr><td>챌린지데이 (하루)</td><td class="r">약 6만 원</td><td><a class="s o" href="https://csia.hs.kr/?act=board.read&code=261416&id=49" target="_blank" rel="noopener">공지</a></td></tr>
+            <tr><td>교복 (교육청 현물 지원)</td><td class="r">40만 원 지원</td><td><a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></td></tr>
+          </tbody>
+        </table></div>
+        <p class="small muted" style="margin-top:8px">모든 납부는 신용카드 자동납부로 일원화되어 있습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.23</a></p>
+      </div>
+      <div class="card">
+        <h3>1인당 연간 비용 구성 (2024학년도 결산)</h3>
+        <p class="small muted" style="margin-bottom:10px">학교 결산 공시를 인용한 정보 글 기준 1인당 1,931만 원 <a class="s x" href="https://blog.naver.com/25200_hawaii/224414311731" target="_blank" rel="noopener">정보 글 2026(공시 인용)</a></p>
+        <div class="bars" id="costBars"></div>
+        <ul class="clean small" style="margin-top:12px">
+          <li>같은 글은 2026학년도 예산 기준 1인당 2,493만 원으로 적었습니다.</li>
+          <li>재학생 학부모 체감: 사교육을 빼고 교복·원서·방과후·셔틀·체험학습·행사까지 연 2,300~2,500만 원 <a class="s c" href="https://cafe.naver.com/mathall/3004423" target="_blank" rel="noopener">카페 2026</a> <a class="s c" href="https://cafe.naver.com/goldschools/856811" target="_blank" rel="noopener">카페 2024</a></li>
+          <li>셔틀 편도 약 1만 5천 원(2021) <a class="s c" href="https://cafe.naver.com/mathall/2279193" target="_blank" rel="noopener">카페 2021</a></li>
+          <li>장학금: 청심국제고는 국제고 가운데 장학금이 가장 많아 학비 지원 27명, 약 8,586만 원(고교 기준) <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=629468" target="_blank" rel="noopener">베리타스알파 2026</a>. 중학교는 2025년 학비 지원 20명, 1인 평균 1,078만 원 <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 진학 ============ -->
+<section id="next">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>졸업 후 고등학교 진학</h2>
+      <p>대부분 청심국제고를 포함한 특목고로 갑니다. 청심국제고는 자동 진학이 아니라 경기도 광역 모집 입시(영어 내신 160점 + 면접 40점)를 다시 봅니다. <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></p>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>졸업생 진로 (학교 공개)</h3>
+        <div class="stack" id="nextBars" style="gap:10px"></div>
+        <div class="legend" style="margin-top:12px">
+          <span><i class="dot" style="background:var(--lake)"></i> 특목고</span>
+          <span><i class="dot" style="background:var(--plum)"></i> 자사고</span>
+          <span><i class="dot" style="background:var(--muted)"></i> 일반고</span>
+          <span><i class="dot" style="background:var(--warn)"></i> 유학·기타</span>
+        </div>
+        <p class="small muted" style="margin-top:8px"><a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131730" target="_blank" rel="noopener">진로진학 현황</a> 2025·2026년 표는 아직 게시되지 않았습니다.</p>
+      </div>
+      <div class="card">
+        <h3>최근 숫자와 이야기</h3>
+        <ul class="clean">
+          <li>2026년 졸업생 106명 중 청심국제고 68명(64%), 외대부고 3, 민사고 3, 영재학교 4, 과학고 2, 유학 2 <a class="s p" href="https://blog.naver.com/stand_up_alone/224228448811" target="_blank" rel="noopener">학부모 2026(총회 자료 인용)</a></li>
+          <li>설명회에서는 청심중 → 청심고 진학이 70~80%라고 했고 <a class="s c" href="https://cafe.naver.com/goldschools/915018" target="_blank" rel="noopener">설명회 후기 2025</a>, 2025학년도 76명 진학이라는 글도 있습니다. <a class="s c" href="https://cafe.naver.com/mathall/2971920" target="_blank" rel="noopener">카페 2025</a></li>
+          <li>외고·국제고 진학률: 2024년 졸업생 82.9% <a class="s n" href="https://www.etnews.com/20251107000132" target="_blank" rel="noopener">전자신문 2025</a>, 70.26% <a class="s o" href="https://csia.hs.kr/?act=gallery.list&code=1031" target="_blank" rel="noopener">학교 게시물 2025.1</a> <span class="flag">엇갈림</span> 집계 기준 차이로 보입니다.</li>
+          <li>청심고 학생의 60~70%가 청심중 출신이라 중학교 친구들이 고교에서도 이어집니다. 반대로 일반중 출신이 섞이기 어려웠던 기수도 있었다고 합니다. <a class="s c" href="https://cafe.naver.com/mathall/2823600" target="_blank" rel="noopener">카페 2024</a> <a class="s c" href="https://cafe.naver.com/goldschools/816887" target="_blank" rel="noopener">카페 2024</a></li>
+          <li>영재고·과학고가 목표라면 일반중이 낫다는 의견이 많지만, 해마다 3~5명은 합격한다고 합니다. <a class="s c" href="https://cafe.naver.com/mathall/2924390" target="_blank" rel="noopener">카페 2025</a> <a class="s c" href="https://cafe.naver.com/mathall/2953238" target="_blank" rel="noopener">카페 2025</a></li>
+          <li>청심국제고 실적(참고): 2026학년 해외대 합격 149건, 서울대 9명, 의대 7명 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=607587" target="_blank" rel="noopener">베리타스알파 2026</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 목소리 ============ -->
+<section id="voices">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>재학생·학부모 이야기</h2>
+      <p>블로그 1,100여 편과 카페 글 400여 건 가운데 직접 겪은 사람의 글을 골라 요약했습니다. 최근 1인칭 기록은 2025~26년 여학생 한 명과 학부모 몇 명에게 몰려 있고, <b>현재 남학생 본인의 기록은 찾지 못했습니다.</b> 한 학부모 블로거는 입시 컨설팅 자료를 판매하고 있어 홍보 성격이 섞여 있습니다.</p>
+    </div>
+    <div class="voices">
+      <div class="voice">입학 첫 주에는 매일 전화하더니 한 달이 지나자 연락이 뜸해지고, 금요일에 집에 와서는 빨리 학교로 돌아가고 싶어 했다.<div class="who">재학생 학부모들 · <a class="s c" href="https://cafe.naver.com/goldschools/836127" target="_blank" rel="noopener">카페 2024</a></div></div>
+      <div class="voice">“집 가고 싶다, 청탈(청심 탈출)하고 싶다”는 짧은 글을 남긴 날도 있었다.<div class="who">재학생 · <a class="s p" href="https://blog.naver.com/student1108-/223918790648" target="_blank" rel="noopener">2025</a></div></div>
+      <div class="voice c">중1 1학기에 교우 갈등이 가장 많고 2학년부터 성숙해진다고 학교가 예비소집에서 설명했다.<div class="who">신입생 학부모 · <a class="s c" href="https://cafe.naver.com/mathall/2857219" target="_blank" rel="noopener">카페 2024</a></div></div>
+      <div class="voice">24시간 함께 지내다 보니 1년이면 서로의 진짜 모습이 보인다. 꿈이 구체적인 친구에게 자극받기도 하고, 공부에 관심 없는 친구에게 놀라기도 했다.<div class="who">학부모 · <a class="s p" href="https://blog.naver.com/stand_up_alone/224082424021" target="_blank" rel="noopener">2025</a></div></div>
+      <div class="voice c">물리적 폭력은 거의 없지만 말로 상처 주는 일은 종종 있고, 학교 대처가 강경해 전학 조치까지 간다.<div class="who">재학생 학부모 · <a class="s c" href="https://cafe.naver.com/mathall/2813054" target="_blank" rel="noopener">카페 2024</a></div></div>
+      <div class="voice c">아이들이 순하고 서로 독려하며 조별 과제 무임승차가 거의 없다.<div class="who">재학생 학부모 · <a class="s c" href="https://cafe.naver.com/goldschools/856811" target="_blank" rel="noopener">카페 2024</a></div></div>
+      <div class="voice c">상위 30%를 뺀 아이들은 반응이 갈린다. 자극받아 크는 아이, 주눅 드는 아이, 신경 안 쓰는 아이. 비교를 많이 하는 성향이면 힘들 수 있다.<div class="who">재학생 학부모로 보임 · <a class="s c" href="https://cafe.naver.com/mathall/2951445" target="_blank" rel="noopener">카페 2025</a></div></div>
+      <div class="voice">토론 위주 수업에서 수업의 주인이 학생이라고 느낀다. 부모와 떨어져 지내는 것이 사춘기 갈등의 완충지대가 됐다.<div class="who">학부모 · <a class="s p" href="https://blog.naver.com/stand_up_alone/224149039112" target="_blank" rel="noopener">2026</a> <a class="s p" href="https://blog.naver.com/stand_up_alone/224217894901" target="_blank" rel="noopener">2026</a></div></div>
+      <div class="voice c">동네 친구와 헤어지기 싫어했던 아이가 지금은 “안 왔으면 큰일 날 뻔했다”고 한다.<div class="who">재학생 학부모 · <a class="s c" href="https://cafe.naver.com/goldschools/922068" target="_blank" rel="noopener">카페 2025</a></div></div>
+      <div class="voice c">과거엔 학년마다 3년간 10명 안팎이 나가고 편입으로 채웠지만, 최근 학년은 이탈이 크게 줄었다.<div class="who">재학생 학부모 · <a class="s c" href="https://cafe.naver.com/mathall/3020259" target="_blank" rel="noopener">카페 2026</a> · 2025년 전출 10명, 학업중단율 1.3% <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a></div></div>
+    </div>
+
+    <div class="pc">
+      <div class="card">
+        <h3><i class="dot" style="background:var(--ok)"></i>좋다는 점</h3>
+        <ul class="clean small">
+          <li>유해 환경이 없고 생활 습관이 잡힘 <a class="s c" href="https://cafe.naver.com/mathall/3004423" target="_blank" rel="noopener">카페 2026</a></li>
+          <li>급식과 시설 만족 <a class="s p" href="https://blog.naver.com/moysys2/222936139353" target="_blank" rel="noopener">졸업생</a> <a class="s c" href="https://cafe.naver.com/iphak4/1600" target="_blank" rel="noopener">재학생 리뷰 2022</a></li>
+          <li>토론·발표 수업, 다양한 행사와 동아리</li>
+          <li>특목고·해외대 진학 경로가 뚜렷함 <a class="s c" href="https://cafe.naver.com/mathall/2921248" target="_blank" rel="noopener">카페 2025</a></li>
+          <li>졸업생은 다시 돌아가도 청심을 고르겠다고 답함 <a class="s x" href="https://blog.naver.com/james5953/223961475876" target="_blank" rel="noopener">졸업생 답변(학원 전재)</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i class="dot" style="background:var(--signal)"></i>힘들다는 점</h3>
+        <ul class="clean small">
+          <li>비용 부담 (연 2천만 원 이상)</li>
+          <li>수행평가와 시험이 잦고, 선행 격차로 인한 스트레스 <a class="s p" href="https://blog.naver.com/student1108-/224108754193" target="_blank" rel="noopener">재학생</a></li>
+          <li>주말에만 학원을 다녀 수학 심화의 연속성이 끊김 <a class="s c" href="https://cafe.naver.com/mathall/2921248" target="_blank" rel="noopener">카페</a></li>
+          <li>부모가 학습 상태를 실시간으로 알기 어려움 <a class="s p" href="https://blog.naver.com/stand_up_alone/224428480309" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>엄격한 규칙과 향수병, 학부모 행사 부담</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><i class="dot" style="background:var(--lake)"></i>잘 맞는다는 아이</h3>
+        <ul class="clean small">
+          <li>스스로 공부를 챙기는 아이. 한 학부모는 적합도의 절반이 자기주도라고 봄 <a class="s c" href="https://cafe.naver.com/mathall/3009579" target="_blank" rel="noopener">카페 2026</a></li>
+          <li>공동체 생활을 즐기고 활발한 아이, 해외대·국제 진로에 관심 있는 아이</li>
+          <li><b>덜 맞는다는 아이:</b> 비교에 쉽게 주눅 드는 아이, 영재고·과학고 지망, 정시 중심 전략 <a class="s c" href="https://cafe.naver.com/mathall/2951445" target="_blank" rel="noopener">카페</a> <a class="s c" href="https://cafe.naver.com/mathall/2921248" target="_blank" rel="noopener">카페</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 영상·사진 ============ -->
+<section id="media">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>영상과 사진으로 보기</h2>
+      <p>학교 홍보부·방송부와 학교가 의뢰한 제작사 영상 가운데 퍼가기가 허용된 것만 넣었습니다. 카드를 누르면 재생됩니다(Claude 앱 안에서는 유튜브로 열립니다). 사진은 저작권 때문에 복사하지 않고 원래 게시물로 연결합니다.</p>
+    </div>
+    <div class="vids" id="vids"></div>
+
+    <div class="card">
+      <h3>학교 공식 채널 영상 (유튜브에서 보기)</h3>
+      <div class="linkcards">
+        <a class="lc" href="https://www.youtube.com/watch?v=nCjFSpAEvSQ" target="_blank" rel="noopener"><em>2026.9 · 공식</em><b>청심을 이끄는 사람들</b><span>3년 만의 공식 홍보영상, 학생·교사·영양사 편이 이어짐</span></a>
+        <a class="lc" href="https://www.youtube.com/watch?v=Dn5bloqKvf8" target="_blank" rel="noopener"><em>2026.8 · 공식</em><b>2026 청심제</b><span>여름 축제 하이라이트</span></a>
+        <a class="lc" href="https://www.youtube.com/watch?v=NZ6RNQPYyp4" target="_blank" rel="noopener"><em>2025.8 · 공식</em><b>2025 중학교 체육대회</b><span>중학생 체육대회</span></a>
+        <a class="lc" href="https://www.youtube.com/watch?v=3iWqINJ49pA" target="_blank" rel="noopener"><em>2026.3 · 공식</em><b>제21회 입학식</b><span>입학식 풍경</span></a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>사진이 많은 게시물</h3>
+      <div class="linkcards">
+        <a class="lc" href="https://csia.hs.kr/?act=doc&mcode=131815" target="_blank" rel="noopener"><em>학교 공식</em><b>시설안내</b><span>교육시설 14곳과 생활관 방·공부방·휴게실</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=406" target="_blank" rel="noopener"><em>학교앨범 · 2026.7</em><b>청심제 2026</b><span>여름 축제</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=375" target="_blank" rel="noopener"><em>학교앨범 · 2026.2</em><b>신입생 오리엔테이션</b><span>입학 전 2박 3일</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=376" target="_blank" rel="noopener"><em>학교앨범 · 2026.3</em><b>제21회 입학식</b><span>체육관 입학식</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=389" target="_blank" rel="noopener"><em>학교앨범 · 2026.5</em><b>GLT 오사카 (중2)</b><span>해외 체험학습</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=310" target="_blank" rel="noopener"><em>학교앨범 · 2024.11</em><b>중학교 체육대회</b><span>문화체육의 날</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=320" target="_blank" rel="noopener"><em>학교앨범 · 2024.12</em><b>무비나잇·청심인의 밤·락페</b><span>12월 말 행사</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.read&code=1031&id=404" target="_blank" rel="noopener"><em>학교앨범 · 2026.7</em><b>오케스트라 게릴라 콘서트</b><span>음악 활동</span></a>
+        <a class="lc" href="https://blog.naver.com/moysys2/222936139353" target="_blank" rel="noopener"><em>졸업생 블로그 · 2022</em><b>교실·도서관·급식실·기숙사 방</b><span>사진 72장</span></a>
+        <a class="lc" href="https://blog.naver.com/today_bna/224229626308" target="_blank" rel="noopener"><em>학부모 블로그 · 2026.3</em><b>입소일 기숙사 방 세팅</b><span>사진 36장</span></a>
+        <a class="lc" href="https://blog.naver.com/student1108-/224061425382" target="_blank" rel="noopener"><em>재학생 블로그 · 2025.11</em><b>급식 모음</b><span>사진 57장</span></a>
+        <a class="lc" href="https://blog.naver.com/narayjswo/223472861623" target="_blank" rel="noopener"><em>설명회 방문 · 2024.6</em><b>캠퍼스 투어</b><span>사진 141장</span></a>
+        <a class="lc" href="https://csia.hs.kr/?act=gallery.list&code=1031" target="_blank" rel="noopener"><em>학교 공식</em><b>학교앨범 S.O.C. 전체</b><span>게시물 400여 개</span></a>
+      </div>
+      <p class="small muted" style="margin-top:10px">인스타그램: @csia_promoting(학생 홍보부), @roundsquare_csia</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>주요 출처</b> (2026.10.19. 확인)
+    <ul>
+      <li>학교 공식: <a href="https://csia.hs.kr/?main" target="_blank" rel="noopener">청심국제중고 홈페이지</a> · <a href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a> · <a href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">2026 합격생 안내</a> · <a href="https://csia.hs.kr/?act=board.read&code=1029&id=2002" target="_blank" rel="noopener">학생생활규정</a> · <a href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a> · <a href="https://blog.naver.com/hellocsia" target="_blank" rel="noopener">공식 블로그</a></li>
+      <li>공시: <a href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">학교알리미 청심국제중</a></li>
+      <li>언론: 베리타스알파, 중앙일보, 전자신문, 조선에듀</li>
+      <li>커뮤니티: 상위1%카페, 특목고갈사람모여라, 미인부모 등 네이버 카페와 재학생·학부모·졸업생 블로그</li>
+    </ul>
+    <p style="margin-top:10px">학교 공식 자료를 우선하고, 블로그·카페 내용은 개인 경험이라 학년·연도에 따라 다를 수 있습니다. 최신 내용은 입학설명회와 학교 공지로 확인하세요.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* 3년 시수 (2026 입학생 편제) — [과목, 학교 시수, 국가 기준] */
+const H=[["국어",408,442],["영어",408,340],["수학",408,374],["과학",340,null],["체육",272,272],["사회",204,null],["기술·가정",204,null],["역사",136,null],["도덕",136,null],["음악",136,null],["미술",136,null],["제2외국어",170,170],["정보",68,null]];
+const maxH=450;
+$("#hoursBars").innerHTML=H.map(([n,v,b])=>`<div class="bar-row"><span>${n}</span><div class="track"><div class="fill ${n==="영어"||n==="제2외국어"?"hi":""}" style="width:${v/maxH*100}%"></div>${b?`<span class="base" style="left:${b/maxH*100}%" title="국가 기준 ${b}"></span>`:""}</div><span class="n">${v}</span></div>`).join("");
+
+/* 비용 구성 (2024 결산, 만 원) */
+const C=[["수업료",831],["기숙사비",449],["급식비",253],["체험학습비",157],["기타",241]];
+$("#costBars").innerHTML=C.map(([n,v])=>`<div class="bar-row"><span>${n}</span><div class="track"><div class="fill ${n==="수업료"?"":"mute"}" style="width:${v/900*100}%"></div></div><span class="n">${v}</span></div>`).join("");
+
+/* 진학 */
+const N=[["2024",86,6,11,4],["2023",80,4,17,6],["2022",65,15,25,0]];
+$("#nextBars").innerHTML=N.map(([y,a,b,c,d])=>{const t=a+b+c+d;const seg=(v,col,l)=>v?`<div style="flex:${v};background:${col}" title="${l} ${v}명">${v/t>.08?l+" "+v:""}</div>`:"";
+  return `<div class="stk-row"><span class="num">${y}</span><div class="stk">${seg(a,"var(--lake)","특목고")}${seg(b,"var(--plum)","자사고")}${seg(c,"var(--muted)","일반고")}${seg(d,"var(--warn)","유학")}</div></div>`}).join("");
+
+/* 영상 */
+const V=[
+ ["tvC5j2dobSQ","청심 여자기숙사 ‘애인관’ 투어","2025.10 · 홍보부","방, 공부 공간, 휴게 공간"],
+ ["Qv-rObS68dI","청심의 하루: 중학생 V-LOG","2022.8 · 중학교 홍보부","중학생의 하루"],
+ ["VaUt4J0QYJE","홍보부원들이 알려주는 청심국제중의 모든 것","2023.1 · 중학교 홍보부","중학생 Q&A 23분"],
+ ["rC5QpokmxII","청심국제중고 공식 홍보영상 Ver.2","2024.7 · 학교 공식","학교 전반 소개"],
+ ["Uu3QOWkYn2A","개교 20주년 기념 PR 필름","2026.3 · 학교 의뢰 제작사","캠퍼스와 행사"],
+ ["nPPq-51dQCY","중학교 동계 체육대회","2023.11 · 중학교 홍보부","줄다리기·농구·축구·피구"],
+ ["x_zplBxqzbI","축제 기간 일주일 브이로그","2025.1 · 홍보부","기말 후 축제와 크리스마스 파티"],
+ ["FmIH9glAmK4","고1 홍보부원의 일주일","2024.7 · 홍보부","수업·기숙사·식사 (고교)"],
+ ["f2XxyafY-_Y","청심제 락페스티벌 밴드 공연","2026.1 · 학생소통부 PRESS","학생 밴드 무대"],
+ ["H9XgCX8IsGY","2026 청심국제중 18기 졸업영상","2026.1 · 중학교 방송부","3년의 추억"],
+ ["OoMzfhByegg","오사카로 가는 중학교 수학여행","2023.7 · 재학생 개인 채널","해외 수학여행 브이로그"],
+ ["hmnma4sdKQk","청심국제중고 홍보영상","2022.4 · 중학교 홍보부","학생이 만든 홍보영상"],
+];
+const embedOK=/(^|\.)lain\.kr$/.test(location.hostname)||location.protocol==="file:"||location.hostname==="localhost";
+$("#vids").innerHTML=V.map(([id,t,m,d])=>`<a class="vid" href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener" data-id="${id}"><div class="th"><img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">▶ 재생</span></div><div class="meta"><b>${esc(t)}</b><span>${esc(m)} · ${esc(d)}</span></div></a>`).join("");
+$("#vids").addEventListener("click",e=>{
+  const a=e.target.closest(".vid");if(!a||!embedOK)return;
+  e.preventDefault();const th=a.querySelector(".th");if(th.querySelector("iframe"))return;
+  th.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${a.dataset.id}?autoplay=1&rel=0" title="${esc(a.querySelector("b").textContent)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+});
+
+/* 탭 */
+const secs=[...document.querySelectorAll("main section")],tabs=[...document.querySelectorAll("#tabs a")];
+function onScroll(){let cur=secs[0].id;for(const s of secs){if(s.getBoundingClientRect().top<120)cur=s.id}tabs.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur))}
+addEventListener("scroll",onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
