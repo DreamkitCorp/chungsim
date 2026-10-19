@@ -167,6 +167,18 @@ td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
 .pc .card h3{display:flex;align-items:center;gap:8px}
 .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
 
+
+/* track */
+.path{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.path div{border-top:4px solid var(--line);padding:10px 8px 4px;min-width:0}
+.path div.hi{border-color:var(--signal)}
+.path b{display:block;font-size:1.1rem;font-variant-numeric:tabular-nums}
+.path span{display:block;font-size:.8rem;color:var(--muted);line-height:1.5}
+@media (max-width:640px){.path{grid-template-columns:1fr}.path div{border-top:0;border-left:4px solid var(--line);padding:4px 10px}.path div.hi{border-color:var(--signal)}}
+.ap{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px;margin-top:10px}
+.ap div{background:var(--bg);border-radius:8px;padding:10px 12px;min-width:0}
+.ap b{display:block;font-size:.85rem;margin-bottom:2px}
+.ap span{font-size:.84rem;color:var(--muted)}
 footer{padding-block:40px 56px;color:var(--muted);font-size:.86rem}
 footer ul{margin:8px 0 0;padding-left:1.1em}
 footer li{margin-top:3px}
@@ -206,6 +218,7 @@ footer li{margin-top:3px}
     <a href="#clubs">동아리·국제교류</a>
     <a href="#cost">비용</a>
     <a href="#next">고교 진학</a>
+    <a href="#track">국내반·국제반</a>
     <a href="#voices">재학생·학부모 이야기</a>
     <a href="#media">영상·사진</a>
   </div>
@@ -622,6 +635,137 @@ footer li{margin-top:3px}
   </div>
 </section>
 
+
+<!-- ============ 국내반·국제반 ============ -->
+<section id="track">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>국내반과 국제반 (청심국제고)</h2>
+      <p>‘국내반·국제반’은 <b>고등학교(청심국제고)</b>에서 갈리는 진학 과정입니다. 국내반은 국내 대학, 국제반은 미국·영국 등 해외 대학을 준비합니다. <b>청심국제중에는 이런 구분이 없습니다.</b> 중학교 편성표는 해마다 한 가지뿐입니다. <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131728" target="_blank" rel="noopener">커리큘럼(중)</a></p>
+    </div>
+
+    <div class="card">
+      <h3>아드님 기준으로 보면</h3>
+      <div class="path">
+        <div><b>2027</b><span>청심국제중 입학<br>트랙 구분 없음</span></div>
+        <div><b>2029</b><span>중3 · 청심국제고 입시를 다시 봄<br>(영어 내신 160 + 면접 40)</span></div>
+        <div><b>2030</b><span>고1 · 공통과목은 모두 함께<br>2학기 일부 AP 선택</span></div>
+        <div class="hi"><b>2031</b><span>고2 · 국어·영어·수학 선택과목과<br>카운슬러로 사실상 트랙 결정</span></div>
+        <div><b>2032</b><span>고3 · 국내 수시·정시<br>또는 해외대 원서</span></div>
+      </div>
+      <p class="small muted" style="margin-top:10px">2031년 무렵에는 교육과정과 입시 제도가 다시 바뀔 수 있습니다. 고등학교 입학 전후 설명회에서 다시 확인해야 합니다.</p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>두 과정 비교</h3>
+        <div class="tbl"><table>
+          <thead><tr><th></th><th>국내 과정</th><th>국제 과정</th></tr></thead>
+          <tbody>
+            <tr><td><b>목표</b></td><td>국내 대학, 주로 수시 학생부종합</td><td>미국·영국·캐나다·홍콩 등 해외 대학</td></tr>
+            <tr><td><b>공식 명칭</b></td><td>국제계열 1 (국내)</td><td>국제계열 2 (국제)</td></tr>
+            <tr><td><b>수업 언어</b></td><td>한국어 중심, AP 수학·과학은 원서</td><td>거의 모든 수업 영어</td></tr>
+            <tr><td><b>2학년 국어·영어</b></td><td>화법과 언어, 문학, 영어 독해와 작문</td><td>영미 문학 읽기, 세계 문화와 영어, 영어 발표와 토론</td></tr>
+            <tr><td><b>2학년 수학</b></td><td>대수, 미적분 I</td><td>AP 미적분학 BC-I·II</td></tr>
+            <tr><td><b>성적</b></td><td>국내식 상대평가 등급 (2025 입학생부터 5등급제)</td><td>영문 성적표 A~F, 석차 없음</td></tr>
+            <tr><td><b>학교 지원</b></td><td>국내대학 진학실, 교육청 모의평가</td><td>해외대학 진학실·전담 카운슬러, 교내 SAT·AP 시험센터, 에세이 첨삭</td></tr>
+          </tbody>
+        </table></div>
+        <p class="small muted" style="margin-top:8px"><a class="s o" href="https://csia.hs.kr/?act=board.list&code=131727" target="_blank" rel="noopener">커리큘럼(고) 편제표 2024·2026</a> <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">교육프로그램</a> <a class="s o" href="https://eng.csia.hs.kr/?main" target="_blank" rel="noopener">영문 사이트</a> <a class="s x" href="https://blog.naver.com/james5953/223961513529" target="_blank" rel="noopener">졸업생 Q&A(학원 전재) 2025</a></p>
+      </div>
+      <div class="card">
+        <h3>언제, 어떻게 나뉘나</h3>
+        <ul class="clean">
+          <li><b>입학할 때는 나누지 않습니다.</b> 모두 같은 전형으로 뽑고, 들어온 뒤 본인이 고릅니다. 별도 시험은 없습니다. <a class="s c" href="https://cafe.naver.com/goldschools/681031" target="_blank" rel="noopener">카페 2021</a></li>
+          <li><b>2024 입학생까지:</b> 학교가 국내용·국제용 편제표를 따로 냈고, 고1은 대부분 공통, 고2부터 반이 갈려 공통 수업이 거의 없었습니다. 복도와 야간 자습 장소도 달랐습니다. <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131727" target="_blank" rel="noopener">편제표 2종 (2024.8 게시)</a> <a class="s c" href="https://cafe.naver.com/goldschools/888601" target="_blank" rel="noopener">졸업생 카페 2025</a> <a class="s p" href="https://blog.naver.com/moysys2/222936139353" target="_blank" rel="noopener">졸업생 2022</a></li>
+          <li><b>2025 입학생(20기)부터:</b> 편성표가 하나로 합쳐졌습니다. 고교학점제로 반은 섞여서 운영하고, 2학년 택1 과목이 국내형·국제형 짝으로 짜여 있어 <b>어떤 과목을 고르느냐로 갈립니다.</b> <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131727" target="_blank" rel="noopener">2025·2026 편성표</a></li>
+          <li>“반은 통합됐지만 국어·영어 선택은 확실히 갈리고 카운슬러도 정해야 해서 2학년부터 본격 결정한다” <a class="s c" href="https://cafe.naver.com/goldschools/973747" target="_blank" rel="noopener">카페 2026.10</a> “현 고2부터 1~4반이 섞여 과목을 교차 선택한다” (교감·진학부장 설명) <a class="s p" href="https://blog.naver.com/stand_up_alone/224300827591" target="_blank" rel="noopener">학부모 2026.5</a></li>
+          <li><b>옮길 수 있나:</b> 예전 체제에서도 1학년이 끝난 뒤 양쪽으로 옮긴 인원이 비슷했다는 증언 <a class="s x" href="https://blog.naver.com/james5953/223961475876" target="_blank" rel="noopener">졸업생 Q&A 2025</a>, 내신 경쟁에 지쳐 국내에서 국제로 옮기는 경우가 있다는 글 <a class="s c" href="https://cafe.naver.com/mathall/2823600" target="_blank" rel="noopener">학부모 카페 2024</a>. 지금은 과목 선택 방식이라 더 유연할 수 있지만, 2학년에 들은 국어·영어·수학 계열을 되돌리기는 어렵습니다(편성표를 보고 한 추론).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>학년별 인원 (한 학년 약 100명)</h3>
+        <div class="stack" id="trackBars" style="gap:10px"></div>
+        <div class="legend" style="margin-top:10px"><span><i class="dot" style="background:var(--lake)"></i> 국내</span><span><i class="dot" style="background:var(--signal)"></i> 국제</span></div>
+        <ul class="clean small" style="margin-top:10px">
+          <li>2023 졸업 국내 55·국제 47 <a class="s x" href="https://blog.naver.com/topkimprep/224319965814" target="_blank" rel="noopener">학원 블로그(학교 자료 인용) 2026</a>, 2024 졸업 국내 48·국제 51 <a class="s p" href="https://blog.naver.com/flyeverydaypower/223608805452" target="_blank" rel="noopener">학부모 설명회 후기 2024</a>, 2025 국내반 48명 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=577897" target="_blank" rel="noopener">베리타스알파 2025</a></li>
+          <li>국제 쪽 숫자는 기준이 제각각입니다: 2025 ‘해외대입 자원’ 60명 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=577897" target="_blank" rel="noopener">베리타스 2025.10</a> vs 실제 해외 진학 43명 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=605882" target="_blank" rel="noopener">베리타스 2026.4</a>, 2026 해외대입반 40명 남짓 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=607587" target="_blank" rel="noopener">베리타스 2026.4</a>, 국제 희망 40~50명 <a class="s n" href="https://www.joongang.co.kr/article/25457244" target="_blank" rel="noopener">중앙일보 2026</a> <span class="flag">엇갈림</span></li>
+          <li>비율은 “늘 50:50 근처” <a class="s c" href="https://cafe.naver.com/goldschools/888601" target="_blank" rel="noopener">졸업생 카페</a>부터 “국내가 약 60%” <a class="s x" href="https://blog.naver.com/luxmea7900/224012879605" target="_blank" rel="noopener">학원 블로그 2025</a>까지. 청심중 출신이 많은 해에는 국제 지망이 늘었다는 관찰도 있습니다. <a class="s c" href="https://cafe.naver.com/mathall/3000035" target="_blank" rel="noopener">카페 2026</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2026 대입 결과</h3>
+        <div class="grid2" style="gap:12px">
+          <div>
+            <h4 style="color:var(--lake);margin-bottom:6px">국내</h4>
+            <ul class="clean small">
+              <li>서울대 9 (수시 7·정시 2), 연세대 15, 고려대 15, 성균관대 32, 서강대 21, 중앙대 16, 한국외대 16 (합격 건수) <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131729" target="_blank" rel="noopener">진학현황</a></li>
+              <li>의대 합격 7명: 서울대 1, 고려대 2, 한양대 1, 이화여대 2, 중앙대 1 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=605882" target="_blank" rel="noopener">베리타스 2026</a></li>
+              <li>2025: 국내반 48명에 서울대 8명 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=577897" target="_blank" rel="noopener">베리타스 2025</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="color:var(--signal);margin-bottom:6px">해외</h4>
+            <ul class="clean small">
+              <li>합격 149건(재수생 포함), 케임브리지 1, 다트머스·유펜 각 1 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=607587" target="_blank" rel="noopener">베리타스 2026</a>. 학교 표 합계는 152건, UIUC 11건 등 <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131729" target="_blank" rel="noopener">진학현황</a></li>
+              <li>2025: 합격 152건, 실제 진학 43명 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=605882" target="_blank" rel="noopener">베리타스 2026.4</a></li>
+              <li>2024 진학: 유펜 2, 프린스턴·코넬·듀크·브라운 각 1, 존스홉킨스 3, 옥스퍼드 1, 토론토 4 등 <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131729" target="_blank" rel="noopener">진학현황 2024</a></li>
+            </ul>
+          </div>
+        </div>
+        <p class="small muted" style="margin-top:8px">학교 표의 ‘MAT’ 열은 진학처럼 보이지만 실제로는 합격 건수로 보입니다. 기사마다 집계 시점·재수생 포함 여부가 달라 숫자가 조금씩 다릅니다.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>AP 과목 (고교 편제표에 있는 과목)</h3>
+      <p class="small">1학년 2학기부터 일부 AP(일반물리·생물·화학 I, 세계사 I)를 고를 수 있고, 2~3학년에 늘어납니다. AP는 미국 대학 과목 이름일 뿐 학교 성적은 국내식으로도 나옵니다. 국내 이과 학생도 AP 수학·과학을 많이 듣습니다. <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131727" target="_blank" rel="noopener">편제표</a> <a class="s c" href="https://cafe.naver.com/goldschools/973747" target="_blank" rel="noopener">카페 2026</a></p>
+      <div class="ap">
+        <div><b>수학</b><span>AP 미적분 BC I·II, AP 통계</span></div>
+        <div><b>과학</b><span>AP 일반물리·생물·화학 I·II, AP 물리 C(역학·전자기), AP 환경과학</span></div>
+        <div><b>사회</b><span>AP 세계사, 미국사, 유럽사, 미시·거시경제, 비교정치, 미국정치, 인문지리, 심리학 I·II</span></div>
+        <div><b>영어·기타</b><span>AP 영문학 I·II, 영어학 I·II, 컴퓨터과학 A, 미술사, 스튜디오아트</span></div>
+        <div><b>소인수 과목</b><span>분자생물학, 유기화학, 벡터미적분학 등</span></div>
+      </div>
+      <p class="small muted" style="margin-top:8px">교내에서 SAT를 연 6~7회, AP 시험을 5월에 치르고, 2026년 6월엔 국제진학설명회가 열렸습니다. <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></p>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>비용과 사교육</h3>
+        <ul class="clean">
+          <li>학비·기숙사비는 두 과정이 같습니다.</li>
+          <li><b>국제 쪽:</b> SAT·AP 학원, 해외 대회·컨설팅 비용이 더해져 국내반과 차이가 크다는 증언(학원비 수치는 약 10년 전 기준) <a class="s c" href="https://cafe.naver.com/goldschools/966774" target="_blank" rel="noopener">카페 2026</a>. AP를 가르치는 학원이 적어 국제반 선배에게 과외를 받기도 합니다. <a class="s c" href="https://cafe.naver.com/goldschools/971497" target="_blank" rel="noopener">카페 2026</a> 해외대 원서비와 학비는 이번 조사로 확인하지 못했습니다.</li>
+          <li><b>국내 쪽:</b> 고1~2 주말 대치동 내신 학원이 많고 인강·독학파도 있습니다. <a class="s c" href="https://cafe.naver.com/goldschools/862093" target="_blank" rel="noopener">고3 국내반 재학생 카페 2024</a> 기숙사가 사교육을 막는다는 기사 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=577897" target="_blank" rel="noopener">베리타스</a>와는 <span class="flag">엇갈림</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>주의할 점</h3>
+        <ul class="clean">
+          <li><b>국내 쪽 내신:</b> 2학년부터 과목별 수강 인원이 20~25명 단위로 작아 상대평가 등급 받기가 어렵습니다. <a class="s c" href="https://cafe.naver.com/goldschools/888601" target="_blank" rel="noopener">졸업생 카페 2025</a></li>
+          <li><b>수능:</b> 국내반은 거의 수시로 가고 수능 대비는 약하다 <a class="s c" href="https://cafe.naver.com/goldschools/862093" target="_blank" rel="noopener">재학생 카페 2024</a> vs 공통 국영수 내신을 모의고사형으로 내 수능 대비를 강화했다 <a class="s c" href="https://cafe.naver.com/goldschools/973747" target="_blank" rel="noopener">학부모 카페 2026</a> <span class="flag">엇갈림</span></li>
+          <li>국내 이공계만 노린다면 자사고가 낫다는 의견도 있습니다. <a class="s c" href="https://cafe.naver.com/goldschools/949690" target="_blank" rel="noopener">카페 2026</a></li>
+          <li><b>국제 쪽 시간:</b> 실질 준비 기간이 약 1년 반이라 고1 여름~가을에 SAT 점수를 확보하라는 조언 <a class="s x" href="https://cafe.naver.com/superfastsat/177" target="_blank" rel="noopener">학원 카페 2025</a>. 해외대는 중3 성적을 보기도 해 중3 전 과목 A를 권하는 글 <a class="s c" href="https://cafe.naver.com/goldschools/907590" target="_blank" rel="noopener">카페 2025</a></li>
+          <li>선택 기준은 진로 분야보다 “국내 대학이냐 해외 대학이냐”로 정하라는 조언 <a class="s x" href="https://blog.naver.com/james5953/223961475876" target="_blank" rel="noopener">졸업생 Q&A 2025</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <b>중학교 3년 동안 준비하면 좋은 것.</b> 어느 쪽도 닫지 않으려면 두 가지를 함께 쌓는 게 좋습니다.
+      <ul class="clean" style="margin-top:6px">
+        <li><b>영어 읽기·쓰기:</b> 회화보다 독해·문법·에세이 쓰기 <a class="s c" href="https://cafe.naver.com/goldschools/971516" target="_blank" rel="noopener">카페 2026</a>. 고교 입시도 중2~3 영어 내신 성취도 A가 핵심입니다.</li>
+        <li><b>한국식 수학:</b> 중학교 수학을 영어(Algebra·Geometry)로 배워서, 국내 쪽으로 가면 한국 수학을 다시 해야 한다는 조언이 반복됩니다. <a class="s c" href="https://cafe.naver.com/goldschools/766452" target="_blank" rel="noopener">졸업생 카페 2023</a> <a class="s x" href="https://blog.naver.com/luxmea7900/223649514551" target="_blank" rel="noopener">학원 블로그 2024</a></li>
+        <li><b>국제 쪽을 생각한다면:</b> 미적분 선행, 에세이, 고1에 SAT를 볼 수 있는 독해력, 악기·운동·봉사를 꾸준히 <a class="s x" href="https://blog.naver.com/topkimprep/223119878422" target="_blank" rel="noopener">학원 블로그 2023</a></li>
+        <li><b>국내 쪽을 생각한다면:</b> 국어(문학·문법)와 수능형 영어 <a class="s x" href="https://blog.naver.com/blueway_e/224285673258" target="_blank" rel="noopener">학원 블로그 2026</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ============ 목소리 ============ -->
 <section id="voices">
   <div class="wrap stack">
@@ -749,6 +893,11 @@ $("#costBars").innerHTML=C.map(([n,v])=>`<div class="bar-row"><span>${n}</span><
 const N=[["2024",86,6,11,4],["2023",80,4,17,6],["2022",65,15,25,0]];
 $("#nextBars").innerHTML=N.map(([y,a,b,c,d])=>{const t=a+b+c+d;const seg=(v,col,l)=>v?`<div style="flex:${v};background:${col}" title="${l} ${v}명">${v/t>.08?l+" "+v:""}</div>`:"";
   return `<div class="stk-row"><span class="num">${y}</span><div class="stk">${seg(a,"var(--lake)","특목고")}${seg(b,"var(--plum)","자사고")}${seg(c,"var(--muted)","일반고")}${seg(d,"var(--warn)","유학")}</div></div>`}).join("");
+
+
+/* 국내·국제 인원 */
+const T=[["2023 졸업",55,47],["2024 졸업",48,51]];
+$("#trackBars").innerHTML=T.map(([y,d,i])=>`<div class="stk-row" style="grid-template-columns:72px 1fr"><span class="num small">${y}</span><div class="stk"><div style="flex:${d};background:var(--lake)">국내 ${d}</div><div style="flex:${i};background:var(--signal)">국제 ${i}</div></div></div>`).join("");
 
 /* 영상 */
 const V=[
