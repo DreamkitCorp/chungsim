@@ -179,6 +179,56 @@ td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
 .ap div{background:var(--bg);border-radius:8px;padding:10px 12px;min-width:0}
 .ap b{display:block;font-size:.85rem;margin-bottom:2px}
 .ap span{font-size:.84rem;color:var(--muted)}
+/* 학년별 과목: 학기별 주당 시간 지도, 학년 전환, 과목 카드 */
+.hmap{min-width:440px;table-layout:fixed}
+.hmap col.n{width:7.6em}
+.hmap th,.hmap td{text-align:center;padding:6px 4px;font-variant-numeric:tabular-nums;border-bottom:1px solid var(--line)}
+.hmap th:first-child,.hmap td:first-child{text-align:left;white-space:nowrap;padding-right:10px}
+.hmap thead tr:first-child th{color:var(--ink);font-size:.82rem;font-weight:800}
+.hmap td{font-weight:700;border-left:2px solid var(--paper)}
+.hmap td sup{font-size:.62rem;color:var(--signal);font-weight:800}
+.hmap td.w1{background:color-mix(in srgb,var(--lake) 10%,var(--paper))}
+.hmap td.w2{background:color-mix(in srgb,var(--lake) 20%,var(--paper))}
+.hmap td.w3{background:color-mix(in srgb,var(--lake) 32%,var(--paper))}
+.hmap td.w4{background:color-mix(in srgb,var(--lake) 46%,var(--paper))}
+.hmap td.x{color:var(--line);font-weight:400}
+.hmap td.fr{background:var(--signal-soft);color:var(--signal)}
+.hmap tr.sum td{font-weight:800;border-top:2px solid var(--ink)}
+.gseg{display:flex;gap:6px;flex-wrap:wrap}
+.gseg button{font:inherit;font-size:.95rem;font-weight:700;border:1px solid var(--line);background:var(--paper);color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer}
+.gseg button:hover{color:var(--ink)}
+.gseg button[aria-selected="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.gseg button:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
+.gpanel{display:flex;flex-direction:column;gap:14px}
+.subjs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:14px;align-items:start}
+.subj{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.subj header{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.subj h3{font-size:1.08rem;margin-right:2px}
+.subj .hrs{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.tag{font-size:.7rem;font-weight:700;padding:2px 7px;border-radius:999px;background:var(--bg);color:var(--muted);white-space:nowrap}
+.tag.en{background:var(--signal-soft);color:var(--signal)}
+.tag.mix{background:var(--warn-soft);color:var(--warn)}
+.tag.ko{background:var(--lake-soft);color:var(--lake)}
+.subj dl{display:grid;grid-template-columns:44px minmax(0,1fr);gap:7px 10px;margin:0;font-size:.88rem;line-height:1.62}
+.subj dt{font-size:.74rem;font-weight:700;color:var(--muted);padding-top:2px}
+.subj dd{margin:0;min-width:0}
+.ev{display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 8px;align-items:center;font-size:.74rem;color:var(--muted);margin-bottom:6px}
+.evb{display:flex;height:17px;border-radius:4px;overflow:hidden;font-size:.68rem;font-weight:700;line-height:17px}
+.evb div{white-space:nowrap;overflow:hidden;padding-left:5px}
+.evb .j{background:var(--signal);color:#fff}
+.evb .p{background:var(--lake-soft);color:var(--lake)}
+.subj ul.notes{font-size:.85rem;border-top:1px dashed var(--line);padding:8px 0 0 1.1em;margin:0}
+.subj ul.notes li+li{margin-top:5px}
+.next{background:var(--plum-soft);border-radius:8px;padding:9px 11px;font-size:.84rem;line-height:1.6}
+.next b{color:var(--plum)}
+/* 동아리 목록 칩 */
+.cgroup+.cgroup{margin-top:12px}
+.cgroup h4{font-size:.84rem;color:var(--muted);margin-bottom:6px}
+.clubs{display:flex;flex-wrap:wrap;gap:6px}
+.club{font-size:.82rem;line-height:1.3;padding:5px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--line);min-width:0}
+.club.reg{background:var(--lake-soft);border-color:color-mix(in srgb,var(--lake) 30%,transparent);color:var(--lake);font-weight:600}
+.club.known{background:var(--signal-soft);border-color:color-mix(in srgb,var(--signal) 30%,transparent);color:var(--signal);font-weight:600}
+.club small{font-weight:400;opacity:.8}
 footer{padding-block:40px 56px;color:var(--muted);font-size:.86rem}
 footer ul{margin:8px 0 0;padding-left:1.1em}
 footer li{margin-top:3px}
@@ -211,6 +261,7 @@ footer li{margin-top:3px}
   <div class="wrap" id="tabs">
     <a href="#about">학교 개요</a>
     <a href="#curriculum">교육과정</a>
+    <a href="#grades">학년별 과목</a>
     <a href="#day">하루·일주일</a>
     <a href="#dorm">기숙사</a>
     <a href="#campus">캠퍼스</a>
@@ -291,7 +342,7 @@ footer li{margin-top:3px}
       <div class="card">
         <h3>특징</h3>
         <ul class="clean">
-          <li><b>영어 408시간</b>으로 국가 기준(340)보다 20% 많고, 학교자율시간 과목 ‘영어 발표와 토론’(34시간)이 들어 있습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a></li>
+          <li><b>영어 408시간</b>으로 국가 기준(340)보다 20% 많고, 중2 2학기에 학교자율시간 영어 과목(34시간)이 들어 있습니다. 합격생 안내에는 ‘영어 발표와 토론’, 2026 편제표와 실제 운영은 ‘영어 소통과 설득’입니다(<a href="#grades">학년별 과목</a>). <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=131728&id=7" target="_blank" rel="noopener">편제표</a></li>
           <li><b>제2외국어</b>: 생활 스페인어·중국어·일본어 중 선택. 2학년 102시간, 3학년 68시간. 경기도교육청 ‘제2외국어교육 으뜸학교’ <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">특색 교육과정</a></li>
           <li><b>자유학기</b>는 1학년 1학기(주제선택 85·진로탐색 17시간)라 이 학기 시험은 성적에 들어가지 않습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/223827588303" target="_blank" rel="noopener">학부모 2025</a></li>
           <li>교과서는 국가 검정 교과서(국어·수학·사회·과학 등)를 받고, 원서 교재를 함께 씁니다. 기하 원서 한 권이 학교 가격 35만 6,800원이었다는 기록이 있습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a> <a class="s p" href="https://blog.naver.com/today_bna/224113581405" target="_blank" rel="noopener">학부모 2025</a></li>
@@ -316,7 +367,7 @@ footer li{margin-top:3px}
       <div class="card">
         <h3>평가와 공부 부담</h3>
         <ul class="clean">
-          <li>정기시험은 한 해 4번(4월, 6월 말~7월 초, 10월, 12월) <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></li>
+          <li>정기시험은 중2·3에 한 해 4번(4월, 6월 말~7월 초, 10월, 12월)이고, 2026 계획서상 중1은 시험 없이 수행평가 100%입니다. <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a> <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미 평가계획</a></li>
           <li>수행평가 비중이 큽니다. “수행이 맨날 있어 놀 시간이 없다”, 1학년 때 한 주에 PPT 3개 <a class="s p" href="https://blog.naver.com/student1108-/224108754193" target="_blank" rel="noopener">재학생 2025</a> <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a>, 과목에 따라 지필 비중 10~20% <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">재학생 카페 2025</a></li>
           <li>의외의 복병은 국어: 지난해 평균 70점대, 처음 보는 지문과 에세이 문항 <a class="s p" href="https://blog.naver.com/stand_up_alone/224268422461" target="_blank" rel="noopener">학부모 2026</a></li>
           <li>시험 기간에는 공부방을 24시간 열고, 새벽 2~4시에 잤다는 기록 <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
@@ -342,6 +393,534 @@ footer li{margin-top:3px}
         <h3>방과후학교</h3>
         <p class="small">2026년 1학기 중학교: 교과 20강좌(241명), 특기적성 15강좌(205명), 참여 학생 224명 <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a></p>
         <p class="small" style="margin-top:6px">펜싱·한국무용·뮤지컬 등 예체능 강좌 <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a>. 학년을 섞어 듣고 한 학기 40개 이상이라는 학부모 기록 <a class="s p" href="https://blog.naver.com/stand_up_alone/224364178328" target="_blank" rel="noopener">학부모 2026</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 학년별 과목 ============ -->
+<section id="grades">
+  <div class="wrap stack">
+    <div class="sec-head">
+      <h2>학년별·과목별 커리큘럼</h2>
+      <p>학교가 학교알리미에 공시한 <b>2026학년도 교과별 교수·학습 및 평가 운영계획</b>(1학기 4월, 2학기 9월 공시)의 주차별 진도표와 평가 계획을 학년·과목별로 풀었습니다. <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미 평가계획 2026</a> 교과서는 학교운영위원회 교과서 선정 회의록과 합격생 안내에서, 원서와 시험 분위기는 재학생·학부모·학원 글에서 가져왔습니다. 별도 칩이 없는 단원·평가 내용은 모두 이 운영계획서 기준입니다.</p>
+    </div>
+
+    <div class="callout">
+      <b>2027 입학생에게 그대로 적용될까.</b>
+      <ul class="clean" style="margin-top:6px">
+        <li><b>시간 배정:</b> 2027 입학생 편제표는 아직 없습니다(예년 6~7월 게시). 2025·2026 입학생 편제는 시수가 완전히 같아서 2027도 비슷할 가능성이 큽니다(추정). <a class="s o" href="https://csia.hs.kr/?act=board.list&code=131728" target="_blank" rel="noopener">커리큘럼(중)</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1952" target="_blank" rel="noopener">2025 합격생 안내 p.12</a></li>
+        <li><b>교육과정:</b> 2022 개정 교육과정이 중1 2025년, 중2 2026년, 중3 2027년부터 적용됩니다. 그래서 2026년 중1·중2 자료는 2027 입학생과 같은 교육과정이고, <b>2026년 중3 자료는 2015 개정 마지막 학년</b>입니다. 중3 카드에는 2029년(2027 입학생이 중3이 되는 해) 달라질 점을 따로 적었습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261312&id=510" target="_blank" rel="noopener">운영위 회의록 2026.10</a> <a class="s g" href="https://www.ncic.re.kr/inv/org/download.do?year=2022&seq=10003804&orgType=ogi4" target="_blank" rel="noopener">교육부 고시 중학교 교육과정</a></li>
+        <li><b>원서와 시험:</b> 원서와 시험 방식은 해마다 바뀝니다. 2025년에 중2 영어 교재가 전면 개편됐고, 2026년부터 중1 수학을 학기별 Algebra·Geometry로 나눴습니다. 그래서 후기에는 연도를 꼭 붙였습니다. <a class="s x" href="https://blog.naver.com/luxmea7900/223790774133" target="_blank" rel="noopener">학원 블로그 2025</a> <a class="s x" href="https://blog.naver.com/topkimprep/224115830772" target="_blank" rel="noopener">학원 블로그 2025</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>3년 과목 지도 (주당 수업 시간)</h3>
+      <p class="small muted" style="margin-bottom:10px">2026 입학생 편제표 기준입니다. 2025 입학생과 같습니다. 숫자는 한 주 수업 시간이고, 한 학기는 17주입니다(주 4시간 = 학기 68시간). 진할수록 시간이 많습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=131728&id=7" target="_blank" rel="noopener">편제표 2026.6</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.12</a></p>
+      <div class="tbl"><table class="hmap">
+        <colgroup><col class="n"><col><col><col><col><col><col></colgroup>
+        <thead>
+          <tr><th></th><th colspan="2">중1</th><th colspan="2">중2</th><th colspan="2">중3</th></tr>
+          <tr><th>과목</th><th>1학기</th><th>2학기</th><th>1학기</th><th>2학기</th><th>1학기</th><th>2학기</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>국어</td><td class="w3">3<sup>+1</sup></td><td class="w4">4</td><td class="w4">4</td><td class="w4">4</td><td class="w4">4</td><td class="w4">4</td></tr>
+          <tr><td>영어</td><td class="w3">3<sup>+1</sup></td><td class="w4">4</td><td class="w4">4</td><td class="w2">2<sup>+2</sup></td><td class="w4">4</td><td class="w4">4</td></tr>
+          <tr><td>수학</td><td class="w3">3<sup>+1</sup></td><td class="w4">4</td><td class="w4">4</td><td class="w4">4</td><td class="w4">4</td><td class="w4">4</td></tr>
+          <tr><td>과학</td><td class="w2">2<sup>+1</sup></td><td class="w3">3</td><td class="w3">3</td><td class="w3">3</td><td class="w4">4</td><td class="w4">4</td></tr>
+          <tr><td>사회</td><td class="w1">1<sup>+1</sup></td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td></tr>
+          <tr><td>역사</td><td class="x">–</td><td class="x">–</td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td></tr>
+          <tr><td>도덕</td><td class="w2">2</td><td class="w2">2</td><td class="x">–</td><td class="x">–</td><td class="w2">2</td><td class="w2">2</td></tr>
+          <tr><td>기술·가정</td><td class="w3">3</td><td class="w3">3</td><td class="w3">3</td><td class="w3">3</td><td class="x">–</td><td class="x">–</td></tr>
+          <tr><td>정보</td><td class="w2">2</td><td class="w2">2</td><td class="x">–</td><td class="x">–</td><td class="x">–</td><td class="x">–</td></tr>
+          <tr><td>체육</td><td class="w3">3</td><td class="w3">3</td><td class="w3">3</td><td class="w3">3</td><td class="w2">2</td><td class="w2">2</td></tr>
+          <tr><td>음악</td><td class="w2">2</td><td class="w2">2</td><td class="x">–</td><td class="x">–</td><td class="w2">2</td><td class="w2">2</td></tr>
+          <tr><td>미술</td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td><td class="w2">2</td><td class="x">–</td><td class="x">–</td></tr>
+          <tr><td>제2외국어</td><td class="x">–</td><td class="x">–</td><td class="w3">3</td><td class="w3">3</td><td class="w2">2</td><td class="w2">2</td></tr>
+          <tr><td>자유학기 주제선택</td><td class="fr">5</td><td class="x">–</td><td class="x">–</td><td class="x">–</td><td class="x">–</td><td class="x">–</td></tr>
+          <tr><td>창의적 체험활동</td><td class="w2">3</td><td class="w2">3</td><td class="w2">3</td><td class="w2">3</td><td class="w3">4</td><td class="w3">4</td></tr>
+          <tr class="sum"><td>합계 (주당)</td><td>34</td><td>34</td><td>33</td><td>33</td><td>32</td><td>32</td></tr>
+        </tbody>
+      </table></div>
+      <ul class="clean small" style="margin-top:10px">
+        <li><sup style="color:var(--signal);font-weight:800">+1</sup> 중1 1학기에는 국어·영어·수학·과학·사회에서 1시간씩 떼어 주 5시간짜리 자유학기 주제선택을 운영합니다.</li>
+        <li><sup style="color:var(--signal);font-weight:800">+2</sup> 중2 2학기 영어 중 2시간은 학교자율시간 과목 ‘영어 소통과 설득’입니다(아래 중2 참고).</li>
+        <li>과목이 학년마다 들어갔다 빠집니다. 정보는 중1에서 끝나고, 도덕·음악은 중2를 건너뛰며, 기술·가정·미술은 중2까지, 역사와 제2외국어는 중2부터입니다.</li>
+      </ul>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>평가 규칙 (2026 학업성적관리규정)</h3>
+        <ul class="clean small">
+          <li><b>중1:</b> 2026 계획서에서는 두 학기 모두 정기시험 없이 수행평가 100%입니다. 자유학기(1학기)에 들은 과목은 성적표에 ‘P’로만 남습니다. <span class="flag">엇갈림</span> 규정에는 ‘1학년 2학기 정기시험의 논술형 문항’ 조항이 있고, 2025년 중1은 2학기 기말을 지필로 봤다는 재학생 기록이 있습니다. <a class="s p" href="https://blog.naver.com/student1108-/224102640278" target="_blank" rel="noopener">재학생 2025</a> 시험 기간에 보는 ‘창의문제해결’ 같은 문제풀이형 수행이 시험 역할을 하는 것으로 보입니다(추정).</li>
+          <li><b>중2·3:</b> 정기시험은 학기당 2번 이내이고, 한 번만 보면 반영 비율 50% 이하입니다. 실제로는 과목당 지필 10~30%, 나머지가 수행입니다.</li>
+          <li>수행평가 30% 이상, 논술형 30% 이상이 규칙입니다. 집에서 해 오는 과제형 수행은 금지라서 수업 시간에 합니다.</li>
+          <li>성취도는 A 90% 이상, B 80, C 70, D 60, E 그 미만입니다. 체육·음악·미술은 A 80, B 60, C 그 미만의 3단계입니다.</li>
+          <li>과목별 성취도 분포(A~E 비율)는 학교알리미에서 보안문자를 입력해야 열려서 이번에는 확인하지 못했습니다.</li>
+        </ul>
+        <p class="small muted" style="margin-top:8px"><a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미 학업성적관리규정 2026.9</a></p>
+      </div>
+      <div class="card">
+        <h3>학교가 스스로 평가한 ‘영어활용 수업’</h3>
+        <ul class="clean small">
+          <li>학교자율과제 이름은 ‘국제 인재 양성을 위한 영어활용 수업’입니다. 대상은 중1·2의 영어·수학·과학·사회이고, 교재·부교재·판서·강의에서 영어를 쓰는 비중을 평가합니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=2615&id=64" target="_blank" rel="noopener">학교평가 결과 2024</a></li>
+          <li>2024 만족도는 74.5%였습니다. 학교가 직접 적은 개선점은 “영어 능력 향상에는 도움이 되었으나 학력 저하 문제 야기”, “학생 간 영어 능력 차이로 수업 설계 어려움”입니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=2615&id=64" target="_blank" rel="noopener">학교평가 2024</a></li>
+          <li>2025 만족도는 80.2였고, “일부 과목은 교수어를 영어로 선택해 말하기 위주 수업”을 한다고 적었습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=2615&id=68" target="_blank" rel="noopener">학교평가 결과 2025</a></li>
+          <li>2026 계획서를 보면 영어·영어 소통과 설득은 진도표까지 영어이고, 과학은 물리 단원만 영어로 쓰여 있으며(화학·생물은 한국어), 국어·역사·사회·도덕은 한국어입니다. 수학 진도표는 한국어지만 시험지는 영어라는 후기가 일관됩니다.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="gseg" role="tablist" aria-label="학년" id="gradeSeg">
+      <button type="button" role="tab" aria-selected="true" aria-controls="g1">중1</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="g2">중2</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="g3">중3</button>
+    </div>
+
+    <!-- 중1 -->
+    <div class="gpanel" id="g1" role="tabpanel" aria-label="중1">
+      <div class="card">
+        <h3>중1: 자유학기와 수행평가 100%의 해</h3>
+        <ul class="clean small">
+          <li>1학기는 자유학기입니다. 주 5시간 주제선택(17주, 85시간)과 진로탐색 17시간이 있고, 성적은 P로만 기록됩니다.</li>
+          <li>수학은 1학기 Algebra, 2학기 Geometry를 원서로 배웁니다. 2026년(21기)부터 이렇게 나눴고, 계획서 단원도 같은 흐름입니다. <a class="s x" href="https://blog.naver.com/topkimprep/224115830772" target="_blank" rel="noopener">학원 블로그 2025</a></li>
+          <li>국어·영어·수학·과학·사회·도덕·기술가정·정보·음악·미술·체육 11과목에 주제선택까지 배워서 과목 수가 가장 많은 학년입니다. 정보 68시간은 모두 중1에 들어 있습니다.</li>
+          <li>1인 1악기는 화요일 5·6교시입니다. <a class="s o" href="https://csia.hs.kr/?act=board.list&code=261312" target="_blank" rel="noopener">운영위 회의록</a> 재학생은 “PPT 좋아하는 학교”라며 한 주에 PPT 3개를 만들었다고 썼습니다. <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a></li>
+        </ul>
+      </div>
+      <div class="subjs">
+        <article class="subj">
+          <header><h3>자유학기 주제선택</h3><span class="hrs">1학기 주 5</span><span class="tag mix">일부 영어</span></header>
+          <dl>
+            <dt>프로그램</dt><dd>한 학기 한 권 읽기(독서일지) · Global Citizenship(영어, 글로벌 이슈 발표) · 통계로 세상 읽기(설문 설계 → 그래프 → 해석) · Social Studies: European History · 힘과 지구 탐험(힘·지권 실험) <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미 자유학기 운영계획</a></dd>
+            <dt>유럽사</dt><dd>영어로 진행합니다. Ancient Rome → Fall of Rome → Geography of Europe → Feudalism·Crusades → Medieval Culture → Renaissance → Reformation</dd>
+            <dt>진로</dt><dd>진로탐색 17시간. 2024년에는 외교관 학교 방문 강연, 독도체험관 도슨트 체험, 명사특강, 진로 로드맵을 했습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=2615&id=64" target="_blank" rel="noopener">학교평가 2024</a></dd>
+          </dl>
+          <ul class="notes">
+            <li>2026 설명회에서 “중1 사회는 유럽사 교재를 쓰고 영어 발표가 많다”고 했습니다. <a class="s x" href="https://blog.naver.com/coolzet/224444972206" target="_blank" rel="noopener">설명회 정리 2026</a></li>
+            <li>2025년 중1 1학기에는 대부분 글쓰기형 수행으로 중간·기말을 대신했다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/224102640278" target="_blank" rel="noopener">재학생 2025</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>국어</h3><span class="hrs">주 3(+1) → 4</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>천재교과서 국어 1-1·1-2 (정호웅) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a></dd>
+            <dt>1학기</dt><dd>운율·비유·상징과 삶을 담은 글쓰기 → 요약하며 읽기, 정보 전달 글 → 품사, 매체로 소통 → 성장 소설, 언어폭력 성찰 → 과목 연계 독서</dd>
+            <dt>2학기</dt><dd>추론하며 읽고 듣기 → 매체의 이해와 주장하는 글 → 소설의 갈등과 토의 → 단어의 짜임과 어휘 → 독서</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 시 창작 30, 정서 표현 글쓰기 30, 정보 전달 글쓰기·발표 40<br>2학기: 주장 쓰기·발표 30, 토의 발표 30, 단어의 짜임 퀴즈 20, 독서 포트폴리오 20(한 학기 두 권)</dd>
+          </dl>
+          <ul class="notes">
+            <li>2025년 2학기 기말에서 형태소 개수 세기 문제를 많이 틀렸다는 재학생 기록이 있습니다. 교과서·자습서·평가문제집을 다섯 번 읽고 고1 모의고사 문제집까지 풀었다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a> <a class="s p" href="https://blog.naver.com/student1108-/224073911852" target="_blank" rel="noopener">재학생 2025</a></li>
+            <li>21기 학부모는 “청심이 국어가 쉬운 편은 아니다”라며 방학에 국어 학원을 등록했다고 썼습니다. <a class="s p" href="https://blog.naver.com/today_bna/224349280632" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>수학</h3><span class="hrs">주 3(+1) → 4</span><span class="tag en">원서 · 영어 시험</span></header>
+          <dl>
+            <dt>교재</dt><dd>검정 교과서 동아출판 수학1(강옥기) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a>와 함께 원서를 씁니다. 2026 신입생 목록: Dimensions Math (Common Core) 7A·7B, Prentice Hall Geometry (2010), Algebra 원서 <a class="s p" href="https://blog.naver.com/today_bna/224113581405" target="_blank" rel="noopener">학부모 2025.12</a></dd>
+            <dt>1학기</dt><dd><b>Algebra</b>: 소인수분해 → 정수와 유리수 → 문자의 사용과 식 → 일차방정식 → 좌표평면과 그래프(정비례·반비례) → 대푯값 → 도수분포표와 상대도수</dd>
+            <dt>2학기</dt><dd><b>Geometry</b>: 기본 도형 → 작도와 합동 → 평면도형의 성질 → 입체도형의 성질</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 창의문제해결 40(4월 말·7월 초), 복습 확인 20, 통계 프로젝트 20, 수업활동 포트폴리오 20<br>2학기: 창의문제해결 40(10월·12월), 복습 확인 20, 작도 프로젝트 20, 포트폴리오 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>Algebra와 Geometry를 따로 시험 보고 문제는 영어입니다. <a class="s c" href="https://cafe.naver.com/youniv/6193" target="_blank" rel="noopener">재학생 카페 2022</a> 2025년 2학기 기말은 입체도형·작도·증명 범위였고, 시험 3주 전부터 증명을 매일 연습했다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
+            <li>원서 Geometry는 한국 중1 작도·합동과 중2 삼각형 합동을 함께 다뤄 한국 교과서와 순서가 다릅니다. 학생들이 가장 힘들어하는 것은 영어로 하는 증명·작도라는 평입니다. <a class="s x" href="https://blog.naver.com/yonseicham/224108645684" target="_blank" rel="noopener">학원 블로그 2025</a> <a class="s x" href="https://blog.naver.com/topkimprep/224115830772" target="_blank" rel="noopener">학원 블로그 2025</a></li>
+            <li>공학계산기를 쓰는 과정 중심 수업이고 PPT 발표가 많다는 글이 있습니다. <a class="s x" href="https://blog.naver.com/djkmjx4/224265464250" target="_blank" rel="noopener">블로그 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>영어</h3><span class="hrs">주 3(+1) → 4</span><span class="tag en">원어민 · 전부 영어</span></header>
+          <dl>
+            <dt>교재</dt><dd>Pathways(리딩), English Grammar in Use, Longman Writing 2, 신문 기사, 속담. 2학기에는 원서 The Happy Prince, The Emperor’s New Clothes를 더합니다.</dd>
+            <dt>1학기</dt><dd>Pathways Unit 6 → Unit 9 ‘How We Learn’ → Unit 10 ‘A Brighter Tomorrow’, 문법 단원 병행 → 문장 유형(simple·compound·complex)과 Longman Writing</dd>
+            <dt>2학기</dt><dd>동화 원서 두 권 읽기·토론에 1학기 교재를 이어 갑니다.</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: Out of the Box(읽기·쓰기) 20, Reading 25, Writing 25, Grammar 30<br>2학기: Out of the Box 30, Essay 20, Writing 20, Grammar 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>진도표의 Unit 번호와 쪽수가 2학년 계획서와 똑같은 행이 있어 복사 흔적으로 보입니다. 세부 단원은 참고만 하세요.</li>
+            <li>중1 영어는 원어민 교사가 토론 중심으로 가르친다는 설명회 내용이 있습니다. <a class="s x" href="https://blog.naver.com/coolzet/224444972206" target="_blank" rel="noopener">설명회 정리 2026</a> 학원 글은 수업 원서를 The Little Prince라고 적었습니다. <a class="s x" href="https://blog.naver.com/ld4801/224234523953" target="_blank" rel="noopener">학원 블로그 2026</a> 계획서의 The Happy Prince와 <span class="flag">엇갈림</span></li>
+            <li>2025년 2학기 기말은 만점자가 많았고, 문항당 배점이 커서 3개 틀리면 91점이었다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a> 2024년에는 지필 편차가 커 하위권이 50점대였다는 학원 글도 있습니다. <a class="s x" href="https://blog.naver.com/luxmea7900/223650956204" target="_blank" rel="noopener">학원 블로그 2024</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>과학</h3><span class="hrs">주 2(+1) → 3</span><span class="tag mix">원서 + 한국어 프린트</span></header>
+          <dl>
+            <dt>교재</dt><dd>천재교과서 과학1(정대홍) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a>, 원서 Inspire Science (G6-8) Physical Unit 1·Life Unit 2·Earth &amp; Space Unit 4 <a class="s p" href="https://blog.naver.com/today_bna/224113581405" target="_blank" rel="noopener">학부모 2025.12</a></dd>
+            <dt>1학기</dt><dd>과학과 인류의 지속가능한 삶 → 생물의 구성과 생물다양성 → 온도와 열, 비열과 열팽창 → 물질의 세 가지 상태와 상태 변화</dd>
+            <dt>2학기</dt><dd>상태 변화와 열에너지 → 기체의 압력·온도와 부피 → 태양계와 태양 활동 → 지구와 달의 운동 → 재해·재난과 안전(영어로 진술)</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 생물다양성 논술 30, 열팽창 탐구·발표 35, 확산·증발 관찰 보고서 35<br>2학기: 창의문제해결 20, 확산·증발 보고서 30, 기체의 성질 탐구 논술 20, 달의 관찰 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>국가 교육과정 과학1의 ‘힘의 작용’은 이 학교에서 중2 2학기에 배웁니다.</li>
+            <li>2025년 2학기 중간은 독후감 형식이라 원고지 연습을 했고, 기말은 객관식은 한국어·서술형은 영어였습니다. 국내 중1에 없는 지구과학이 나와 문제집을 따로 샀다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/224054863711" target="_blank" rel="noopener">재학생 2025</a> <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>사회</h3><span class="hrs">주 1(+1) → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>미래엔 사회① <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a></dd>
+            <dt>1학기</dt><dd>일반사회: 사회화와 자아정체성 → 지위와 역할, 갈등과 차별 → 문화의 의미, 미디어와 문화 → 정치와 민주주의 → 법의 의미, 생활 속 법, 재판</dd>
+            <dt>2학기</dt><dd>지리(유럽 → 아시아)와 일반사회(선거·정치과정·지방자치 → 인권·기본권·근로자의 권리)를 같은 주에 나란히 진행</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 모노드라마 20, 미디어 비평 30, 퍼즐 맞추기 20, 사례 분석 30<br>2학기: 지리 주제 발표 30, 지리 문제해결 20, 지역 정책 제안 25, 인권 독서 25</dd>
+          </dl>
+          <ul class="notes">
+            <li>2025년 2학기 기말은 지리 범위였습니다. 교과서를 거의 외워서 봤는데도 모두 틀린 단답형이 2문항 있었다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>도덕</h3><span class="hrs">주 2 → 2</span><span class="tag mix">영문 인성교재</span></header>
+          <dl>
+            <dt>교재</dt><dd>미래엔 도덕1(정창우) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a>, 학교 자체 ‘효정인성교재’ 영문판과 워크북(매주 1시간) <a class="s o" href="https://csia.hs.kr/?act=board.list&code=261312" target="_blank" rel="noopener">운영위 회의록</a>. 입학 FAQ의 “주 1시간 철학 수업”이 이 시간으로 보입니다(추정). <a class="s o" href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a></dd>
+            <dt>1학기</dt><dd>자신과의 관계: 나를 찾아서 → 도덕적 삶과 인격 → 행복 → 도덕적 기준 → 생명의 소중함 → 심리적 고통과 우울 → 직업윤리. 매 차시 발표·토론</dd>
+            <dt>2학기</dt><dd>인권은 보편적 가치일까 → 다양한 문화·종교의 공존 → 통일의 의미 → 도덕적 고려의 대상</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>봉사 포트폴리오(논술) 30, 그룹 프로젝트 발표 40(2학기는 세계의 문제), 토론 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>2025년 2학기 기말에 고자·맹자 비교가 나와 고등학교 ‘윤리와 사상’ 수준으로 공부했다는 재학생 글이 있습니다. <a class="s p" href="https://blog.naver.com/student1108-/224121606147" target="_blank" rel="noopener">재학생 2025</a> 롤즈 정의론을 실제 사례에 적용하는 수행평가도 있었습니다(과목 미기재). <a class="s p" href="https://blog.naver.com/stand_up_alone/224115710334" target="_blank" rel="noopener">학부모 2025</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>기술·가정</h3><span class="hrs">주 3 → 3</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>금성출판사 기술·가정1(민창기) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a></dd>
+            <dt>1학기</dt><dd>가정: 청소년기 발달과 주도적 삶 → 청소년기의 성과 관계 → 영양과 식생활 → 의복 디자인과 TPO 옷차림</dd>
+            <dt>2학기</dt><dd>기술: 기술과 사회 → 설계와 문제 해결 → 발명과 지식재산 → 에너지와 수송 / 가정: 영양소 → 현대 가족, 대인관계 갈등, 폭력 예방</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 식생활 문제 조사·발표 30, TPO 코디네이션 30, 도서 감상문 20, 워크북 20<br>2학기: 배움노트, 기술 워크북, 창의적 문제해결, 가족 형태 조사발표, 가정 워크북 각 20</dd>
+          </dl>
+        </article>
+
+        <article class="subj">
+          <header><h3>정보</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>금성출판사 정보(김영일 외) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a>. 정보 수업은 중1이 전부입니다.</dd>
+            <dt>1학기</dt><dd>디지털 사회와 윤리 → 컴퓨팅 시스템과 운영체제 → 피지컬 컴퓨팅 → 데이터 표현과 활용 → 인공지능 시스템</dd>
+            <dt>2학기</dt><dd>알고리즘과 프로그래밍(제어구조, 함수, 디버깅, 협업 개발) → 인공지능(데이터 분류, AI 윤리)</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 배움노트 20, 워크북 20, 정보윤리 보고서 30, AI 피지컬 컴퓨팅 30<br>2학기: 순서도 작성 30, 배움노트 20, 정보 독서 골든벨 20, AI 문제해결 30</dd>
+          </dl>
+        </article>
+
+        <article class="subj">
+          <header><h3>음악 · 1인 1악기</h3><span class="hrs">주 2 → 2 (+악기 2)</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>교가 부르기 → 생상스 ‘동물의 사육제’ 감상과 안무 창작 → 음악과 논술 → 아리랑과 5음 음계 창작 → 음악사</dd>
+            <dt>2학기</dt><dd>음악 감상 → 연주·가창 → 우리 반 음악회 기획·발표 → ‘연주회와 나’ 논술 → 우리나라 음악 → 음악사</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 교가 가창 20, 몸으로 표현 30, 앙상블 감상 20, 음악과 나(논술) 30<br>2학기: 연주 20, 공연 30, 감상 20, 연주회와 나(논술) 30</dd>
+            <dt>악기</dt><dd>정규 음악과 별도로 매주 2시간 레슨(수익자 부담)을 받고, 학년말에 발표회를 합니다. 위의 ‘1인 1악기’ 카드를 참고하세요.</dd>
+          </dl>
+        </article>
+
+        <article class="subj">
+          <header><h3>미술</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>표현 ‘Window Landscape’ 연작 → 감상 → 이미지와 텍스트 → 감상</dd>
+            <dt>2학기</dt><dd>표현 ‘Secret’(명화 속 숨은 의미) 연작 → 감상 → ‘Contrast’ → 감상</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>표현1 30, 표현2 30, 표현3 20, 감상 20</dd>
+          </dl>
+        </article>
+
+        <article class="subj">
+          <header><h3>체육 · 태권도</h3><span class="hrs">주 3 → 3</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>교학사 체육 <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.4</a></dd>
+            <dt>1학기</dt><dd>워밍업 체조·창작 체조 → 스포츠 기본기 → 응급처치·심폐소생술 → 배드민턴 → 안전</dd>
+            <dt>2학기</dt><dd>체력 → 전략형 스포츠 → 매트운동 → 심폐소생술 → 배드민턴 → 안전</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>운동(논술), 체조 표현, 태권도, 배드민턴 롱서브·숏서브(2학기는 매트운동 추가)</dd>
+          </dl>
+          <ul class="notes">
+            <li>태권도는 3년 내내 하고, 2025년 12월에는 학교 체육관에서 국기원 1품 심사(품새·겨루기)를 봤습니다. <a class="s p" href="https://blog.naver.com/student1108-/224101841115" target="_blank" rel="noopener">재학생 2025</a> 2026년 중1 체육에는 요가 시간도 있었다고 합니다. <a class="s p" href="https://blog.naver.com/today_bna/224273614827" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <!-- 중2 -->
+    <div class="gpanel" id="g2" role="tabpanel" aria-label="중2">
+      <div class="card">
+        <h3>중2: 시험이 시작되고 과목 성격이 바뀌는 해</h3>
+        <ul class="clean small">
+          <li>정기시험이 처음 생깁니다. 과목마다 지필은 10~30%이고 나머지는 수행입니다. 2026년부터는 중간고사에도 역사를 넣었습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268422461" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>역사(세계사)와 제2외국어가 시작되고, 정보·도덕·음악은 한 해 쉽니다.</li>
+          <li>수학은 1학기에 한국 교과서 내용을 영어 시험으로 보고(학생들 별명 “최종 보스”), 2학기에 기하 증명을 배웁니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268463949" target="_blank" rel="noopener">학부모 2026</a></li>
+          <li>영어는 원어민 교사 둘이 철학책과 고교 수준 교재로 가르치고, 성취기준에 고등학교 ‘영어 독해와 작문’ 코드를 씁니다. 2학기에는 학교자율시간 ‘영어 소통과 설득’이 주 2시간 생깁니다.</li>
+          <li>2026년 중2는 2022 개정 교육과정 첫 중2라서, 2028년 중2가 될 2027 입학생과 가장 가까운 자료입니다.</li>
+        </ul>
+      </div>
+      <div class="subjs">
+        <article class="subj">
+          <header><h3>국어</h3><span class="hrs">주 4 → 4</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>천재교과서 국어(정호웅) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261312&id=483" target="_blank" rel="noopener">운영위 회의록 2025.9</a></dd>
+            <dt>1학기</dt><dd>시의 보는 이와 말하는 이 → 설명하는 글 읽기, 점검·조정하며 쓰기 → 피동·인용 표현, 마음을 나누는 대화 → 반어와 역설, 이야기와 영상으로 풍자하기</dd>
+            <dt>2학기</dt><dd>문학과 사회, 복합양식 글쓰기 → 점검하며 읽기와 발표 → 음운 체계와 한글 창제 원리 → 주장하는 글과 매체</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/20"></div>지필은 1·2차 각 10%이고, 차수마다 선택형 9문항과 논술형 1문항입니다.<br>1학기 수행: 소설 서술자 바꿔 쓰기 30, 마음을 나누는 대화 20, 진로 설명글 쓰고 발표 30<br>2학기 수행: 한 권 읽기 30, 한글 우수성 광고 만들기 30, 나의 주장 발표 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>2026년 1학기 중간은 이재무 「딸기」, 김유정 「동백꽃」과 설명문 세트에, 조건 5개를 맞춰 쓰는 논술 1문항이 나왔습니다. <a class="s x" href="https://blog.naver.com/mokdongkey/224297052673" target="_blank" rel="noopener">학원 블로그 2026</a> 에세이 주제는 “청심에 지원할 초6에게 학교를 소개하는 글”이었다고 합니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268422461" target="_blank" rel="noopener">학부모 2026</a></li>
+            <li>처음 보는 지문이 나오는 ‘수능형’이라 지문을 8번 읽고도 당황했고, 지난해 평균은 70점대였다고 합니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268422461" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>수학</h3><span class="hrs">주 4 → 4</span><span class="tag en">영어 시험</span></header>
+          <dl>
+            <dt>교과서</dt><dd>동아출판 수학2(강옥기) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261312&id=483" target="_blank" rel="noopener">운영위 회의록 2025.9</a></dd>
+            <dt>1학기</dt><dd><b>한국 수학</b>: 유리수와 순환소수 → 식의 계산 → 일차부등식 → 연립일차방정식 → 일차함수와 그래프 → 일차함수와 일차방정식 → 경우의 수와 확률</dd>
+            <dt>2학기</dt><dd><b>기하·증명</b>: 확률(이어서) → 삼각형의 성질(외심·내심) → 사각형의 성질 → 도형의 닮음 → 피타고라스 정리</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/20"></div>지필은 1·2차 각 10%이고, 차수마다 선택형 7문항과 논술형 3문항입니다.<br>1학기 수행: 수학 논술 20, 수업활동 30, 프로젝트 20, 독서활동 10<br>2학기 수행: 수학 논술 30, 수업활동 30, 프로젝트 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>학교가 1학기에 한국 수학, 2학기에 외국 수학을 하기로 정했다고 합니다. 학부모 글에 따르면 아이는 원서식 증명은 쉬웠지만 한국식 복잡한 계산이 힘들었고, 연산 속도가 시간 관리를 좌우했습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268463949" target="_blank" rel="noopener">학부모 2026</a></li>
+            <li>2학기에는 유클리드 증명, 등적변형, 피타고라스 정리, 닮음을 다룹니다. <a class="s x" href="https://blog.naver.com/jenglishworld/224422164494" target="_blank" rel="noopener">학원 블로그 2026</a> 1학기 시험을 망쳐 여름방학에 인강·학원을 시작했다는 학부모 글도 있습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224364173272" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>영어 (철학 원서)</h3><span class="hrs">주 4 → 2</span><span class="tag en">원어민 · 전부 영어</span></header>
+          <dl>
+            <dt>교재</dt><dd>Pathways, English Collocations in Use, <i>A Little History of Philosophy</i>(Yale). 2025년 개편 때는 21st Century Reading 4(TED 기반), Weaving It Together 3까지 네 권이었습니다. <a class="s x" href="https://blog.naver.com/luxmea7900/223790774133" target="_blank" rel="noopener">학원 블로그 2025</a></dd>
+            <dt>1학기</dt><dd>Pathways Unit 1과 Collocations → 철학책 1~5장 → 1차 지필 → Pathways Unit 10과 Collocations → 문장 유형</dd>
+            <dt>2학기</dt><dd>철학책 21~26장 → 선택한 장 읽고 토론 → 총복습 → 기사와 팝송 읽기</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/20"></div>1학기 수행: Out of the Box 20, Presentation 20, Collocations 20, Reading &amp; Writing 20<br>2학기 수행: Out of the Box 20, Presentation·Speaking 30, Reflection 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>소크라테스·플라톤·아리스토텔레스를 장별로 나눠 학생이 발표합니다. 시험에서는 철학 지문에 대한 자기 생각을 영어로 논리 있게 써야 하고, 객관식은 헷갈리는 유의어를 묻습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268430197" target="_blank" rel="noopener">학부모 2026</a></li>
+            <li>2025년 1학기 기말에는 distinct·veritable 같은 유의어 문제와 마키아벨리 추론 문제가 나왔습니다. <a class="s x" href="https://blog.naver.com/topsmathwinner/223917847991" target="_blank" rel="noopener">학원 블로그 2025</a> 2026년 1학기 기말을 문법 40%라고 분석한 학원 글도 있어 <span class="flag">엇갈림</span> <a class="s x" href="https://blog.naver.com/kyoumsonenglish/224347673001" target="_blank" rel="noopener">학원 블로그 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>영어 소통과 설득</h3><span class="hrs">2학기 주 2</span><span class="tag en">학교자율시간</span></header>
+          <dl>
+            <dt>교재</dt><dd>21st Century Reading 4, 소설 <i>Long Way Down</i>(Jason Reynolds), Pathways Unit 7, Collocations</dd>
+            <dt>2학기</dt><dd>21st Century Reading 4 Unit 2B → 유명 인물 발표 → Long Way Down 읽기와 Pathways Unit 7 → 1차 정리 → Collocations → Long Way Down 후반 → 문장 유형</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="-/0"></div>Long Way Down 30, Reading &amp; Writing 20, 발표 50(모두 논술형). 성취기준은 학교가 만든 영어 코드입니다.</dd>
+          </dl>
+          <ul class="notes">
+            <li><span class="flag">엇갈림</span> 과목명은 2026 합격생 안내에 ‘영어 발표와 토론’, 2026.6 편제표에 ‘영어 소통과 설득’으로 적혀 있습니다. 2025 입학생은 ‘영어 발표와 토론’과 ‘영미문학읽기’ 중 하나를 고르게 되어 있었습니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 2026</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=131728&id=7" target="_blank" rel="noopener">편제표</a> <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1952" target="_blank" rel="noopener">합격생 안내 2025</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>과학</h3><span class="hrs">주 3 → 3</span><span class="tag en">원서 · PPT·시험 영어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>식물과 에너지(광합성·호흡·증산) → 동물과 에너지(소화·순환·호흡·배설) → 전기와 자기 → 별과 우주(우주 탐사 계획)</dd>
+            <dt>2학기</dt><dd>힘의 작용(뉴턴 법칙, 영어로 진술) → 전기와 자기(옴의 법칙, 자기장) → 물질의 특성(밀도·용해도·혼합물 분리) → 물질의 구성(원소·원자·이온) → 재해·재난과 안전</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="30/10"></div>1학기 수행: 과학소설 쓰기(논술) 25, 실험·보고서 25, 단원 탐구(논술) 20<br>2학기 수행: 실험·보고서(논술) 30, 탐구활동·발표 30, 단원 탐구 포트폴리오 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>원서를 쓰고 PPT와 시험도 영어입니다. 2026년 중간 서술형에서 중탕을 “Boiling water”라고 써도 되는지가 쟁점이었는데, 가열의 뜻만 들어가면 인정됐다고 합니다. 교사 PPT의 용어를 그대로 익히라는 조언입니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268430197" target="_blank" rel="noopener">학부모 2026</a></li>
+            <li>국가 과학2 단원 중 ‘지권의 변화’와 ‘빛과 파동’은 2026 계획서 진도표에 보이지 않았습니다. 2026년 중2 원서 이름은 찾지 못했습니다.</li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>사회</h3><span class="hrs">주 2 → 2</span></header>
+          <dl>
+            <dt>1학기</dt><dd>세계지리: 유럽(환경, 통합과 갈등) → 아프리카 → 아메리카(북미 산업, 남미 자원) → 오세아니아 → 극지방</dd>
+            <dt>2학기</dt><dd>아메리카·오세아니아·극지방(이어서) → 헌법과 국가기관(정부 형태, 법원·헌법재판소) → 경제생활과 선택 → 금융생활</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/20"></div>1학기 수행: 교과서 심화 탐구 30, 미국 5대 지역 여행 기획 발표 30, 기획 자료 20<br>2학기 수행: 심화 탐구 20, 독서 20, 팀 프로젝트 발표 20, 팀 리서치 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>수업 언어는 출처마다 다릅니다. 영어로 된 사회 교재를 봤다는 학부모 글 <a class="s p" href="https://blog.naver.com/stand_up_alone/224045375322" target="_blank" rel="noopener">학부모 2025</a>과 국어·사회는 한국어라는 글 <a class="s x" href="https://blog.naver.com/djkmjx4/224265464250" target="_blank" rel="noopener">블로그 2026</a>이 함께 있습니다. 계획서 진도표는 한국어입니다. <span class="flag">엇갈림</span></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>역사 (세계사)</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>교과서</dt><dd>비상교육 역사①(이병인)으로 보입니다. 학교가 중3 역사② 선정 이유로 “2025 입학생이 역사1 교과서로 활용하고 있어 내용 연계”라고 적었습니다(추정). <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261312&id=510" target="_blank" rel="noopener">운영위 회의록 2026.10</a></dd>
+            <dt>1학기</dt><dd>역사 학습의 기초 → 문명의 발생, 고대 서아시아·지중해, 고대 동아시아·인도 → 동아시아 문화, 크리스트교·이슬람교 → 서아시아·유럽의 교류와 갈등 → 유라시아 교역 → 신항로 개척</dd>
+            <dt>2학기</dt><dd>명·청 → 영국·미국·프랑스 혁명 → 산업화와 제국주의 → 아시아의 국민국가 건설 → 세계대전과 전쟁범죄 → 민족운동 → 냉전 → 민주주의와 인권</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/30"></div>1학기 수행: 수업활동 포트폴리오 30, 역사 지도 10, 역사 글쓰기 20, 주제 발표 20<br>2학기 수행: 포트폴리오 30, 역사 지도 20, 역사 글쓰기 20(원문 합계가 맞지 않음)</dd>
+          </dl>
+          <ul class="notes">
+            <li>지문이 거의 없는 단답형·객관식 위주라 “공부 안 하면 빵점”이라는 말이 돈다고 합니다. 옥타비아누스 자리에 아우구스투스를 써서 틀렸다는 일화도 있습니다. 기말에 몰아 봤더니 평균이 크게 떨어져 2026년부터 중간고사에도 넣었습니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224268422461" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>기술·가정</h3><span class="hrs">주 3 → 3</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>기술: 생명기술의 이해 → 보건의료 생명기술 → 생명윤리 → 지속가능발전 → 융합기술 / 가정: 곡류·육류·어패류·채소·가공식품 → 균형 잡힌 식사 계획</dd>
+            <dt>2학기</dt><dd>가정: 안전한 식품(냉동·가공) → 의복 재활용(바느질, 방석 만들기) → 저출산·고령 사회</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: SDG 발표, 미래기술 영화 감상문, 기술 워크북, 균형 잡힌 식단, 가정 워크북 각 20<br>2학기: 방석 만들기 30, 저출산·고령화 공익광고 30, 도서 감상문 20, 워크북 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>미래기술 영화 감상문은 〈가타카〉를 보고 유전공학 개념을 조사해 쓰는 과제였다고 합니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224316297178" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>미술</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>표현 ‘Secret’ 연작 → 감상 → 이미지와 텍스트 → 감상</dd>
+            <dt>2학기</dt><dd>‘Contrast’ → ‘Texture’ 연작 → 감상</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>표현1 30, 표현2 30, 표현3 20, 감상 20</dd>
+          </dl>
+        </article>
+
+        <article class="subj">
+          <header><h3>체육 · 양궁</h3><span class="hrs">주 3 → 3</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>체력 측정 → 청소년기 신체 → 기록 도전 → 투기 도전 → 심폐소생술 → 농구 → 스포츠 안전</dd>
+            <dt>2학기</dt><dd>체력 → 투기형 → 기록형 → 심폐소생술 → 플로어볼 → 안전</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 운동(논술), 스포츠, 양궁, 태권도, 농구 자유투·드리블 각 20<br>2학기: 운동(논술), 양궁, 태권도, 플로어볼, 사이드스텝 각 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>양궁은 외부 강사가 오고, 체육관에서 7m 거리로 쏩니다. 기준 점수를 넘으면 통과하는 방식이고 재평가도 있었습니다. 태권도는 태극 4~8장 품새를 봅니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224316288527" target="_blank" rel="noopener">학부모 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>제2외국어 (택1)</h3><span class="hrs">주 3 → 3</span><span class="tag mix">원서 그림책·동화</span></header>
+          <dl>
+            <dt>교과서</dt><dd>생활 스페인어: 서울교과서(손지은, 전남교육청 인정) · 생활 일본어: 미래엔(오현정) · 생활 중국어: 차이나북스(허가연) <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261312&id=483" target="_blank" rel="noopener">운영위 회의록 2025.9</a></dd>
+            <dt>스페인어</dt><dd>알파벳과 발음 → 인사와 소개 → 교실 표현 → 출신 묻기 → 집과 동네 → (2학기) 대학 생활 → 가족 → 생일 → 날씨 → 주말 계획. 원서 그림책 번역, 섀도잉, 보이스 액팅을 합니다. 스페인어는 수준별 수업입니다. <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">교육프로그램</a></dd>
+            <dt>일본어</dt><dd>문자와 발음, 히라가나·가타카나 → 인사 → 원서 『달려라 메로스(走れメロス)』 → 좋아하는 것 말하기 → (2학기) 『모모타로(桃太郎)』와 옛이야기</dd>
+            <dt>중국어</dt><dd>발음과 병음 → 你好 → 你是哪国人? → 생일 묻기 → (2학기) 我喜欢看视频 → 비교문화 탐구 → 중국 드라마 속 일상 회화</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>세 언어 공통: 기초 문형·청해 30, 문학 작품 독후 에세이 30, 원어 발표 20, 문화 발표·토론 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>일본어 수행은 듣고 빈칸 채우기, 단어 시험, 말하기, 일본 문화 보고서였다는 과외 글이 있습니다. <a class="s x" href="https://blog.naver.com/easy_japanese/224008631683" target="_blank" rel="noopener">과외 블로그 2025</a> 중2 일본, 중3 싱가포르 수학여행을 앞두고 듀오링고로 공부를 시작한 친구들이 있다고 합니다. <a class="s p" href="https://blog.naver.com/stand_up_alone/224023413992" target="_blank" rel="noopener">학부모 2025</a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+
+    <!-- 중3 -->
+    <div class="gpanel" id="g3" role="tabpanel" aria-label="중3">
+      <div class="card">
+        <h3>중3: 과학이 늘고, 고교 입시 내신이 걸리는 해</h3>
+        <ul class="clean small">
+          <li>과학이 주 4시간으로 늘고 도덕·음악이 다시 들어옵니다. 기술·가정과 미술은 끝납니다.</li>
+          <li>사회는 경제, 역사는 한국사를 배웁니다.</li>
+          <li>중2~3 영어 내신은 청심국제고 입시에 쓰입니다(<a href="#track">국내반·국제반</a> 참고).</li>
+          <li><b>주의:</b> 아래 단원은 2015 개정 교육과정 마지막 중3의 2026년 계획입니다. 2027년부터 중3 교과서가 2022 개정판으로 바뀝니다. 학교가 고른 교과서는 국어3 천재(정호웅), 수학3 동아(강옥기), 과학3 천재, 역사② 비상(이병인), 도덕② 미래엔입니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=261312&id=510" target="_blank" rel="noopener">운영위 회의록 2026.10</a> 2029년에 달라질 점은 과목마다 보라색 칸에 적었습니다.</li>
+        </ul>
+      </div>
+      <div class="subjs">
+        <article class="subj">
+          <header><h3>국어</h3><span class="hrs">주 4 → 4</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>문학의 아름다움, 삶을 담은 문학 → 문제 해결하며 읽기·쓰기 → 주장하는 글쓰기 → 국어의 음운 체계, 통일 시대의 국어 → 토론</dd>
+            <dt>2학기</dt><dd>문학의 다양한 해석, 시대의 거울 → 문장의 짜임 → 비교하며 읽기 → 청중을 고려한 말하기 → 보고하는 글 → 논증 방법, 설득 전략 분석</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/20"></div>1학기 수행: 스토리보드(논술) 30, 카드뉴스 25, 주장하는 글 검증(논술) 25<br>2학기 수행: 책 한 권 읽고 글쓰기 30, 문장의 짜임 30, 보고서 쓰기 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>2026년 1학기 중간에 작품 「연」의 심리 흐름을 그래프로 그리는 융합형 문항이 나왔고, 기말은 추가 학습지의 외부 지문에서 출제했다고 합니다. <a class="s x" href="https://blog.naver.com/theshar7494/224264696549" target="_blank" rel="noopener">학원 블로그 2026</a></li>
+          </ul>
+          <div class="next"><b>2029년에는</b> 천재교과서 국어3-1·3-2(정호웅)로 바뀝니다. 2022 개정은 ‘매체’ 영역이 새로 생겨 매체 공정성 평가, 광고·홍보물 분석 같은 내용이 들어갑니다. <a class="s g" href="https://www.ncic.re.kr/inv/org/download.do?year=2022&seq=10003804&orgType=ogi4" target="_blank" rel="noopener">교육부 고시</a></div>
+        </article>
+
+        <article class="subj">
+          <header><h3>수학</h3><span class="hrs">주 4 → 4</span><span class="tag en">영어 시험</span></header>
+          <dl>
+            <dt>1학기</dt><dd>제곱근과 실수 → 다항식의 곱셈과 인수분해 → 이차방정식 → 이차함수</dd>
+            <dt>2학기</dt><dd>삼각비 → 통계(대푯값·산포도·상관관계) → 원의 성질</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="30/20"></div>1학기 수행: 창의문제해결 10, 영화 속 수학 글쓰기 30, 독서활동 30<br>2학기 수행: 창의문제해결 20, 영화 감상 활동 30, 모둠 통계 포스터 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>중3은 한국 교과 과정을 영어 시험으로 봅니다. <a class="s c" href="https://cafe.naver.com/mathall/3027122" target="_blank" rel="noopener">카페 2026</a> 2026년 2학기 중간(10월 13일)은 삼각비 약 65점·통계 약 35점, 객관식 15·단답 4·서술 2문항이었습니다. deviation·variance 같은 영어 용어 해석이 숨은 변수였다고 합니다. <a class="s x" href="https://blog.naver.com/mathmonsterdt/224441303707" target="_blank" rel="noopener">학원 블로그 2026</a></li>
+          </ul>
+          <div class="next"><b>2029년에는</b> 동아출판 수학3(강옥기)으로 바뀝니다. 2022 개정에서는 대푯값이 중1로 내려갔고(이미 중1 1학기에 배움), 이차함수의 최댓값·최솟값이 고1에서 중3으로 내려왔으며, 상자그림이 새로 들어갑니다. <a class="s g" href="https://www.ncic.re.kr/inv/org/download.do?year=2022&seq=10003804&orgType=ogi4" target="_blank" rel="noopener">교육부 고시</a></div>
+        </article>
+
+        <article class="subj">
+          <header><h3>영어</h3><span class="hrs">주 4 → 4</span><span class="tag en">영어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>주제별 리딩: Strange &amp; Unusual → Computers &amp; Technology → Health &amp; Medicine → Social Issues → Environmental Issues → Law &amp; Crime → Space Exploration → Sports &amp; Fitness → People &amp; Opinions → Cross-cultural Viewpoints<br>문법: 문장 → 시제 → 태 → 조동사 → 가정법 → 동명사 → 분사 → 부정사</dd>
+            <dt>2학기</dt><dd>Animals → The Environment → Transportation → Customs and Traditions → Health and Fitness → Discovery and Invention → Fashion → Economics, 문법 1~7장</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="10/10"></div>1학기 수행: Writing Portfolios 10, 미술관 초대장 프로젝트 40, 작품 소개 40<br>2학기 수행: Writing Portfolios 10, Listening 20, Persuasive Writing 30, Persuasive Speaking 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>계획서에는 교재명이 없습니다. 2025년 2학기에 Reading Inside 4를 썼다는 과외 글이 있습니다. <a class="s x" href="https://blog.naver.com/izzyteps/223997066367" target="_blank" rel="noopener">과외 블로그 2025</a></li>
+            <li>2026년 1학기 중간은 어려워 평균이 낮았고, 영영 정의와 동의어 문제가 특징이었다고 합니다. <a class="s x" href="https://blog.naver.com/jenglishworld/224269054512" target="_blank" rel="noopener">학원 블로그 2026</a> 중3 지필이 일반고 2~3학년 수준을 넘는다는 학부모 글도 있습니다. <a class="s c" href="https://cafe.naver.com/mathall/3017563" target="_blank" rel="noopener">카페 2026</a></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>과학</h3><span class="hrs">주 4 → 4</span><span class="tag mix">물리 영어 · 생물 한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>전기와 자기 → 자극과 반응 → 빛 → 생식과 유전 → 재난 안전</dd>
+            <dt>2학기</dt><dd>화학 반응의 규칙과 에너지 변화 → 기권과 날씨(복사평형, 구름, 바람, 일기도) → 실험실 안전 → 환경교육</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="10/10"></div>두 학기 모두 탐구활동·발표 30, 단원 탐구 30, 포트폴리오 30</dd>
+          </dl>
+          <div class="next"><b>2029년에는</b> 천재교과서 과학3으로 바뀝니다. 국가 과학3 단원은 화학 반응의 규칙성, 날씨와 기후변화, 수권과 해수의 순환, 운동과 에너지, 자극과 반응, 생식과 유전, 재해·재난과 안전, 과학과 나의 미래입니다. 2026년 중1·2 계획서에 이미 재해·재난 단원이 들어 있어 학교가 순서를 바꿔 운영할 수 있습니다. <a class="s g" href="https://www.ncic.re.kr/inv/org/download.do?year=2022&seq=10003804&orgType=ogi4" target="_blank" rel="noopener">교육부 고시</a> <a class="s x" href="https://text.vivasam.com/list/middle" target="_blank" rel="noopener">출판사 목차</a></div>
+        </article>
+
+        <article class="subj">
+          <header><h3>사회 (경제)</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>합리적 선택과 경제체제 → 기업의 역할 → 금융생활 → 시장, 수요와 공급, 가격 변동 → 국내총생산 → 물가와 실업 → 국제 거래와 환율</dd>
+            <dt>2학기</dt><dd>국내총생산·물가·환율(이어서) → 국제 사회 → 공존을 위한 노력 → 우리나라와 주변국의 갈등(독도 등)</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/20"></div>1학기 수행: 자산관리 포트폴리오, 경제 보고서, 독서, 배움노트 각 20<br>2학기 수행: 경제 보고서·발표 30, 독서 20, 배움노트 30</dd>
+          </dl>
+          <div class="next"><b>2029년에는</b> 사회②가 대한민국 지리(중부·남부·북부 지역)와 헌법·경제·국제 사회·사회 변동으로 구성됩니다. 2026년 중2가 2학기에 이미 헌법과 경제를 시작했으므로, 중3에서는 경제 이후 단원과 국내 지리를 다룰 가능성이 큽니다(추정). <a class="s x" href="https://dn.vivasam.com/vs/promotion2022/830/index/download/%EC%A4%91%ED%95%99-%EC%82%AC%ED%9A%8C.pdf" target="_blank" rel="noopener">비상 사회 목차</a></div>
+        </article>
+
+        <article class="subj">
+          <header><h3>역사 (한국사)</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>세계사 마무리(현대 세계의 문제 에세이) → 삼국의 성립과 문화(국립박물관 유물 조사) → 통일신라와 발해 → 고려의 건국, 대외 관계, 몽골 간섭, 생활과 문화</dd>
+            <dt>2학기</dt><dd>고려 말과 조선 건국 → 문화재 → 사림, 왜란·호란 → 조선 후기 정치, 세도정치와 농민 봉기 → 국민국가 수립(독도, 3·1운동, 임시정부) → 자본주의와 사회 변화 → 민주주의 발전 → 평화통일</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="20/30"></div>1학기 수행: 포트폴리오 30, 역사 글쓰기 20, 국보 지도 10, 주제 발표 20(지필은 선택 14·논술 6)<br>2학기 수행: 포트폴리오 30, 문화재 카드 20, 역사 글쓰기 20</dd>
+          </dl>
+          <div class="next"><b>2029년에는</b> 비상교육 역사②(이병인)로 바뀝니다. 국가의 형성 → 통일신라와 발해 → 고려 → 조선 → 조선 사회의 변동 → 근·현대 사회로의 전환 순서이고, 근현대가 한 단원으로 줄었습니다. 선사 시대는 역사①로 옮겨졌습니다. <a class="s x" href="https://dn.vivasam.com/vs/promotion2022/830/index/download/%EC%A4%91%ED%95%99-%EC%97%AD%EC%82%AC.pdf" target="_blank" rel="noopener">비상 역사 목차</a></div>
+        </article>
+
+        <article class="subj">
+          <header><h3>도덕</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>옳고 그름의 분별 → 삶과 죽음 → 마음의 평화 → 직업윤리 → 타인과의 관계 → 갈등과 폭력의 해결 → 성의 도덕적 의미</dd>
+            <dt>2학기</dt><dd>도덕적 시민 → 사회 정의와 부패 → 자연관 → 과학과 윤리 → 삶의 소중함과 마음의 평화</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 나눔 실천 포트폴리오, 도덕 쟁점 토론, 교과서 심화 탐구, 생각노트 각 25<br>2학기: 쟁점 토론·글쓰기 25, 심화 탐구 25, 생각노트 30, 문제해결 20</dd>
+          </dl>
+          <ul class="notes">
+            <li>중2·3은 2학기 창체 시간에 매주 1시간 학년별 효정인성교재 영문판으로 수업합니다. <a class="s o" href="https://csia.hs.kr/?act=board.list&code=261312" target="_blank" rel="noopener">운영위 회의록</a></li>
+          </ul>
+          <div class="next"><b>2029년에는</b> 미래엔 도덕②로 바뀝니다. 다루는 영역(자신·타인·사회·자연과의 관계)은 지금 계획과 거의 같습니다. <a class="s x" href="https://dn.vivasam.com/vs/promotion2022/830/index/download/%EC%A4%91%ED%95%99-%EB%8F%84%EB%8D%95.pdf" target="_blank" rel="noopener">도덕 목차</a></div>
+        </article>
+
+        <article class="subj">
+          <header><h3>음악 · 1인 1악기</h3><span class="hrs">주 2 → 2 (+악기 2)</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>음악과 나 → 가창 프로젝트 → 음악과 논술 → 현대음악 → 음악사. 뮤지컬 감상을 하고 ‘뮤지컬과 사회 그리고 나’를 씁니다.</dd>
+            <dt>2학기</dt><dd>우리가 소개하고 싶은 음악(합주) → 감상·이론 → 무대 발표 → 합주의 의미(논술) → 우리나라 음악 → 세계 음악</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 타악기 연주 20, 이야기를 음악으로 30, 뮤지컬 감상 20, 논술 30<br>2학기: 독주 20, 합주 30, 감상·이론 20, 논술 30</dd>
+            <dt>악기</dt><dd>중3 1인 1악기는 수요일 7·8교시이고, 발표회는 6월에 합니다. <a class="s o" href="https://csia.hs.kr/?act=board.list&code=261312" target="_blank" rel="noopener">운영위 회의록</a> <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></dd>
+          </dl>
+        </article>
+
+        <article class="subj">
+          <header><h3>체육</h3><span class="hrs">주 2 → 2</span><span class="tag ko">한국어</span></header>
+          <dl>
+            <dt>1학기</dt><dd>건강·체력, 성폭력 예방 → 투기 도전 → 요가 → 심폐소생술 → 네트형(빅발리볼·인디아카·배구) → 안전</dd>
+            <dt>2학기</dt><dd>건강·체력 관리 → 투기형 → 심폐소생술 → 라크로스 → 안전</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>1학기: 건강(논술) 20, 태권도 20, 배구 오버핸드·언더핸드 토스 각 30<br>2학기: 건강(논술) 20, 태권도 20, 왕복달리기 30, 라크로스 30</dd>
+          </dl>
+          <ul class="notes">
+            <li>양궁을 2·3학년에 한다는 학부모 글이 있지만 <a class="s p" href="https://blog.naver.com/stand_up_alone/224316288527" target="_blank" rel="noopener">학부모 2026</a>, 2026 중3 평가 항목에는 양궁이 없습니다. <span class="flag">엇갈림</span></li>
+          </ul>
+        </article>
+
+        <article class="subj">
+          <header><h3>제2외국어 (택1)</h3><span class="hrs">주 2 → 2</span><span class="tag mix">원서 그림책·동화</span></header>
+          <dl>
+            <dt>스페인어</dt><dd>‘Español básico 2’: 쇼핑 → 하루 일과(재귀동사) → 경험 말하기(현재완료) → 어제 한 일(단순과거) → (2학기) 지난주 간 곳 → 어릴 때 살던 곳(불완료과거) → 문화 수업</dd>
+            <dt>일본어</dt><dd>비교 표현 → 좋아하는 것 → 오봉(お盆) 축제 → 길 묻기 → 『달려라 메로스』 → (2학기) 일본 옛이야기, 노래, 새해 인사 → 문화</dd>
+            <dt>중국어</dt><dd>多少钱?(가격) → 你想吃什么?(음식) → 张明在吗?(전화) → 问路(길 묻기) → (2학기) 원어 발표 → 비교문화 탐구 → 중국 드라마 회화</dd>
+            <dt>평가</dt><dd><div class="ev" data-j="0/0"></div>중2와 같은 영역과 배점입니다(기초 문형·청해 30, 독후 에세이 30, 원어 발표 20, 문화 발표·토론 20).</dd>
+          </dl>
+        </article>
       </div>
     </div>
   </div>
@@ -539,7 +1118,7 @@ footer li{margin-top:3px}
       <div class="card">
         <h3>동아리와 학생회</h3>
         <ul class="clean">
-          <li>2026년 중학교 정규(창체) 동아리 12개, 학생 자율동아리 62개(연인원 973명) <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a>. 중·고 연계 동아리도 있음 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">특색 교육과정</a></li>
+          <li>2026년 중학교 정규(창체) 동아리 12개(319명), 학생 자율동아리 62개(연인원 973명) <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미</a>. 2024~2026 공시 숫자가 똑같아 해마다 그대로 옮겨 적었을 수 있습니다. 자율동아리 참여율은 79.9%로 전국 중학교 평균 26.4%의 세 배입니다. 중·고 연계 동아리도 있음 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131726" target="_blank" rel="noopener">특색 교육과정</a></li>
           <li>3월에 정규동아리 박람회와 전체 동아리 박람회 <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a>. 홍보 분위기가 활기차고 대부분 자율동아리 <a class="s p" href="https://blog.naver.com/today_bna/224229626308" target="_blank" rel="noopener">학부모 2026</a></li>
           <li>한 재학생은 동아리 8~9곳에 지원해 모두 붙고 홍보부에도 합격 <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a>. 라운드스퀘어 동아리는 자소서 약 7,000자와 면접으로 선발 <a class="s p" href="https://blog.naver.com/student1108-/224097606812" target="_blank" rel="noopener">재학생 2025</a></li>
           <li>언급된 동아리: 반크, 블루크로스, 골든타임, 멘토멘티. “학생회 + 동아리 2~3개가 적당” <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">재학생 카페 2025</a>. 소셜임팩트 동아리가 1년간 모금해 사육곰 구출을 도움 <a class="s n" href="https://www.veritas-a.com/news/articleView.html?idxno=588110" target="_blank" rel="noopener">베리타스알파 2025</a></li>
@@ -555,6 +1134,68 @@ footer li{margin-top:3px}
           <li><b>CSIAMUN 모의유엔:</b> 2009년 시작, 고교생이 운영하며 1월 말~2월 초 <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a>. 입학 전 참가하면 친구와 선배를 사귀기 좋다는 추천 <a class="s c" href="https://cafe.naver.com/goldschools/922068" target="_blank" rel="noopener">카페 2025</a></li>
           <li><b>그 밖에:</b> Peace One Day, Round Square World Day, 청소년 포럼, 교환학생, 중학교 디베이트 청심 오픈(1월) <a class="s o" href="https://csia.hs.kr/?act=doc&mcode=131713" target="_blank" rel="noopener">교육목표</a> <a class="s o" href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a></li>
         </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h3>중학교 동아리 목록 (2024 학교알리미 공시)</h3>
+      <p class="small muted" style="margin-bottom:12px">학교가 2024년 5월 공시에 첨부한 「자율동아리 목록」의 중학교 시트를 그대로 옮겼습니다. <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미 2024 동아리 목록</a> 2025·2026 공시에는 이름 목록이 없어 이것이 가장 최근 공식 목록입니다. 원문에는 이름만 있어서 정규·자율 구분과 분야 묶음은 이 페이지에서 나눈 것입니다(추정). <span class="club known" style="font-size:.74rem;padding:2px 8px">주황색</span>은 아래에 소개가 있는 동아리입니다.</p>
+      <div class="cgroup"><h4>정규(창체) 동아리로 보이는 13개 · 수요일 1교시</h4><div class="clubs"><span class="club reg">골든타임</span><span class="club reg">국제교류(CIA)</span><span class="club reg">디렉터스컷</span><span class="club reg">메딕(MEDIC)</span><span class="club reg">메이커스</span><span class="club reg">발명클럽(MiT)</span><span class="club reg">사회과학탐구</span><span class="club reg">의생명심화연구</span><span class="club reg">의학(POISON)</span><span class="club reg">자연과학탐구</span><span class="club reg">청예단</span><span class="club reg">펀매트</span><span class="club reg">프시케</span></div></div>
+      <div class="cgroup"><h4>학교스포츠클럽</h4><div class="clubs"><span class="club reg">스쿨림픽 I</span><span class="club reg">스쿨림픽 II</span><span class="club reg">스쿨림픽 III</span></div><p class="small muted" style="margin-top:4px">목록에 각각 4번씩 나옵니다. 학년별 학교스포츠클럽 반으로 보입니다(추정).</p></div>
+      <div class="cgroup"><h4>자율 · 의학·생명·과학·수학</h4><div class="clubs"><span class="club ">골든아워</span><span class="club ">바이오</span><span class="club ">사이언스메디슨</span><span class="club ">매드사이언티스트</span><span class="club ">수/과학동아리(SG워너비)</span><span class="club ">수학을잘알지오</span></div></div>
+      <div class="cgroup"><h4>자율 · 심리·상담</h4><div class="clubs"><span class="club ">비612(심리동아리)</span><span class="club ">심리/뇌과학동아리(PSY)</span><span class="club known">또래상담</span></div></div>
+      <div class="cgroup"><h4>자율 · 경제·창업·법·진로</h4><div class="clubs"><span class="club ">경제동아리(GENF)</span><span class="club ">이코노미스트</span><span class="club ">경제/사회심리학토론동아리 레드필</span><span class="club ">창업동아리(CSIdle)</span><span class="club ">법동아리(justice)</span><span class="club ">법연구동아리(LUS)</span><span class="club ">로지컬(lawgical)</span><span class="club ">진로탐색동아리(Parrhesia)</span></div></div>
+      <div class="cgroup"><h4>자율 · 국제·지식 나눔</h4><div class="clubs"><span class="club known">반크</span><span class="club ">전세계학생들의지식나눔협회</span></div></div>
+      <div class="cgroup"><h4>자율 · 독서·글쓰기·언어·언론</h4><div class="clubs"><span class="club ">도서부</span><span class="club known">북적북적</span><span class="club ">에세이사이트(SEEssay)</span><span class="club ">언어탐구</span><span class="club known">영자신문동아리(TheQuill)</span><span class="club ">영화감상동아리(MID)</span></div></div>
+      <div class="cgroup"><h4>자율 · 봉사</h4><div class="clubs"><span class="club known">블루크로스의료봉사단</span></div></div>
+      <div class="cgroup"><h4>자율 · 음악·댄스</h4><div class="clubs"><span class="club known">오케스트라</span><span class="club ">목요음악회</span><span class="club ">댄스동아리(NG)</span><span class="club known">왓에버</span></div></div>
+      <div class="cgroup"><h4>자율 · 운동</h4><div class="clubs"><span class="club ">펜싱동아리(앙가르드)</span><span class="club ">런닝동아리</span></div></div>
+      <div class="cgroup"><h4>자율 · 이름만으로는 분야를 알 수 없음</h4><div class="clubs"><span class="club ">골든타임!</span><span class="club ">청예단!</span><span class="club ">펀매트!</span><span class="club ">디오르나</span><span class="club ">메디아</span><span class="club ">별헤는밤</span><span class="club ">비다</span><span class="club ">스태미나</span><span class="club ">시나브로</span><span class="club ">엔드</span><span class="club ">엔타</span><span class="club ">유별난동아리</span><span class="club ">피스디자이너</span><span class="club ">하이포라(hypora)</span></div></div>
+      <ul class="clean small" style="margin-top:12px">
+        <li>목록의 자율동아리는 46개로 공시 숫자 62개보다 16개 적습니다. 이름 끝에 ‘!’가 붙은 골든타임·청예단·펀매트는 같은 이름의 정규 동아리와 별도로 등록된 자율동아리로 보입니다.</li>
+        <li>같은 파일의 다른 시트(116개)는 고등학교 또는 중·고 전체 목록이라 여기에 넣지 않았습니다. 모의유엔(CSIAMUN), 라운드스퀘어, 방송부(CBN), DECA, 화학동아리(ALCHEMI) 등이 그쪽에 있습니다.</li>
+        <li>동아리 이름과 활동은 해마다 생기고 없어집니다. 2027년 3월 동아리 박람회에서 다시 확인해야 합니다.</li>
+      </ul>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>소개가 확인된 동아리</h3>
+        <ul class="clean small">
+          <li><b>라운드스퀘어</b> [중학생 부원 선발] 세계 사립학교 연합의 IDEALS(국제 이해·민주주의·환경·모험·리더십·봉사) 정신으로 국제교류를 합니다. 중1 부원은 11~12월에 자소서(약 7,000자)와 면접으로 뽑습니다. <a class="s p" href="https://blog.naver.com/student1108-/224097606812" target="_blank" rel="noopener">재학생 2025</a> 교환학생은 고교생만 해당한다는 재학생 말이 있습니다. <a class="s x" href="https://blog.naver.com/aurumverse/222069450380" target="_blank" rel="noopener">재학생 인터뷰(학원 게재) 2020</a></li>
+          <li><b>외교 동아리</b>(이름 미상) [중] 모의외교를 하고 나라별 입장문을 써서 냅니다. <a class="s p" href="https://blog.naver.com/student1108-/224084682382" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li><b>왓에버(Whatever)</b> [중] 중학교 댄스동아리로 ‘청심인의 밤’에서 공연합니다. 같은 글은 NG를 고교 댄스동아리로 소개하는데, 2024 목록에서는 NG가 중학교 시트에 있습니다. <span class="flag">엇갈림</span> <a class="s p" href="https://blog.naver.com/stand_up_alone/223942060155" target="_blank" rel="noopener">학부모 2025</a></li>
+          <li><b>오케스트라</b> [중] 중1 재학생이 밤에 오케스트라 연습에 간다고 썼습니다. <a class="s p" href="https://blog.naver.com/student1108-/224097606812" target="_blank" rel="noopener">재학생 2025</a></li>
+          <li><b>북적북적</b> [중] 자유학기 독서 동아리로 진로 도서를 추천합니다. 중학생 기사 블로그 ‘CNM newsmakers’에 소개됐습니다. <a class="s x" href="https://blog.naver.com/cnm_csia17/222898004340" target="_blank" rel="noopener">중학생 기사 블로그 2022</a></li>
+          <li><b>블루크로스 의료봉사단</b> [중] 장기려박사기념사업회 청소년 의료봉사단의 학교 동아리입니다. 2018년 혈우병 인식 캠페인 ‘레드타이 챌린지’에서 가장 다양한 콘텐츠로 상을 받았습니다. <a class="s x" href="https://blog.naver.com/kjyoun24/221340675356" target="_blank" rel="noopener">기사 전재 2018</a></li>
+          <li><b>반크</b> 사이버 외교사절단으로 외국에 한국을 바로 알리고 영어 책자를 만듭니다. 2011년에 이미 10년 넘게 활동한 오래된 동아리입니다. 최근 활동 후기는 찾지 못했습니다. <a class="s o" href="https://blog.naver.com/hellocsia/10121657516" target="_blank" rel="noopener">공식 블로그 2011</a></li>
+          <li><b>영자신문 The Quill</b> 종이 발행 비용 문제로 웹사이트로 옮겼습니다(2012년 기록). <a class="s o" href="https://blog.naver.com/hellocsia/10146812546" target="_blank" rel="noopener">공식 블로그 2012</a></li>
+          <li><b>중·고 연계 동아리</b>로 학원 글이 든 곳: 또래상담(상담), cs neureka(뇌과학), BEST(생명과학 실험), AMC(심화 수학), CodeBlack(의학), 팜이노베이션(환경), CELL(영어), CSIA문예부(문집), 해밀(영문 동화) <a class="s x" href="https://blog.naver.com/wingspeech_academy/222702234974" target="_blank" rel="noopener">학원 블로그 2022</a></li>
+          <li><b>고교에 가면 이어지는 큰 동아리:</b> 모의유엔 CSIAMUN(2023년 15회, 100명 이상) <a class="s o" href="https://eng.csia.hs.kr/?act=doc&mcode=1211" target="_blank" rel="noopener">영문 Student Activities</a>, 경영·경제 NENM(국제고 연합 경제포럼, 모의주식투자대회) <a class="s x" href="https://blog.naver.com/nenm_csia_official/224274162559" target="_blank" rel="noopener">동아리 블로그 2026</a>, 경제 WEB(민사·하나·청심 연합 심포지엄) <a class="s x" href="https://blog.naver.com/csiaweb/223635603331" target="_blank" rel="noopener">동아리 블로그 2024</a>, 국문 토론 토다라 <a class="s x" href="https://blog.naver.com/todara2012/223655567167" target="_blank" rel="noopener">동아리 블로그 2024</a></li>
+        </ul>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <h3>학생회 부서가 하는 일</h3>
+          <p class="small muted" style="margin-bottom:8px">영문 사이트 설명이라 중·고 구분이 없습니다. <a class="s o" href="https://eng.csia.hs.kr/?act=doc&mcode=1212" target="_blank" rel="noopener">영문 Student Council</a> 중학교 회장단은 따로 뽑습니다.</p>
+          <ul class="clean small">
+            <li><b>기획부</b> 이틀짜리 축제 청심제, 할로윈·크리스마스 파티, 졸업식</li>
+            <li><b>동아리부</b> 3월 동아리 박람회, 동아리 운영 가이드, 매 학기 우수 동아리 선정</li>
+            <li><b>학생소통부</b> 선후배 멘토링 CSMP, 마니또, 교내 신문 ‘That Week in CheongShim’, 행사 사진</li>
+            <li><b>홍보부</b> 학교 방문의 날·입학설명회 안내, 캠퍼스 투어, 홍보 영상·SNS. 3월에 면접으로 뽑고, 중1 합격 사례도 있습니다. <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a></li>
+            <li><b>체육부</b> 교내 체육대회, 응급처치 안내, 학교 대표팀 관리</li>
+            <li><b>환경부</b> 업사이클 제품 판매 모금, 음식물 쓰레기 줄이기, 북바자</li>
+            <li><b>선도부(자치부)</b> 급식 감독, 분실물, 야간 소등, 축제 반별 공연 조직</li>
+            <li><b>학생법원</b> 학생 간 분쟁 조정, 생활 규정 해석과 개정 (고교 중심으로 보임)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>동아리 생활 팁</h3>
+          <ul class="clean small">
+            <li><b>정규 동아리</b>는 3월 중순에 신청해 모두 하나씩 들어가고, 수요일 1교시에 모입니다. 2026년 계획으로는 중1·2가 3~4월에 7번, 중3은 학기 내내 모입니다. <a class="s g" href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">알리미 교육과정 편성</a> <b>자율동아리</b>는 3월 체육관 박람회(2026년은 3월 19일 15~17시)에서 모집하며, 면접이나 서류가 있는 곳도 있습니다. <a class="s o" href="https://blog.naver.com/hellocsia/220332246207" target="_blank" rel="noopener">공식 블로그 2015</a></li>
+            <li>자율동아리 활동은 주로 저녁 식사 시간(17:00~18:00)에 합니다. <a class="s o" href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">합격생 안내 p.13</a></li>
+            <li>중1 재학생은 다 붙지 않을 줄 알고 8~9곳에 지원했다가 모두 붙었고, 라운드스퀘어 자소서와 외교 동아리 입장문이 수행평가와 겹쳐 힘들었다고 합니다. <a class="s p" href="https://blog.naver.com/student1108-/223877794533" target="_blank" rel="noopener">재학생 2025</a> <a class="s p" href="https://blog.naver.com/student1108-/224084682382" target="_blank" rel="noopener">재학생 2025</a> 재학생 카페에서는 “학생회 + 동아리 2~3개”를 권합니다. <a class="s c" href="https://cafe.naver.com/goldschools/886893" target="_blank" rel="noopener">재학생 카페 2025</a></li>
+            <li>청심국제고 설명회에서 중1·2의 자율·동아리·봉사·진로 기록이 학생부 반영 항목이라고 했습니다. <a class="s x" href="https://blog.naver.com/beaconhillenglish/224068253236" target="_blank" rel="noopener">학원 설명회 후기 2025</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -866,7 +1507,9 @@ footer li{margin-top:3px}
     <b>주요 출처</b> (2026.10.19. 확인)
     <ul>
       <li>학교 공식: <a href="https://csia.hs.kr/?main" target="_blank" rel="noopener">청심국제중고 홈페이지</a> · <a href="https://admission.csia.hs.kr/?act=doc&mcode=1616" target="_blank" rel="noopener">입학 FAQ</a> · <a href="https://csia.hs.kr/?act=board.read&code=1029&id=1975" target="_blank" rel="noopener">2026 합격생 안내</a> · <a href="https://csia.hs.kr/?act=board.read&code=1029&id=2002" target="_blank" rel="noopener">학생생활규정</a> · <a href="https://csia.hs.kr/?act=calendar.main&mcode=1030" target="_blank" rel="noopener">학사일정</a> · <a href="https://blog.naver.com/hellocsia" target="_blank" rel="noopener">공식 블로그</a></li>
-      <li>공시: <a href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">학교알리미 청심국제중</a></li>
+      <li>공시: <a href="https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?GS_CD=S090005419" target="_blank" rel="noopener">학교알리미 청심국제중</a> (2026 교과별 교수·학습 및 평가 운영계획 1·2학기, 학업성적관리규정, 자유학기제 운영계획, 교육과정 편성·운영)</li>
+      <li>학교 회의록·평가: <a href="https://csia.hs.kr/?act=board.list&code=261312" target="_blank" rel="noopener">학교운영위원회 회의록(교과서 선정)</a> · <a href="https://csia.hs.kr/?act=board.read&code=2615&id=68" target="_blank" rel="noopener">학교평가 결과</a> · <a href="https://csia.hs.kr/?act=board.list&code=131728" target="_blank" rel="noopener">커리큘럼(중) 편제표</a></li>
+      <li>국가 교육과정: <a href="https://www.ncic.re.kr/inv/org/list.do" target="_blank" rel="noopener">국가교육과정정보센터</a> (2022 개정 중학교 교육과정), 교과서 출판사 공식 목차</li>
       <li>언론: 베리타스알파, 중앙일보, 전자신문, 조선에듀</li>
       <li>커뮤니티: 상위1%카페, 특목고갈사람모여라, 미인부모 등 네이버 카페와 재학생·학부모·졸업생 블로그</li>
     </ul>
@@ -884,6 +1527,18 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"
 const H=[["국어",408,442],["영어",408,340],["수학",408,374],["과학",340,null],["체육",272,272],["사회",204,null],["기술·가정",204,null],["역사",136,null],["도덕",136,null],["음악",136,null],["미술",136,null],["제2외국어",170,170],["정보",68,null]];
 const maxH=450;
 $("#hoursBars").innerHTML=H.map(([n,v,b])=>`<div class="bar-row"><span>${n}</span><div class="track"><div class="fill ${n==="영어"||n==="제2외국어"?"hi":""}" style="width:${v/maxH*100}%"></div>${b?`<span class="base" style="left:${b/maxH*100}%" title="국가 기준 ${b}"></span>`:""}</div><span class="n">${v}</span></div>`).join("");
+
+/* 학년별 과목: 지필·수행 비율 막대 (data-j="1학기 지필%/2학기 지필%", -는 그 학기 수업 없음) */
+document.querySelectorAll(".ev[data-j]").forEach(el=>{
+  const [a,b=a]=el.dataset.j.split("/");
+  el.innerHTML=[["1학기",a],["2학기",b]].filter(([,v])=>v!=="-").map(([l,v])=>{v=+v;
+    return `<span>${l}</span><div class="evb" title="지필 ${v}% · 수행 ${100-v}%">${v?`<div class="j" style="flex:${v}">${v>=15?"지필 "+v:v}</div>`:""}<div class="p" style="flex:${100-v}">수행 ${100-v}</div></div>`}).join("");
+});
+/* 학년 전환 */
+const gb=[...document.querySelectorAll("#gradeSeg button")],gp=[...document.querySelectorAll(".gpanel")];
+function showG(i){gb.forEach((b,j)=>{b.setAttribute("aria-selected",String(i===j));b.tabIndex=i===j?0:-1});gp.forEach((p,j)=>p.hidden=i!==j)}
+gb.forEach((b,i)=>{b.addEventListener("click",()=>showG(i));b.addEventListener("keydown",e=>{const d=e.key==="ArrowRight"?1:e.key==="ArrowLeft"?-1:0;if(d){const n=(i+d+gb.length)%gb.length;showG(n);gb[n].focus()}})});
+showG(0);
 
 /* 비용 구성 (2024 결산, 만 원) */
 const C=[["수업료",831],["기숙사비",449],["급식비",253],["체험학습비",157],["기타",241]];
